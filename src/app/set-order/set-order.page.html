@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Set Order</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>{{vendor.service.type}}</ion-card-subtitle>
+      <ion-card-title>Vendor: {{vendor.username}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>price: ${{vendor.service.price}}/day</p>
+      <p>city: {{vendor.service.city}}</p>
+      <p>star: {{vendor.star}}</p>
+      <p>phone: {{vendor.phone}}</p>
+      <p>email: {{vendor.email}}</p>
+    </ion-card-content>
+  </ion-card>
+  <ion-item>
+    <ion-label position="stacked" style="font-size: larger">Choose your start time</ion-label>
+    <ion-datetime [(ngModel)]="dateStart" (ionChange)="getCost()" display-format="MMM DD YYYY" picker-format="MMM DD YYYY"></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked" style="font-size: larger">Choose your end time</ion-label>
+    <ion-datetime [(ngModel)]="dateEnd" (ionChange)="getCost()" display-format="MMM DD YYYY" picker-format="MMM DD YYYY"></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked" style="font-size: larger">Set a address</ion-label>
+    <ion-input [(ngModel)]="address"> </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked" style="font-size: larger">Your name</ion-label>
+    <ion-input></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked" style="font-size: larger">Your phone</ion-label>
+    <ion-input></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="9">
+          <ion-text>
+            If you sign in, you will get 80% discounts
+            and get 10 points when you place the
+            order successfully.
+          </ion-text>
+        </ion-col>
+        <ion-col size="3">
+          <ion-text color="primary">sign in</ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+  <ion-item>
+    <ion-title>
+      <p>Total: ${{cost}}</p>
+    </ion-title>
+    <ion-button (click)="checkOut()">Check out</ion-button>
+  </ion-item>
+</ion-content>

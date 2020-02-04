@@ -1,9 +1,26 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>order</ion-title>
+    <ion-title>Order</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
+  <div *ngFor="let order of orderList">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>{{order.serviceType}}</ion-card-subtitle>
+        <ion-card-title>{{order.status}}</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p>address: {{order.address}}</p>
+        <p>start: {{order.dateStart}}</p>
+        <p>end: {{order.dateEnd}}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>
