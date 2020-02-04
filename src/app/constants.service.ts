@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class ConstantsService {
 
-  readonly baseUrl: string = 'http://localhost:6060'
+  readonly baseUrl: string = 'https://serve-me-hxy.herokuapp.com'
 
   constructor() { }
 }

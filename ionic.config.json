@@ -1,5 +1,7 @@
 {
   "name": "serve-me-android",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

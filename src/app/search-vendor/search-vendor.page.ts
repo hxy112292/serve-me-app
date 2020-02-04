@@ -10,9 +10,9 @@ import {ConstantsService} from '../constants.service';
   styleUrls: ['./search-vendor.page.scss'],
 })
 export class SearchVendorPage implements OnInit {
-  private serviceList: Service[];
-  private city: string;
-  private service: string;
+  serviceList: Service[];
+  city: string;
+  service: string;
 
   constructor(private route: ActivatedRoute,
               private http: HttpClient,
