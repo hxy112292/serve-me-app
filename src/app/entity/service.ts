@@ -1,8 +1,8 @@
 export class Service {
 
-    id: number;
+    id: string;
     type: string;
     vendorId: string;
     city: string;
-    price: number;
+    price: string;
 }

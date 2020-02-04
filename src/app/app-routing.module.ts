@@ -17,10 +17,6 @@ const routes: Routes = [
   {
     path: 'me',
     loadChildren: () => import('./me/me.module').then( m => m.MePageModule)
-  },
-  {
-    path: 'search-vendor',
-    loadChildren: () => import('./search-vendor/search-vendor.module').then( m => m.SearchVendorPageModule)
   }
 ];
 @NgModule({

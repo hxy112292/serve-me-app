@@ -5,8 +5,19 @@
 </ion-header>
 
 <ion-content>
-  <div *ngFor="let service of serviceList">
-    vendor-id : {{service.vendorId}},
-    type : {{service.type}} , type : {{service.city}}
+  <ion-searchbar showCancelButton="always"></ion-searchbar>
+  <div *ngFor="let vendor of vendorList">
+    <ion-card (click)="toServiceDetail(vendor)">
+      <ion-card-header>
+        <ion-card-subtitle>{{service}}</ion-card-subtitle>
+        <ion-card-title>{{vendor.username}}</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p>price: {{vendor.service.price}}</p>
+        <p>city: {{vendor.service.city}}</p>
+        <p>star: {{vendor.star}}</p>
+      </ion-card-content>
+    </ion-card>
   </div>
 </ion-content>
