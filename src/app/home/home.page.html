@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Home</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-title text-center><p>Welcome to use ServeMe</p></ion-title>
+  <ion-list>
+    <ion-item>
+      <ion-label>Choose a city</ion-label>
+      <ion-select [(ngModel)]="city">
+        <ion-select-option value="Dallas">Dallas</ion-select-option>
+        <ion-select-option value="Arlington">Arlington</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Choose a service type</ion-label>
+      <ion-select [(ngModel)]="service">
+        <ion-select-option value="Appliances">Appliances</ion-select-option>
+        <ion-select-option value="Electrical">Electrical</ion-select-option>
+        <ion-select-option value="Plumbing">Plumbing</ion-select-option>
+        <ion-select-option value="Home Cleaning">Home Cleaning</ion-select-option>
+        <ion-select-option value="Tutoring">Tutoring</ion-select-option>
+        <ion-select-option value="Packaging and Moving">Packaging and Moving</ion-select-option>
+        <ion-select-option value="Computer Repair">Computer Repair</ion-select-option>
+        <ion-select-option value="Home Repair and Painting">Home Repair and Painting</ion-select-option>
+        <ion-select-option value="PestControl">PestControl</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-button (click)="searchVendor()">Search vendors</ion-button>
+</ion-content>
