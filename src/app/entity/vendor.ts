@@ -5,6 +5,7 @@ export class Vendor {
     id: string;
     username: string;
     star: number;
+    starStr: string;
     phone: string;
     email: string;
 }
