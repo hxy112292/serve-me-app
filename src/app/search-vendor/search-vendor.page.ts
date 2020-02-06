@@ -18,6 +18,7 @@ export class SearchVendorPage implements OnInit {
   service: string;
   vendorStars: string;
   starFilter: number;
+  vendorName: string;
 
   constructor(private route: ActivatedRoute,
               private http: HttpClient,
