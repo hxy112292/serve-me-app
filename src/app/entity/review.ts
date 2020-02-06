@@ -5,6 +5,7 @@ export class Review {
     vendorId: string;
     customerId: string;
     serviceId: string;
-    star: string;
+    star: number;
+    starStr: string;
     content: string;
 }

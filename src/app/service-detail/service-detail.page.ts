@@ -14,6 +14,7 @@ export class ServiceDetailPage implements OnInit {
 
   vendor: Vendor;
   reviewList: Review[];
+  star: string;
 
   constructor(private route: ActivatedRoute,
               private http: HttpClient,
@@ -35,6 +36,20 @@ export class ServiceDetailPage implements OnInit {
       }
     }).subscribe(res => {
       this.reviewList = (res as any).result;
+      // tslint:disable-next-line:prefer-for-of
+      for (let i = 0; i < this.reviewList.length; i++) {
+        for (let j = 0; j < Number(this.reviewList[i].star); j++) {
+          if (j === 0 ) {
+            this.star = '★';
+          } else {
+            this.star += '★';
+          }
+        }
+        for (let k = 0; k < 5 - Number(this.reviewList[i].star); k++) {
+          this.star += '☆';
+        }
+        this.reviewList[i].starStr = this.star;
+      }
     });
   }
 

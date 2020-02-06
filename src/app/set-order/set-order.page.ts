@@ -57,6 +57,18 @@ export class SetOrderPage implements OnInit {
   }
 
   checkOut() {
+    if (this.dateStart == null || this.dateStart === '') {
+      alert('you need to choose a date start');
+      return;
+    }
+    if (this.dateEnd == null || this.dateEnd === '') {
+      alert('you need to choose a date end');
+      return;
+    }
+    if (this.address == null || this.address === '') {
+      alert('you need to choose an address');
+      return;
+    }
     this.http.post(this.constant.baseUrl + '/order/insert', {
       dateStart: this.dateStart,
       dateEnd: this.dateEnd,
