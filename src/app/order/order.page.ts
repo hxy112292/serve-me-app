@@ -31,7 +31,6 @@ export class OrderPage implements OnInit {
       }
     }).subscribe(res => {
       this.orderList = (res as any).result;
-      console.log(this.orderList[0].address);
     });
   }
 
