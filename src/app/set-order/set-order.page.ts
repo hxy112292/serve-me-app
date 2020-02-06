@@ -41,7 +41,6 @@ export class SetOrderPage implements OnInit {
       }
     }).subscribe(res => {
       this.user = (res as any).result;
-      console.log(this.user.username);
     });
   }
 
@@ -79,7 +78,6 @@ export class SetOrderPage implements OnInit {
       vendorId: this.vendor.service.vendorId,
       serviceId: this.vendor.service.id
     }).subscribe(res => {
-      console.log(res);
     });
     this.router.navigate(['/tabs/order']);
   }
