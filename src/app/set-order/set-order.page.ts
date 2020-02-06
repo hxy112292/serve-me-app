@@ -52,8 +52,8 @@ export class SetOrderPage implements OnInit {
     if (this.dateEnd == null || this.dateEnd === '') {
       return;
     }
-    this.cost = Math.abs((new Date(this.dateEnd).getTime() - new Date(this.dateStart).getTime()) / 1000 / 60 / 60 / 24)
-        * Number(this.vendor.service.price);
+    this.cost = Math.floor((new Date(this.dateEnd).getTime() - new Date(this.dateStart).getTime()) / 1000 / 60 / 60 / 24
+        * Number(this.vendor.service.price));
   }
 
   checkOut() {
@@ -69,6 +69,7 @@ export class SetOrderPage implements OnInit {
     }).subscribe(res => {
       console.log(res);
     });
+    this.router.navigate(['/tabs/order']);
   }
 
 }
