@@ -5,6 +5,10 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Order} from '../entity/order';
 import {ConstantsService} from '../constants.service';
 
+// import { LocalNotifications } from '@ionic-native/local-notifications';
+
+
+// import { Vibration } from '@ionic-native/vibration';
 @Component({
   selector: 'app-order',
   templateUrl: './order.page.html',
@@ -12,13 +16,13 @@ import {ConstantsService} from '../constants.service';
 })
 export class OrderPage implements OnInit {
 
-  orderList: Order[]
-
   constructor(private http: HttpClient,
               private constant: ConstantsService,
               private router: Router,
               private route: ActivatedRoute) { }
 
+  orderList: Order[];
+i;
   ngOnInit() {
 
     this.getOrderList();
@@ -42,5 +46,4 @@ export class OrderPage implements OnInit {
       event.target.complete();
     }, 2000);
   }
-
 }

@@ -30,4 +30,12 @@ export class MePage implements OnInit{
   personalInfo() {
     this.router.navigate(['tabs/home']);
   }
+
+  setting() {
+
+    // this.notice();
+    // this.vibration.vibrate(1000);
+    this.router.navigate(['/tabs/me/setting']);
+    // this.router.navigate(['/tabs/home/order']);
+  }
 }

@@ -11,13 +11,18 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import {ConstantsService} from './constants.service';
 
+// import {Vibration} from '@ionic-native/vibration';
+// import { LocalNotifications } from '@ionic-native/local-notifications';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, HttpClientModule, IonicModule.forRoot(), AppRoutingModule],
   providers: [
     StatusBar,
+    // Vibration,
     SplashScreen,
+    // LocalNotifications,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     ConstantsService
   ],
