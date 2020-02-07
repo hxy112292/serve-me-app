@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Vibration } from '@ionic-native/vibration/ngx';
+import { Router } from '@angular/router';
+// import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 @Component({
   selector: 'app-setting',
@@ -7,9 +10,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingPage implements OnInit {
 
-  constructor() { }
+  constructor(
+      private router: Router,
+      private vibration: Vibration,
+      ) { }
 
   ngOnInit() {
   }
+  sounds() {
 
+    // this.notice();
+    // this.vibration.vibrate(1000);
+    this.vibration.vibrate(1000);
+    // this.router.navigate(['/tabs/me/setting']);
+    // this.router.navigate(['/tabs/home/order']);
+  }
+  // notification() {
+  //   this.localNotifications.schedule({
+  //     id: 1,
+  //     text: 'Single ILocalNotification',
+  //     // sound: isAndroid? 'file://sound.mp3': 'file://beep.caf',
+  //     data: { secret: key }
+  //   });
+  // }
 }

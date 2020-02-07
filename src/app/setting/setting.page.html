@@ -16,12 +16,12 @@
 
 <ion-content>
   <ion-list>
-    <ion-item>
+    <ion-item (click)="sounds()">
       <ion-label>Sound on/off</ion-label>
       <ion-toggle slot="start" name="blueberry" checked></ion-toggle>
     </ion-item>
-
-    <ion-item>
+<!--    <ion-item (click)="setting()">-->
+    <ion-item (click)="sounds()">
       <ion-label>Receive recommendation yes/no</ion-label>
       <ion-toggle slot="start" name="apple" color="secondary" checked></ion-toggle>
     </ion-item>

@@ -11,7 +11,7 @@ import { Vibration } from '@ionic-native/vibration/ngx';
 export class MePage implements OnInit{
 
   constructor(private router: Router,
-              private constant: ConstantsService,
+              public constant: ConstantsService,
               private vibration: Vibration) { }
 
   ngOnInit() {
@@ -32,8 +32,8 @@ export class MePage implements OnInit{
 
     // this.notice();
     // this.vibration.vibrate(1000);
-    this.vibration.vibrate(1000);
-    // this.router.navigate(['/tabs/me/setting']);
+    // this.vibration.vibrate(1000);
+    this.router.navigate(['/tabs/me/setting']);
 
     // this.router.navigate(['/tabs/home/order']);
   }
