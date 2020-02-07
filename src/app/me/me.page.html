@@ -35,5 +35,11 @@
       <ion-item (click)="setting()">
         Settings
       </ion-item>
+    <br/><br/>
+      <div *ngIf="username==null">
+      </div>
+      <div *ngIf="username!=null" text-center (click)="logout()">
+          <ion-button>LOGOUT</ion-button>
+      </div>
   </ion-list>
 </ion-content>

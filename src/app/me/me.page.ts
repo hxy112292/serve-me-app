@@ -42,4 +42,8 @@ export class MePage implements OnInit{
 
     // this.router.navigate(['/tabs/home/order']);
   }
+
+  logout() {
+    this.username = null;
+  }
 }
