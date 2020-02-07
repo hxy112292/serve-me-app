@@ -32,4 +32,9 @@ export class HomePage implements OnInit {
     // this.navCtrl.navigateForward('/tabs/home/search-vendor');
     this.router.navigate(['/tabs/home/search-vendor', {city: this.city, service: this.service}]);
   }
+  setting() {
+
+    this.router.navigate(['/tabs/me/setting']);
+    // this.router.navigate(['/tabs/home/order']);
+  }
 }
