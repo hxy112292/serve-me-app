@@ -25,6 +25,22 @@ export class SignupPage implements OnInit {
   }
 
   signup() {
+    if (this.username == null || this.username === '') {
+      alert('you must set a username');
+      return;
+    }
+    if (this.password == null || this.password === '') {
+      alert('you must set a password');
+      return;
+    }
+    if (this.phone == null || this.phone === '') {
+      alert('you must set a phone');
+      return;
+    }
+    if (this.email == null || this.email === '') {
+      alert('you must set a email');
+      return;
+    }
     this.http.post(this.constant.baseUrl + '/user/signup', {
       username: this.username,
       password: this.password,
