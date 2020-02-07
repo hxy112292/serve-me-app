@@ -18,6 +18,8 @@ const routes: Routes = [
     path: 'me',
     loadChildren: () => import('./me/me.module').then( m => m.MePageModule)
   }
+
+
 ];
 @NgModule({
   imports: [

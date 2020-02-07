@@ -6,16 +6,16 @@
 
 <ion-content>
   <ion-list>
-      <div *ngIf="username==null">
+      <div *ngIf="constant.uid==null">
           <ion-item (click)="login()">
               Login/Sign up
           </ion-item>
       </div>
-      <div *ngIf="username!=null">
+      <div *ngIf="constant.uid!=null">
           <ion-item (click)="personalInfo()">
               <ion-row style="width: 100%">
                   <ion-col>
-              {{username}}'s profile information
+              {{constant.username}}'s profile information
                   </ion-col>
                   <ion-col text-end>
                       >>
@@ -36,9 +36,7 @@
         Settings
       </ion-item>
     <br/><br/>
-      <div *ngIf="username==null">
-      </div>
-      <div *ngIf="username!=null" text-center (click)="logout()">
+      <div *ngIf="constant.username!=null" text-center (click)="logout()">
           <ion-button>LOGOUT</ion-button>
       </div>
   </ion-list>

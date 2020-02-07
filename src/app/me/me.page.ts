@@ -10,19 +10,14 @@ import { Vibration } from '@ionic-native/vibration/ngx';
 })
 export class MePage implements OnInit{
 
-  username: string;
-
   constructor(private router: Router,
               private constant: ConstantsService,
               private vibration: Vibration) { }
 
   ngOnInit() {
-
-    this.username = this.constant.username;
-    console.log(this.username);
   }
   login() {
-    this.router.navigate(['tabs/home']);
+    this.router.navigate(['tabs/me/login']);
   }
 
   myorder() {
@@ -44,6 +39,7 @@ export class MePage implements OnInit{
   }
 
   logout() {
-    this.username = null;
+    this.constant.uid = null;
+    this.constant.username = null;
   }
 }
