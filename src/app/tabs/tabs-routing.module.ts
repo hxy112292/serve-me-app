@@ -51,6 +51,14 @@ const routes: Routes = [
           {
             path: 'setting',
             loadChildren: () => import('../setting/setting.module').then( m => m.SettingPageModule)
+          },
+          {
+            path: 'signup',
+            loadChildren: () => import('../signup/signup.module').then( m => m.SignupPageModule)
+          },
+          {
+            path: 'login',
+            loadChildren: () => import('../login/login.module').then( m => m.LoginPageModule)
           }
         ]
       },

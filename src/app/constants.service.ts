@@ -6,8 +6,24 @@ import { Injectable } from '@angular/core';
 export class ConstantsService {
 
   readonly baseUrl: string = 'https://serve-me-hxy.herokuapp.com';
-  uid = '1';
-  username = 'null';
+  uid = null;
+  username = null;
 
-  constructor() { }
+  constructor() {
+    this.uid = null;
+    this.username = null;
+  }
+
+  setUser(uid: string, username: string) {
+    this.uid = uid;
+    this.username = username;
+  }
+
+  getUid() {
+    return this.uid;
+  }
+
+  getUserName() {
+    return this.username;
+  }
 }
