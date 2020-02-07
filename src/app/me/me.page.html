@@ -13,7 +13,14 @@
       </div>
       <div *ngIf="username!=null">
           <ion-item (click)="personalInfo()">
-              {{username}}
+              <ion-row style="width: 100%">
+                  <ion-col>
+              {{username}}'s profile information
+                  </ion-col>
+                  <ion-col text-end>
+                      >>
+                  </ion-col>
+              </ion-row>
           </ion-item>
       </div>
       <ion-item>
