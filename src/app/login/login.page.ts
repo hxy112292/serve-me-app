@@ -21,6 +21,14 @@ export class LoginPage implements OnInit {
   }
 
   login() {
+    if (this.username == null || this.username === '') {
+      alert('you must set a username');
+      return;
+    }
+    if (this.password == null || this.password === '') {
+      alert('you must set a password');
+      return;
+    }
     this.http.post(this.constant.baseUrl + '/user/login', {
       username: this.username,
       password: this.password,
