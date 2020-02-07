@@ -5,5 +5,28 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-list>
+      <div *ngIf="username==null">
+          <ion-item (click)="login()">
+              Login/Sign up
+          </ion-item>
+      </div>
+      <div *ngIf="username!=null">
+          <ion-item (click)="personalInfo()">
+              {{username}}
+          </ion-item>
+      </div>
+      <ion-item>
+        Points
+      </ion-item>
+      <ion-item (click)="myorder()">
+        My Orders
+      </ion-item>
+      <ion-item>
+        Be a service provider
+      </ion-item>
+      <ion-item>
+        Settings
+      </ion-item>
+  </ion-list>
 </ion-content>
