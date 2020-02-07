@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import {ConstantsService} from './constants.service';
+import { Vibration } from '@ionic-native/vibration/ngx';
 
 // import {Vibration} from '@ionic-native/vibration';
 // import { LocalNotifications } from '@ionic-native/local-notifications';
@@ -22,6 +23,7 @@ import {ConstantsService} from './constants.service';
     StatusBar,
     // Vibration,
     SplashScreen,
+    Vibration,
     // LocalNotifications,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     ConstantsService
