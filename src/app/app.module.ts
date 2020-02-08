@@ -11,10 +11,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import {ConstantsService} from './constants.service';
 import { Vibration } from '@ionic-native/vibration/ngx';
-// import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
-
-// import {Vibration} from '@ionic-native/vibration';
-// import { LocalNotifications } from '@ionic-native/local-notifications';
+import { FCM } from '@ionic-native/fcm/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +22,7 @@ import { Vibration } from '@ionic-native/vibration/ngx';
     // Vibration,
     SplashScreen,
     Vibration,
+    FCM,
     // LocalNotifications,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     ConstantsService

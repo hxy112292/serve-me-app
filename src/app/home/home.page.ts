@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import {HttpClient} from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
-// import { LocalNotifications } from '@ionic-native/local-notifications';
-// import {Vibration, VibrationOriginal} from '@ionic-native/vibration';
+import { FCM } from '@ionic-native/fcm/ngx';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +17,25 @@ export class HomePage implements OnInit {
   constructor(private http: HttpClient,
               private navCtrl: NavController,
               private router: Router,
-              private route: ActivatedRoute) {}
+              private route: ActivatedRoute,
+              private fcm: FCM,
+              public plt: Platform) {
+    this.plt.ready()
+        .then(() => {
+          this.fcm.onNotification().subscribe(data => {
+            if (data.wasTapped) {
+              console.log('Received in background');
+            } else {
+              console.log('Received in foreground');
+            }
+          });
+
+          this.fcm.onTokenRefresh().subscribe(token => {
+            // Register your new token in your back-end if you want
+            // backend.registerToken(token);
+          });
+        });
+  }
 
   ngOnInit() {
   }
@@ -35,15 +53,16 @@ export class HomePage implements OnInit {
     this.router.navigate(['/tabs/home/search-vendor', {city: this.city, service: this.service}]);
   }
 
-  // notice() {
-  //   this.localNotifications.schedule({
-  //     id: 1,
-  //     title: 'notice',
-  //     text: '新的订单',
-  //     trigger: {at: new Date(new Date().getTime())},
-  //     sound: null,
-  //     launch: true,
-  //     lockscreen: true
-  //   });
-  // }
+  subscribeToTopic() {
+    this.fcm.subscribeToTopic('enappd');
+  }
+  getToken() {
+    this.fcm.getToken().then(token => {
+      // Register your new token in your back-end if you want
+      // backend.registerToken(token);
+    });
+  }
+  unsubscribeFromTopic() {
+    this.fcm.unsubscribeFromTopic('enappd');
+  }
 }
