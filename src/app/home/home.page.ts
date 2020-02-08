@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FCM } from '@ionic-native/fcm/ngx';
 import { Platform } from '@ionic/angular';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 @Component({
   selector: 'app-home',
@@ -19,21 +20,28 @@ export class HomePage implements OnInit {
               private router: Router,
               private route: ActivatedRoute,
               private fcm: FCM,
-              public plt: Platform) {
+              public plt: Platform,
+              private localNotifications: LocalNotifications) {
     this.plt.ready()
         .then(() => {
-          this.fcm.onNotification().subscribe(data => {
-            if (data.wasTapped) {
-              console.log('Received in background');
-            } else {
-              console.log('Received in foreground');
-            }
-          });
+            this.fcm.onNotification().subscribe(data => {
+              if (data.wasTapped) {
+                console.log('Received in background');
+              } else {
+                console.log('Received in foreground');
+                console.log(data);
+                this.localNotifications.schedule({
+                  id: 1,
+                  title: data.title,
+                  text: data.body
+                });
+              }
+            });
 
-          this.fcm.onTokenRefresh().subscribe(token => {
-            // Register your new token in your back-end if you want
-            // backend.registerToken(token);
-          });
+            this.fcm.onTokenRefresh().subscribe(token => {
+              // Register your new token in your back-end if you want
+              // backend.registerToken(token);
+            });
         });
   }
 

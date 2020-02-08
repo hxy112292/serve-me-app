@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Vibration } from '@ionic-native/vibration/ngx';
 import { Router } from '@angular/router';
-// import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 @Component({
   selector: 'app-setting',
