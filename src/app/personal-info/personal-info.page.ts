@@ -21,6 +21,10 @@ export class PersonalInfoPage implements OnInit {
 
   update() {
     this.http.put(this.constant.baseUrl + '/user/update', this.constant.getUser()).subscribe(res => {
+      if ((res as any).code !== 0) {
+        alert((res as any).message);
+        return;
+      }
       this.constant.setUser((res as any).result);
     });
     this.router.navigate(['/tabs/me']);

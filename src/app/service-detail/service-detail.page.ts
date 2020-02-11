@@ -35,6 +35,10 @@ export class ServiceDetailPage implements OnInit {
         serviceId: this.vendor.service.id
       }
     }).subscribe(res => {
+      if ((res as any).code !== 0) {
+        alert((res as any).message);
+        return;
+      }
       this.reviewList = (res as any).result;
       // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < this.reviewList.length; i++) {

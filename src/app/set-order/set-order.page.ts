@@ -16,6 +16,7 @@ export class SetOrderPage implements OnInit {
   vendor: Vendor;
   order: Order;
   cost: number;
+  user: User;
 
   constructor(private route: ActivatedRoute,
               private http: HttpClient,
@@ -32,6 +33,15 @@ export class SetOrderPage implements OnInit {
       dateStart: '',
       dateEnd: '',
       status: '',
+    };
+
+    this.user = {
+      id: '',
+      username: '',
+      password: '',
+      email: '',
+      phone: '',
+      role: 'GUEST'
     };
   }
 
@@ -71,17 +81,41 @@ export class SetOrderPage implements OnInit {
       return;
     }
     if (this.constant.getUser() == null || this.constant.getUser().id == null || this.constant.getUser().id === '') {
+      if (this.user.phone == null || this.user.phone === '') {
+        alert('you need to choose an phone');
+        return;
+      }
+      if (this.user.username == null || this.user.username === '') {
+        alert('you need to choose an username');
+        return;
+      }
       this.http.post(this.constant.baseUrl + '/user/signup', {
+        username: this.user.username,
+        phone: this.user.phone,
         role: 'GUEST'
       }).subscribe(res => {
+        if ((res as any).code !== 0) {
+          alert((res as any).message);
+          return;
+        }
         this.constant.setUser((res as any).result);
         localStorage.setItem('uid', this.constant.getUser().id);
         this.order.customerId = this.constant.getUser().id;
-        this.http.post(this.constant.baseUrl + '/order/insert', this.order).subscribe(r => {});
+        this.http.post(this.constant.baseUrl + '/order/insert', this.order).subscribe(r => {
+          if ((r as any).code !== 0) {
+            alert((r as any).message);
+            return;
+          }
+        });
       });
     } else {
       this.order.customerId = this.constant.getUser().id;
-      this.http.post(this.constant.baseUrl + '/order/insert', this.order).subscribe(res => {});
+      this.http.post(this.constant.baseUrl + '/order/insert', this.order).subscribe(res => {
+        if ((res as any).code !== 0) {
+          alert((res as any).message);
+          return;
+        }
+      });
     }
 
     this.router.navigate(['/tabs/order']);

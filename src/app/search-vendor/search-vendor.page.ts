@@ -39,6 +39,10 @@ export class SearchVendorPage implements OnInit {
         type: this.service
       }
     }).subscribe(res => {
+      if ((res as any).code !== 0) {
+        alert((res as any).message);
+        return;
+      }
       this.vendorList = (res as any).result;
       // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < this.vendorList.length; i++) {

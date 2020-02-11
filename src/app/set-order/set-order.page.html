@@ -36,11 +36,21 @@
   </ion-item>
   <ion-item>
     <ion-label position="stacked" style="font-size: larger">Your name</ion-label>
-    <ion-input [(ngModel)]="constant.getUser().username"></ion-input>
+    <div *ngIf="constant.getUser() != null && constant.getUser().id != null && constant.getUser().id != ''">
+      <ion-input [(ngModel)]="constant.getUser().username" disabled="true"></ion-input>
+    </div>
+    <div *ngIf="constant.getUser() == null || constant.getUser().id == null || constant.getUser().id == ''">
+      <ion-input [(ngModel)]="user.username"></ion-input>
+    </div>
   </ion-item>
   <ion-item>
     <ion-label position="stacked" style="font-size: larger">Your phone</ion-label>
-    <ion-input [(ngModel)]="constant.getUser().phone"></ion-input>
+    <div *ngIf="constant.getUser() != null && constant.getUser().id != null && constant.getUser().id != ''">
+      <ion-input [(ngModel)]="constant.getUser().phone" disabled="true"></ion-input>
+    </div>
+    <div *ngIf="constant.getUser() == null || constant.getUser().id == null || constant.getUser().id == ''">
+      <ion-input [(ngModel)]="user.phone"></ion-input>
+    </div>
   </ion-item>
   <div *ngIf="constant.getUser() == null || constant.getUser().id==null ||
       constant.getUser().id=='' || constant.getUser().role=='GUEST'">

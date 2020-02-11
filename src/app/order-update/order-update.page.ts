@@ -64,6 +64,10 @@ export class OrderUpdatePage implements OnInit {
         vendorId: this.order.vendorId
       }
     }).subscribe(res => {
+      if ((res as any).code !== 0) {
+        alert((res as any).message);
+        return;
+      }
       this.vendorList = (res as any).result;
       // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < this.vendorList.length; i++) {
@@ -96,7 +100,12 @@ export class OrderUpdatePage implements OnInit {
   }
 
   updateOrder() {
-    this.http.put( this.constant.baseUrl + '/order/update', this.order).subscribe( res => {});
+    this.http.put( this.constant.baseUrl + '/order/update', this.order).subscribe( res => {
+      if ((res as any).code !== 0) {
+        alert((res as any).message);
+        return;
+      }
+    });
     this.router.navigate(['/tabs/order']);
   }
 }

@@ -30,6 +30,10 @@ export class OrderPage implements OnInit {
         customerId: this.constant.getUser().id
       }
     }).subscribe(res => {
+      if ((res as any).code !== 0) {
+        alert((res as any).message);
+        return;
+      }
       this.orderList = (res as any).result;
     });
   }

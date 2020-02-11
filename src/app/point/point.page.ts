@@ -28,6 +28,10 @@ export class PointPage implements OnInit {
         userId: this.constant.getUser().id
       }
     }).subscribe( res => {
+      if ((res as any).code !== 0) {
+        alert((res as any).message);
+        return;
+      }
       this.pointList = (res as any).result;
       // tslint:disable-next-line:prefer-for-of
       for ( let i = 0; i < this.pointList.length; i++) {
