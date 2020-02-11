@@ -54,6 +54,10 @@ export class SignupPage implements OnInit {
     }
     if (this.constant.getUser() == null || this.constant.getUser().role == null || this.constant.getUser().role === '') {
       this.http.post(this.constant.baseUrl + '/user/signup', this.user).subscribe(res => {
+        if ((res as any).code !== 0) {
+          alert((res as any).message);
+          return;
+        }
         this.constant.setUser((res as any).result);
         localStorage.setItem('uid', this.constant.getUser().id);
       });
@@ -65,6 +69,10 @@ export class SignupPage implements OnInit {
       this.constant.getUser().username = this.user.username;
       this.constant.getUser().role = 'USER';
       this.http.put(this.constant.baseUrl + '/user/update', this.constant.getUser()).subscribe(res => {
+        if ((res as any).code !== 0) {
+          alert((res as any).message);
+          return;
+        }
         this.constant.setUser((res as any).result);
         localStorage.setItem('uid', this.constant.getUser().id);
       });
