@@ -38,6 +38,7 @@ export class PointPage implements OnInit {
 
   doRefresh(event) {
     console.log('Begin async operation');
+    this.pointTotal = 0;
     this.getPoints();
     setTimeout(() => {
       console.log('Async operation has ended');
