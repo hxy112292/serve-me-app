@@ -6,16 +6,17 @@
 
 <ion-content>
   <ion-list>
-      <div *ngIf="constant.uid==null">
+      <div *ngIf="constant.getUser() == null || constant.getUser().id==null ||
+      constant.getUser().id=='' || constant.getUser().role=='GUEST'">
           <ion-item (click)="login()">
               Login/Sign up
           </ion-item>
       </div>
-      <div *ngIf="constant.uid!=null">
+      <div *ngIf="constant.getUser() != null && constant.getUser().id!=null && constant.getUser().id!='' && constant.getUser().role=='USER'">
           <ion-item (click)="personalInfo()">
               <ion-row style="width: 100%">
                   <ion-col size="9">
-                      {{constant.username}}'s profile
+                      {{constant.getUser().username}}'s profile
                   </ion-col>
                   <ion-col text-end>
                       >>
@@ -36,7 +37,7 @@
         Settings
       </ion-item>
     <br/><br/>
-      <div *ngIf="constant.uid!=null" text-center (click)="logout()">
+      <div *ngIf="constant.getUser() != null && constant.getUser().id!=null && constant.getUser().id!='' && constant.getUser().role=='USER'" text-center (click)="logout()">
           <ion-button>LOGOUT</ion-button>
       </div>
   </ion-list>

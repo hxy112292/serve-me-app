@@ -31,7 +31,7 @@ i;
   getOrderList() {
     this.http.get(this.constant.baseUrl + '/order/findOrderByCustomer', {
       params: {
-        customerId: this.constant.uid
+        customerId: this.constant.getUser().id
       }
     }).subscribe(res => {
       this.orderList = (res as any).result;

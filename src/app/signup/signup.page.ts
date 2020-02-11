@@ -12,44 +12,45 @@ import {ConstantsService} from '../constants.service';
 })
 export class SignupPage implements OnInit {
 
-  username: string;
-  password: string;
-  email: string;
-  phone: string;
+  user: User;
 
   constructor(private http: HttpClient,
               private constant: ConstantsService,
-              private router: Router) { }
+              private router: Router) {
+    this.user = {
+      id: '',
+      username: '',
+      password: '',
+      email: '',
+      phone: '',
+      role: 'USER'
+    };
+  }
 
   ngOnInit() {
   }
 
   signup() {
-    if (this.username == null || this.username === '') {
+    if (this.user.username == null || this.user.username === '') {
       alert('you must set a username');
       return;
     }
-    if (this.password == null || this.password === '') {
+    if (this.user.password == null || this.user.password === '') {
       alert('you must set a password');
       return;
     }
-    if (this.phone == null || this.phone === '') {
+    if (this.user.phone == null || this.user.phone === '') {
       alert('you must set a phone');
       return;
     }
-    if (this.email == null || this.email === '') {
+    if (this.user.email == null || this.user.email === '') {
       alert('you must set a email');
       return;
     }
-    this.http.post(this.constant.baseUrl + '/user/signup', {
-      username: this.username,
-      password: this.password,
-      email: this.email,
-      phone: this.phone,
-      role: 'USER'
-    }).subscribe(res => {
+    this.http.post(this.constant.baseUrl + '/user/signup', this.user).subscribe(res => {
       console.log(res);
-      this.constant.setUser((res as any).result, this.username);
+      this.constant.setUser((res as any).result);
+      localStorage.setItem('uid', this.constant.getUser().id);
     });
     this.router.navigate(['/tabs/me']);
   }

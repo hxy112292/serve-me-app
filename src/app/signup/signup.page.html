@@ -18,19 +18,19 @@
   <ion-list>
     <ion-item>
       <ion-label position="stacked">Username</ion-label>
-      <ion-input [(ngModel)]="username"></ion-input>
+      <ion-input [(ngModel)]="user.username"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Password</ion-label>
-      <ion-input [(ngModel)]="password" type="password"></ion-input>
+      <ion-input [(ngModel)]="user.password" type="password"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Email</ion-label>
-      <ion-input [(ngModel)]="email"></ion-input>
+      <ion-input [(ngModel)]="user.email"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Phone</ion-label>
-      <ion-input [(ngModel)]="phone"></ion-input>
+      <ion-input [(ngModel)]="user.phone"></ion-input>
     </ion-item>
   </ion-list>
   <ion-button (click)="signup()">submit</ion-button>

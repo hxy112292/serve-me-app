@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FCM } from '@ionic-native/fcm/ngx';
 import { Platform } from '@ionic/angular';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+import {ConstantsService} from '../constants.service';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +15,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 export class HomePage implements OnInit {
   city: any;
   service: any;
+  uid: any;
 
   constructor(private http: HttpClient,
               private navCtrl: NavController,
@@ -21,7 +23,8 @@ export class HomePage implements OnInit {
               private route: ActivatedRoute,
               private fcm: FCM,
               public plt: Platform,
-              private localNotifications: LocalNotifications) {
+              private localNotifications: LocalNotifications,
+              private constant: ConstantsService) {
     this.plt.ready()
         .then(() => {
             this.fcm.onNotification().subscribe(data => {
@@ -42,6 +45,17 @@ export class HomePage implements OnInit {
               // Register your new token in your back-end if you want
               // backend.registerToken(token);
             });
+
+            this.uid = localStorage.getItem('uid');
+            if (this.uid != null) {
+              this.http.get(this.constant.baseUrl + '/user/info', {
+                params: {
+                  userId: this.uid
+                }
+              }).subscribe(res => {
+                this.constant.setUser((res as any));
+              });
+            }
         });
   }
 

@@ -34,7 +34,8 @@ export class LoginPage implements OnInit {
       password: this.password,
     }).subscribe(res => {
       console.log(res);
-      this.constant.setUser((res as any).result, this.username);
+      this.constant.setUser((res as any).result);
+      localStorage.setItem('uid', this.constant.getUser().id);
     });
     this.router.navigate(['/tabs/me']);
   }

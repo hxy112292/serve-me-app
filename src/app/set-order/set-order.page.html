@@ -24,15 +24,15 @@
   </ion-card>
   <ion-item>
     <ion-label position="stacked" style="font-size: larger">Choose your start time</ion-label>
-    <ion-datetime [(ngModel)]="dateStart" (ionChange)="getCost()" display-format="MMM DD YYYY" picker-format="MMM DD YYYY"></ion-datetime>
+    <ion-datetime [(ngModel)]="order.dateStart" (ionChange)="getCost()" display-format="MMM DD YYYY" picker-format="MMM DD YYYY"></ion-datetime>
   </ion-item>
   <ion-item>
     <ion-label position="stacked" style="font-size: larger">Choose your end time</ion-label>
-    <ion-datetime [(ngModel)]="dateEnd" (ionChange)="getCost()" display-format="MMM DD YYYY" picker-format="MMM DD YYYY"></ion-datetime>
+    <ion-datetime [(ngModel)]="order.dateEnd" (ionChange)="getCost()" display-format="MMM DD YYYY" picker-format="MMM DD YYYY"></ion-datetime>
   </ion-item>
   <ion-item>
     <ion-label position="stacked" style="font-size: larger">Set a address</ion-label>
-    <ion-input [(ngModel)]="address"> </ion-input>
+    <ion-input [(ngModel)]="order.address"> </ion-input>
   </ion-item>
   <ion-item>
     <ion-label position="stacked" style="font-size: larger">Your name</ion-label>

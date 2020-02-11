@@ -25,7 +25,7 @@ export class MePage implements OnInit{
   }
 
   personalInfo() {
-    this.router.navigate(['tabs/home']);
+    this.router.navigate(['tabs/me/personal-info']);
   }
 
   setting() {
@@ -39,7 +39,7 @@ export class MePage implements OnInit{
   }
 
   logout() {
-    this.constant.uid = null;
-    this.constant.username = null;
+    this.constant.setUser(null);
+    localStorage.removeItem('uid');
   }
 }

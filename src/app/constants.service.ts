@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import {User} from './entity/user';
 
 @Injectable({
   providedIn: 'root'
@@ -6,24 +7,27 @@ import { Injectable } from '@angular/core';
 export class ConstantsService {
 
   readonly baseUrl: string = 'https://serve-me-hxy.herokuapp.com';
-  uid = null;
-  username = null;
+  user: User;
+
 
   constructor() {
-    this.uid = null;
-    this.username = null;
+    this.user = {
+      id: '',
+      username: '',
+      password: '',
+      email: '',
+      phone: '',
+      role: ''
+    };
   }
 
-  setUser(uid: string, username: string) {
-    this.uid = uid;
-    this.username = username;
+  getUser() {
+    return this.user;
   }
 
-  getUid() {
-    return this.uid;
+  setUser(user: User) {
+    this.user = user;
   }
 
-  getUserName() {
-    return this.username;
-  }
+
 }

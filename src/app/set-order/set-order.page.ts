@@ -14,71 +14,63 @@ import {Order} from '../entity/order';
 export class SetOrderPage implements OnInit {
 
   vendor: Vendor;
-  user: User;
-  dateStart: any;
-  dateEnd: any;
-  diffInDays: any;
-  cost: number;
-  address: any;
   order: Order;
+  cost: number;
 
   constructor(private route: ActivatedRoute,
               private http: HttpClient,
               private router: Router,
-              private constant: ConstantsService) { }
-
-  ngOnInit() {
-
-    this.vendor = JSON.parse(this.route.snapshot.paramMap.get('vendorInfo'));
-
-    this.getUser();
+              private constant: ConstantsService) {
+    this.order = {
+      id: '',
+      customerId: this.constant.getUser().id,
+      vendorId: '',
+      serviceId: '',
+      serviceType: '',
+      address: '',
+      price: '',
+      dateStart: '',
+      dateEnd: '',
+      status: '',
+    };
   }
 
-  getUser() {
-    this.http.get(this.constant.baseUrl + '/user/info', {
-      params: {
-        userId: this.constant.uid
-      }
-    }).subscribe(res => {
-      this.user = (res as any).result;
-    });
+  ngOnInit() {
+    this.getVendor();
+  }
+  getVendor() {
+    this.vendor = JSON.parse(this.route.snapshot.paramMap.get('vendorInfo'));
+    this.order.vendorId = this.vendor.id;
+    this.order.price = this.vendor.service.price;
+    this.order.serviceId = this.vendor.service.id;
+    this.order.serviceType = this.vendor.service.type;
   }
 
   getCost() {
-    if (this.dateStart == null || this.dateStart === '') {
+    if (this.order.dateStart == null || this.order.dateStart === '') {
       return;
     }
-    if (this.dateEnd == null || this.dateEnd === '') {
+    if (this.order.dateEnd == null || this.order.dateEnd === '') {
       return;
     }
-    this.cost = Math.floor((new Date(this.dateEnd).getTime() - new Date(this.dateStart).getTime()) / 1000 / 60 / 60 / 24
+    this.cost = Math.floor((new Date(this.order.dateEnd).getTime() - new Date(this.order.dateStart).getTime()) / 1000 / 60 / 60 / 24
         * Number(this.vendor.service.price));
   }
 
   checkOut() {
-    if (this.dateStart == null || this.dateStart === '') {
+    if (this.order.dateStart == null || this.order.dateStart === '') {
       alert('you need to choose a date start');
       return;
     }
-    if (this.dateEnd == null || this.dateEnd === '') {
+    if (this.order.dateEnd == null || this.order.dateEnd === '') {
       alert('you need to choose a date end');
       return;
     }
-    if (this.address == null || this.address === '') {
+    if (this.order.address == null || this.order.address === '') {
       alert('you need to choose an address');
       return;
     }
-    this.http.post(this.constant.baseUrl + '/order/insert', {
-      dateStart: this.dateStart,
-      dateEnd: this.dateEnd,
-      address: this.address,
-      serviceType: this.vendor.service.type,
-      customerId: this.user.id,
-      price: this.vendor.service.price,
-      vendorId: this.vendor.service.vendorId,
-      serviceId: this.vendor.service.id
-    }).subscribe(res => {
-    });
+    this.http.post(this.constant.baseUrl + '/order/insert', this.order).subscribe(res => {});
     this.router.navigate(['/tabs/order']);
   }
 
