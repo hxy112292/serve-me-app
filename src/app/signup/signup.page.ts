@@ -13,6 +13,7 @@ import {ConstantsService} from '../constants.service';
 export class SignupPage implements OnInit {
 
   user: User;
+  repeatPassword: any;
 
   constructor(private http: HttpClient,
               private constant: ConstantsService,
@@ -45,6 +46,10 @@ export class SignupPage implements OnInit {
     }
     if (this.user.email == null || this.user.email === '') {
       alert('you must set a email');
+      return;
+    }
+    if (this.user.password !== this. repeatPassword) {
+      alert('your password and repeatPassword is different');
       return;
     }
     if (this.constant.getUser() == null || this.constant.getUser().role == null || this.constant.getUser().role === '') {

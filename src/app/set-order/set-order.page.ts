@@ -88,6 +88,6 @@ export class SetOrderPage implements OnInit {
   }
 
   singup() {
-    this.router.navigate(['/tabs/me/signup']);
+    this.router.navigate(['/tabs/me/login']);
   }
 }
