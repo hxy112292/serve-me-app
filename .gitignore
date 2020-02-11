@@ -27,7 +27,8 @@ package-lock.json
 /coverage
 /dist
 /node_modules
-platforms/*
-!platforms/android/google-services.json
+/platforms
 /plugins
 /www
+
+!platforms/android/google-services.json
