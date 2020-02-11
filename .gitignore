@@ -12,12 +12,11 @@
 Thumbs.db
 UserInterfaceState.xcuserstate
 $RECYCLE.BIN/
-package-lock.json
-package.json
 
 *.log
 log.txt
 npm-debug.log*
+package-lock.json
 
 /.idea
 /.ionic
@@ -29,5 +28,6 @@ npm-debug.log*
 /dist
 /node_modules
 /platforms
+!/platforms/android/google-services.json
 /plugins
 /www
