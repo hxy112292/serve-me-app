@@ -67,6 +67,10 @@ const routes: Routes = [
           {
             path: 'personal-info',
             loadChildren: () => import('../personal-info/personal-info.module').then( m => m.PersonalInfoPageModule)
+          },
+          {
+            path: 'point',
+            loadChildren: () => import('../point/point.module').then( m => m.PointPageModule)
           }
         ]
       },

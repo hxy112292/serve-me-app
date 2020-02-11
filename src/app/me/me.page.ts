@@ -8,7 +8,7 @@ import { Vibration } from '@ionic-native/vibration/ngx';
   templateUrl: './me.page.html',
   styleUrls: ['./me.page.scss'],
 })
-export class MePage implements OnInit{
+export class MePage implements OnInit {
 
   constructor(private router: Router,
               public constant: ConstantsService,
@@ -41,5 +41,11 @@ export class MePage implements OnInit{
   logout() {
     this.constant.setUser(null);
     localStorage.removeItem('uid');
+  }
+
+  point() {
+    if (this.constant.getUser() != null && this.constant.getUser().id != null && this.constant.getUser().id != '') {
+      this.router.navigate(['/tabs/me/point']);
+    }
   }
 }
