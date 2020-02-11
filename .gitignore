@@ -28,7 +28,6 @@ package-lock.json
 /dist
 /node_modules
 /platforms
+!/platforms/android/google-services.json
 /plugins
 /www
-
-!platforms/android/google-services.json
