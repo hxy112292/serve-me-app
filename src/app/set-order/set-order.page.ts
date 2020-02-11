@@ -53,7 +53,7 @@ export class SetOrderPage implements OnInit {
     if (this.order.dateEnd == null || this.order.dateEnd === '') {
       return;
     }
-    this.cost = Math.floor((new Date(this.order.dateEnd).getTime() - new Date(this.order.dateStart).getTime()) / 1000 / 60 / 60 / 24
+    this.cost = Math.floor(((new Date(this.order.dateEnd).getTime() - new Date(this.order.dateStart).getTime()) / 1000 / 60 / 60 / 24 + 1)
         * Number(this.vendor.service.price));
   }
 

@@ -37,6 +37,10 @@ const routes: Routes = [
             path: '',
             loadChildren: () =>
                 import('../order/order.module').then(m => m.OrderPageModule)
+          },
+          {
+            path: 'order-update',
+            loadChildren: () => import('../order-update/order-update.module').then( m => m.OrderUpdatePageModule)
           }
         ]
       },

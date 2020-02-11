@@ -18,9 +18,12 @@
 
       <ion-card-content>
         <p>address: {{order.address}}</p>
-        <p>start: {{order.dateStart}}</p>
-        <p>end: {{order.dateEnd}}</p>
+        <p>start time: {{order.dateStart | date:'MMM dd yyyy'}}</p>
+        <p>end time: {{order.dateEnd | date: 'MMM dd yyyy'}}</p>
       </ion-card-content>
+
+      <ion-button (click)="updateOrder(order)">update</ion-button>
+      <ion-button (click)="cancelOrder(order.id)">cancel</ion-button>
     </ion-card>
   </div>
 </ion-content>
