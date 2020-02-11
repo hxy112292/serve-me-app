@@ -45,21 +45,11 @@ export class HomePage implements OnInit {
               // Register your new token in your back-end if you want
               // backend.registerToken(token);
             });
-
-            this.uid = localStorage.getItem('uid');
-            if (this.uid != null) {
-              this.http.get(this.constant.baseUrl + '/user/info', {
-                params: {
-                  userId: this.uid
-                }
-              }).subscribe(res => {
-                this.constant.setUser((res as any));
-              });
-            }
         });
   }
 
   ngOnInit() {
+    this.getUserInfo();
   }
 
   searchVendor() {
@@ -86,5 +76,19 @@ export class HomePage implements OnInit {
   }
   unsubscribeFromTopic() {
     this.fcm.unsubscribeFromTopic('enappd');
+  }
+
+  getUserInfo() {
+    this.uid = localStorage.getItem('uid');
+    if (this.uid != null) {
+      this.http.get(this.constant.baseUrl + '/user/info', {
+        params: {
+          userId: this.uid
+        }
+      }).subscribe(res => {
+        this.constant.setUser((res as any).result);
+        console.log(this.constant.getUser());
+      });
+    }
   }
 }

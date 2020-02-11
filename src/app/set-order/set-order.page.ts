@@ -70,8 +70,24 @@ export class SetOrderPage implements OnInit {
       alert('you need to choose an address');
       return;
     }
-    this.http.post(this.constant.baseUrl + '/order/insert', this.order).subscribe(res => {});
+    if (this.constant.getUser() == null || this.constant.getUser().id == null || this.constant.getUser().id === '') {
+      this.http.post(this.constant.baseUrl + '/user/signup', {
+        role: 'GUEST'
+      }).subscribe(res => {
+        this.constant.setUser((res as any).result);
+        localStorage.setItem('uid', this.constant.getUser().id);
+        this.order.customerId = this.constant.getUser().id;
+        this.http.post(this.constant.baseUrl + '/order/insert', this.order).subscribe(r => {});
+      });
+    } else {
+      this.order.customerId = this.constant.getUser().id;
+      this.http.post(this.constant.baseUrl + '/order/insert', this.order).subscribe(res => {});
+    }
+
     this.router.navigate(['/tabs/order']);
   }
 
+  singup() {
+    this.router.navigate(['/tabs/me/signup']);
+  }
 }

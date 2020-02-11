@@ -36,28 +36,31 @@
   </ion-item>
   <ion-item>
     <ion-label position="stacked" style="font-size: larger">Your name</ion-label>
-    <ion-input></ion-input>
+    <ion-input [(ngModel)]="constant.getUser().username"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label position="stacked" style="font-size: larger">Your phone</ion-label>
-    <ion-input></ion-input>
+    <ion-input [(ngModel)]="constant.getUser().phone"></ion-input>
   </ion-item>
-  <ion-item>
-    <ion-grid>
-      <ion-row>
-        <ion-col size="9">
-          <ion-text>
-            If you sign in, you will get 80% discounts
-            and get 10 points when you place the
-            order successfully.
-          </ion-text>
-        </ion-col>
-        <ion-col size="3">
-          <ion-text color="primary">sign in</ion-text>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-item>
+  <div *ngIf="constant.getUser() == null || constant.getUser().id==null ||
+      constant.getUser().id=='' || constant.getUser().role=='GUEST'">
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="9">
+            <ion-text>
+              If you sign in, you will get 80% discounts
+              and get 10 points when you place the
+              order successfully.
+            </ion-text>
+          </ion-col>
+          <ion-col size="3">
+            <ion-text color="primary" (click)="singup()">sign in</ion-text>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </div>
   <ion-item>
     <ion-title>
       <p>Total: ${{cost}}</p>

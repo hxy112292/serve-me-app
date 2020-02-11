@@ -33,7 +33,6 @@ export class LoginPage implements OnInit {
       username: this.username,
       password: this.password,
     }).subscribe(res => {
-      console.log(res);
       this.constant.setUser((res as any).result);
       localStorage.setItem('uid', this.constant.getUser().id);
     });

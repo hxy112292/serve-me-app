@@ -47,11 +47,24 @@ export class SignupPage implements OnInit {
       alert('you must set a email');
       return;
     }
-    this.http.post(this.constant.baseUrl + '/user/signup', this.user).subscribe(res => {
-      console.log(res);
-      this.constant.setUser((res as any).result);
-      localStorage.setItem('uid', this.constant.getUser().id);
-    });
+    if (this.constant.getUser() == null || this.constant.getUser().role == null || this.constant.getUser().role === '') {
+      this.http.post(this.constant.baseUrl + '/user/signup', this.user).subscribe(res => {
+        this.constant.setUser((res as any).result);
+        localStorage.setItem('uid', this.constant.getUser().id);
+      });
+    } else if (this.constant.getUser().id != null && this.constant. getUser().id !== '' &&
+        this.constant.getUser() != null && this.constant.getUser().role === 'GUEST') {
+      this.constant.getUser().phone = this.user.phone;
+      this.constant.getUser().email = this.user.email;
+      this.constant.getUser().password = this.user.password;
+      this.constant.getUser().username = this.user.username;
+      this.constant.getUser().role = 'USER';
+      this.http.put(this.constant.baseUrl + '/user/update', this.constant.getUser()).subscribe(res => {
+        this.constant.setUser((res as any).result);
+        localStorage.setItem('uid', this.constant.getUser().id);
+      });
+    }
+
     this.router.navigate(['/tabs/me']);
   }
 }

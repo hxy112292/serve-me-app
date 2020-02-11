@@ -26,7 +26,18 @@ export class ConstantsService {
   }
 
   setUser(user: User) {
-    this.user = user;
+    if (user == null) {
+      this.user = {
+        id: '',
+        username: '',
+        password: '',
+        email: '',
+        phone: '',
+        role: ''
+      };
+    } else {
+      this.user = user;
+    }
   }
 
 
