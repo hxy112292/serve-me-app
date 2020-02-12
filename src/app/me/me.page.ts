@@ -48,4 +48,8 @@ export class MePage implements OnInit {
       this.router.navigate(['/tabs/me/point']);
     }
   }
+
+  vendorOrder() {
+    this.router.navigate(['/tabs/me/vendor-order']);
+  }
 }

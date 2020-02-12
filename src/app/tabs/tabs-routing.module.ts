@@ -71,6 +71,10 @@ const routes: Routes = [
           {
             path: 'point',
             loadChildren: () => import('../point/point.module').then( m => m.PointPageModule)
+          },
+          {
+            path: 'vendor-order',
+            loadChildren: () => import('../vendor-order/vendor-order.module').then( m => m.VendorOrderPageModule)
           }
         ]
       },
