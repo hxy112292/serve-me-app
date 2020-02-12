@@ -77,4 +77,8 @@ export class OrderPage implements OnInit {
 
     await alert.present();
   }
+
+  reviewOrder(id: string) {
+
+  }
 }

@@ -17,7 +17,10 @@
       </ion-card-header>
 
       <ion-card-content>
+        <p>vendor name: {{order.vendorName}}</p>
+        <p>vendor phone: {{order.vendorPhone}}</p>
         <p>address: {{order.address}}</p>
+        <p>price: ${{order.price}}/day</p>
         <p>start time: {{order.dateStart | date:'MMM dd yyyy'}}</p>
         <p>end time: {{order.dateEnd | date: 'MMM dd yyyy'}}</p>
       </ion-card-content>
@@ -25,6 +28,10 @@
       <div *ngIf="order.status == 'NOT_ACCEPTED'">
         <ion-button (click)="updateOrder(order)">update</ion-button>
         <ion-button (click)="cancelOrder(order.id)">cancel</ion-button>
+      </div>
+
+      <div *ngIf="order.status == 'FINISHED'">
+        <ion-button (click)="reviewOrder(order.id)">review</ion-button>
       </div>
     </ion-card>
   </div>

@@ -25,7 +25,11 @@ export class SetOrderPage implements OnInit {
     this.order = {
       id: '',
       customerId: this.constant.getUser().id,
+      customerName: this.constant.getUser().username,
+      customerPhone: this.constant.getUser().phone,
       vendorId: '',
+      vendorName:  '',
+      vendorPhone: '',
       serviceId: '',
       serviceType: '',
       address: '',

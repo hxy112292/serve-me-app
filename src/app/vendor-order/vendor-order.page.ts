@@ -47,4 +47,15 @@ export class VendorOrderPage implements OnInit {
     }, 2000);
   }
 
+  acceptOrder(id: string) {
+
+  }
+
+  cancelOrder(id: string) {
+
+  }
+
+  finishOrder(id: string) {
+
+  }
 }

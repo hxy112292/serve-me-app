@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>vendorOrder</ion-title>
+    <ion-title>Vendor Order</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -17,10 +20,22 @@
       </ion-card-header>
 
       <ion-card-content>
+        <p>customer name: {{order.customerName}}</p>
+        <p>customer phone: {{order.customerPhone}}</p>
         <p>address: {{order.address}}</p>
+        <p>price: ${{order.price}}/day</p>
         <p>start time: {{order.dateStart | date:'MMM dd yyyy'}}</p>
         <p>end time: {{order.dateEnd | date: 'MMM dd yyyy'}}</p>
       </ion-card-content>
+
+      <div *ngIf="order.status == 'NOT_ACCEPTED'">
+        <ion-button (click)="acceptOrder(order.id)">accept</ion-button>
+        <ion-button (click)="cancelOrder(order.id)">cancel</ion-button>
+      </div>
+
+      <div *ngIf="order.status == 'PROCESSING'">
+        <ion-button (click)="finishOrder(order.id)">finish</ion-button>
+      </div>
     </ion-card>
   </div>
 

@@ -2,7 +2,11 @@ export class Order {
 
     id: string;
     customerId: string;
+    customerName: string;
+    customerPhone: string;
     vendorId: string;
+    vendorName: string;
+    vendorPhone: string;
     serviceId: string;
     serviceType: string;
     address: string;
