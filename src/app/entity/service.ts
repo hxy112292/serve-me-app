@@ -5,4 +5,9 @@ export class Service {
     vendorId: string;
     city: string;
     price: string;
+    username: string;
+    star: number;
+    starStr: string;
+    phone: string;
+    email: string;
 }

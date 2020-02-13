@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {ConstantsService} from '../constants.service';
-import {Vendor} from '../entity/vendor';
 import {User} from '../entity/user';
 import {Order} from '../entity/order';
+import {Service} from '../entity/service';
 
 @Component({
   selector: 'app-set-order',
@@ -13,7 +13,7 @@ import {Order} from '../entity/order';
 })
 export class SetOrderPage implements OnInit {
 
-  vendor: Vendor;
+  service: Service;
   order: Order;
   cost: number;
   user: User;
@@ -53,11 +53,11 @@ export class SetOrderPage implements OnInit {
     this.getVendor();
   }
   getVendor() {
-    this.vendor = JSON.parse(this.route.snapshot.paramMap.get('vendorInfo'));
-    this.order.vendorId = this.vendor.id;
-    this.order.price = this.vendor.service.price;
-    this.order.serviceId = this.vendor.service.id;
-    this.order.serviceType = this.vendor.service.type;
+    this.service = JSON.parse(this.route.snapshot.paramMap.get('serviceInfo'));
+    this.order.vendorId = this.service.vendorId;
+    this.order.price = this.service.price;
+    this.order.serviceId = this.service.id;
+    this.order.serviceType = this.service.type;
   }
 
   getCost() {
@@ -68,7 +68,7 @@ export class SetOrderPage implements OnInit {
       return;
     }
     this.cost = Math.floor(((new Date(this.order.dateEnd).getTime() - new Date(this.order.dateStart).getTime()) / 1000 / 60 / 60 / 24 + 1)
-        * Number(this.vendor.service.price));
+        * Number(this.service.price));
   }
 
   checkOut() {

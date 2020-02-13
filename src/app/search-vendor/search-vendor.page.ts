@@ -3,7 +3,6 @@ import {Service} from '../entity/service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {ConstantsService} from '../constants.service';
-import {Vendor} from '../entity/vendor';
 import {forEach} from '@angular-devkit/schematics';
 
 @Component({
@@ -12,7 +11,7 @@ import {forEach} from '@angular-devkit/schematics';
   styleUrls: ['./search-vendor.page.scss'],
 })
 export class SearchVendorPage implements OnInit {
-  vendorList: Vendor[];
+  serviceList: Service[];
   star: string;
   city: string;
   service: string;
@@ -43,25 +42,25 @@ export class SearchVendorPage implements OnInit {
         alert((res as any).message);
         return;
       }
-      this.vendorList = (res as any).result;
+      this.serviceList = (res as any).result;
       // tslint:disable-next-line:prefer-for-of
-      for (let i = 0; i < this.vendorList.length; i++) {
-        for (let j = 0; j < Number(this.vendorList[i].star); j++) {
+      for (let i = 0; i < this.serviceList.length; i++) {
+        for (let j = 0; j < Number(this.serviceList[i].star); j++) {
           if (j === 0 ) {
             this.star = '★';
           } else {
             this.star += '★';
           }
         }
-        for (let k = 0; k < 5 - Number(this.vendorList[i].star); k++) {
+        for (let k = 0; k < 5 - Number(this.serviceList[i].star); k++) {
           this.star += '☆';
         }
-        this.vendorList[i].starStr = this.star;
+        this.serviceList[i].starStr = this.star;
       }
     });
   }
 
-  toServiceDetail(vendor: Vendor) {
-    this.router.navigate(['/tabs/home/service-detail', {vendorInfo: JSON.stringify(vendor)}]);
+  toServiceDetail(service: Service) {
+    this.router.navigate(['/tabs/home/service-detail', {serviceInfo: JSON.stringify(service)}]);
   }
 }

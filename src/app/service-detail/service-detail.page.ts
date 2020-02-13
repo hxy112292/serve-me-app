@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {ConstantsService} from '../constants.service';
-import {Vendor} from '../entity/vendor';
 import {Review} from '../entity/review';
+import {Service} from '../entity/service';
 
 @Component({
   selector: 'app-service-detail',
@@ -12,7 +12,7 @@ import {Review} from '../entity/review';
 })
 export class ServiceDetailPage implements OnInit {
 
-  vendor: Vendor;
+  service: Service;
   reviewList: Review[];
   star: string;
 
@@ -23,7 +23,7 @@ export class ServiceDetailPage implements OnInit {
 
   ngOnInit() {
 
-    this.vendor = JSON.parse(this.route.snapshot.paramMap.get('vendorInfo'));
+    this.service = JSON.parse(this.route.snapshot.paramMap.get('serviceInfo'));
 
     this.getReviews();
   }
@@ -31,8 +31,8 @@ export class ServiceDetailPage implements OnInit {
   getReviews() {
     this.http.get(this.constant.baseUrl + '/review/findReviewsByVendor', {
       params: {
-        vendorId: this.vendor.id,
-        serviceId: this.vendor.service.id
+        vendorId: this.service.vendorId,
+        serviceId: this.service.id
       }
     }).subscribe(res => {
       if ((res as any).code !== 0) {
@@ -57,7 +57,7 @@ export class ServiceDetailPage implements OnInit {
     });
   }
 
-  toSetOrder(vendor: Vendor) {
-    this.router.navigate(['/tabs/home/set-order', {vendorInfo: JSON.stringify(vendor)}]);
+  toSetOrder(service: Service) {
+    this.router.navigate(['/tabs/home/set-order', {serviceInfo: JSON.stringify(service)}]);
   }
 }
