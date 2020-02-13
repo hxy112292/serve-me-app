@@ -24,7 +24,7 @@
       <div *ngIf="service.username.match(vendorName) || vendorName == null || vendorName == ''">
         <ion-card (click)="toServiceDetail(service)">
           <ion-card-header>
-            <ion-card-subtitle>{{service}}</ion-card-subtitle>
+            <ion-card-subtitle>{{service.type}}</ion-card-subtitle>
             <ion-card-title>Vendor: {{service.username}}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
