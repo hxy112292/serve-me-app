@@ -7,7 +7,6 @@ export class Service {
     price: string;
     username: string;
     star: number;
-    starStr: string;
     phone: string;
     email: string;
 }

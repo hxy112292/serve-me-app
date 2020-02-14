@@ -16,14 +16,31 @@
     <ion-card>
       <ion-card-header>
         <ion-card-subtitle>OrderNo: {{order.id}}, Create time: {{order.createTime | date:'MMM dd yyyy HH:mm:ss'}}</ion-card-subtitle>
-        <ion-card-title>{{order.status}}</ion-card-title>
+        <ion-card-title>{{order.serviceType}}</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <p>Service: {{order.serviceType}}, ${{order.price}}/day</p>
-        <p>Customer name: {{order.customerName}}</p>
-        <p>Customer phone: {{order.customerPhone}}</p>
-        <p>Address: {{order.address}}</p>
-        <p>Time: {{order.dateStart | date:'MMM dd yyyy'}} - {{order.dateEnd | date: 'MMM dd yyyy'}}</p>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <p>Price: ${{order.price}}/day</p>
+              <div *ngIf="order.costOff != null && order.costOff != ''">
+                <p>Total: ${{order.costOff}} (20% off)</p>
+              </div>
+              <div *ngIf="order.costNoOff != null && order.costNoOff != ''">
+                <p>Total: ${{order.costNoOff}} (No Discount)</p>
+              </div>
+              <p>Customer Name: {{order.customerName}}</p>
+              <p>Customer Phone: {{order.customerPhone}}</p>
+              <p>Address: {{order.address}}</p>
+              <p>Time: {{order.dateStart | date:'MMM dd yyyy'}} - {{order.dateEnd | date: 'MMM dd yyyy'}}</p>
+            </ion-col>
+            <ion-col align-self-center >
+              <ion-title style="font-size: xx-large; color: #1e2023; font-weight: bolder">
+                <p>{{order.status}}</p>
+              </ion-title>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </ion-card-content>
       <div *ngIf="order.status == 'NOT_ACCEPTED'">
         <ion-button (click)="acceptOrder(order.id)">accept</ion-button>

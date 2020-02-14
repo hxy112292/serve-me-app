@@ -99,8 +99,4 @@ export class VendorOrderPage implements OnInit {
       this.getOrderByVendor();
     });
   }
-
-  orderDetail(id) {
-    this.router.navigate(['tabs/me/vendor-order-detail', {orderId: id}]);
-  }
 }

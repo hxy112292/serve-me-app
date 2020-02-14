@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Order Review</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>OrderNo: {{order.id}}, Create time: {{order.createTime | date:'MMM dd yyyy HH:mm:ss'}}</ion-card-subtitle>
+      <ion-card-title>{{order.serviceType}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <p>Price: ${{order.price}}/day</p>
+            <div *ngIf="constant.getUser() != null && constant.getUser().id != null && constant.getUser().id != '' && constant.getUser().role != 'GUEST'">
+              <p>Total: ${{order.costOff}} (20% off)</p>
+            </div>
+            <div *ngIf="constant.getUser() == null || constant.getUser().id == null || constant.getUser().id == '' || constant.getUser().role == 'GUEST'">
+              <p>Total: ${{order.costNoOff}} (No discount)</p>
+            </div>
+            <p>Vendor Name: {{order.vendorName}}</p>
+            <p>Vendor Phone: {{order.vendorPhone}}</p>
+            <p>Address: {{order.address}}</p>
+            <p>Time: {{order.dateStart | date:'MMM dd yyyy'}} - {{order.dateEnd | date: 'MMM dd yyyy'}}</p>
+          </ion-col>
+          <ion-col align-self-center >
+            <ion-title style="font-size: xx-large; color: #1e2023; font-weight: bolder">
+              <p>{{order.status}}</p>
+            </ion-title>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  <ion-grid>
+    <ion-row>
+      <ion-col [size]="3">
+        Star:
+      </ion-col>
+      <ion-col>
+        <ionic4-star-rating #rating
+                            activeIcon = "ios-star"
+                            defaultIcon = "ios-star-outline"
+                            activeColor = "#FFFF00"
+                            defaultColor = "#aaaaaa"
+                            readonly = "false"
+                            rating = "5"
+                            [(ngModel)]="review.star">
+        </ionic4-star-rating>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col [size]="3">
+        Content:
+      </ion-col>
+      <ion-col>
+        <ion-textarea [(ngModel)]="review.content" rows="8" placeholder="Enter your review content"></ion-textarea>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div class="ion-text-center">
+    <ion-button (click)="insertReview()">submit</ion-button>
+  </div>
+
+</ion-content>

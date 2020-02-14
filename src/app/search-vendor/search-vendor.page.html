@@ -11,13 +11,12 @@
   <ion-searchbar [(ngModel)]="vendorName" showCancelButton="always"></ion-searchbar>
   <ion-item>
     <ion-label>Choose a star</ion-label>
-    <ion-select [(ngModel)]="starFilter">
-      <ion-select-option value="5">★★★★★</ion-select-option>
-      <ion-select-option value="4">★★★★☆</ion-select-option>
-      <ion-select-option value="3">★★★☆☆</ion-select-option>
-      <ion-select-option value="2">★★☆☆☆</ion-select-option>
-      <ion-select-option value="1">★☆☆☆☆</ion-select-option>
-    </ion-select>
+    <ionic4-star-rating #rating
+                        activeColor = "#FFFF00"
+                        readonly = "false"
+                        rating = "5"
+                        [(ngModel)]="starFilter">
+    </ionic4-star-rating>
   </ion-item>
   <div *ngFor="let service of serviceList">
     <div *ngIf="starFilter <= service.star || starFilter == null">
@@ -28,9 +27,26 @@
             <ion-card-title>Vendor: {{service.username}}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <p>price: ${{service.price}}/day</p>
-            <p>city: {{service.city}}</p>
-            <p>star: {{service.starStr}}</p>
+            <ion-grid>
+              <ion-row>
+                <ion-col [size]="3">price:</ion-col>
+                <ion-col>${{service.price}}/day</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col [size]="3">city:</ion-col>
+                <ion-col>${{service.city}}/day</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col [size]="3">star:</ion-col>
+                <ion-col><ionic4-star-rating #rating
+                                             activeColor = "#FFFF00"
+                                             readonly = "true"
+                                             fontSize="small"
+                                             [(ngModel)]="service.star">
+                </ionic4-star-rating>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
           </ion-card-content>
         </ion-card>
       </div>

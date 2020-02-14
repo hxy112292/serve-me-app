@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ServiceDetailPageRoutingModule } from './service-detail-routing.module';
+import { OrderReviewPageRoutingModule } from './order-review-routing.module';
 
-import { ServiceDetailPage } from './service-detail.page';
+import { OrderReviewPage } from './order-review.page';
 import {StarRatingModule} from 'ionic4-star-rating';
 
 @NgModule({
@@ -14,9 +14,9 @@ import {StarRatingModule} from 'ionic4-star-rating';
         CommonModule,
         FormsModule,
         IonicModule,
-        ServiceDetailPageRoutingModule,
+        OrderReviewPageRoutingModule,
         StarRatingModule
     ],
-  declarations: [ServiceDetailPage]
+  declarations: [OrderReviewPage]
 })
-export class ServiceDetailPageModule {}
+export class OrderReviewPageModule {}

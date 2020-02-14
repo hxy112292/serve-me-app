@@ -6,6 +6,7 @@ export class Review {
     customerId: string;
     serviceId: string;
     star: number;
-    starStr: string;
     content: string;
+    createTime: string;
+    updateTime: string;
 }

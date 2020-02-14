@@ -103,8 +103,11 @@ export class OrderUpdatePage implements OnInit {
     this.costNoOFF = ((new Date(this.order.dateEnd).getTime() - new Date(this.order.dateStart).getTime()) / 1000 / 60 / 60 / 24 + 1)
         * Number(this.service.price);
     this.costOFF = this.costNoOFF * 0.8;
-    this.order.costNoOff = this.costNoOFF.toFixed(2);
-    this.order.costOff = this.costOFF.toFixed(2);
+    if (this.order.costNoOff != null && this.order.costNoOff !== '') {
+      this.order.costNoOff = this.costNoOFF.toFixed(2);
+    } else {
+      this.order.costOff = this.costOFF.toFixed(2);
+    }
   }
 
   updateOrder() {

@@ -113,6 +113,7 @@ export class SetOrderPage implements OnInit {
         this.constant.setUser((res as any).result);
         localStorage.setItem('uid', this.constant.getUser().id);
         this.order.customerId = this.constant.getUser().id;
+        this.order.costOff = null;
         this.http.post(this.constant.baseUrl + '/order/insert', this.order).subscribe(r => {
           if ((r as any).code !== 0) {
             alert((r as any).message);
@@ -122,6 +123,7 @@ export class SetOrderPage implements OnInit {
       });
     } else {
       this.order.customerId = this.constant.getUser().id;
+      this.order.costNoOff = null;
       this.http.post(this.constant.baseUrl + '/order/insert', this.order).subscribe(res => {
         if ((res as any).code !== 0) {
           alert((res as any).message);

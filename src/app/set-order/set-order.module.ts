@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { SetOrderPageRoutingModule } from './set-order-routing.module';
 
 import { SetOrderPage } from './set-order.page';
+import {StarRatingModule} from 'ionic4-star-rating';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    SetOrderPageRoutingModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        SetOrderPageRoutingModule,
+        StarRatingModule
+    ],
   declarations: [SetOrderPage]
 })
 export class SetOrderPageModule {}

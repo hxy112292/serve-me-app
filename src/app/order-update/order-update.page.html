@@ -44,7 +44,7 @@
   </ion-item>
   <ion-item>
     <ion-title>
-      <div *ngIf="constant.getUser() != null && constant.getUser().id != null && constant.getUser().id != '' && constant.getUser().role != 'GUEST'">
+      <div *ngIf="order.costOff != null && order.costOff != ''">
         <ion-text style="font-size: x-large">
           Total: ${{order.costOff}}
         </ion-text>
@@ -52,7 +52,7 @@
           (20%OFF)
         </ion-text>
       </div>
-      <div *ngIf="constant.getUser() == null || constant.getUser().id == null || constant.getUser().id == '' || constant.getUser().role == 'GUEST'">
+      <div *ngIf="order.costNoOff != null && order.costNoOff != ''">
         <ion-text style="font-size: x-large">
           Total: ${{order.costNoOff}}
         </ion-text>

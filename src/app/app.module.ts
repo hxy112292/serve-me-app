@@ -13,6 +13,7 @@ import {ConstantsService} from './constants.service';
 import { Vibration } from '@ionic-native/vibration/ngx';
 import { FCM } from '@ionic-native/fcm/ngx';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+import { StarRatingModule } from 'ionic4-star-rating';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,6 +27,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
     FCM,
     LocalNotifications,
     // LocalNotifications,
+    StarRatingModule,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     ConstantsService
   ],

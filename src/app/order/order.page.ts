@@ -80,10 +80,6 @@ export class OrderPage implements OnInit {
   }
 
   reviewOrder(order: Order) {
-
-  }
-
-  orderDetail(id) {
-    this.router.navigate(['tabs/order/order-detail', {orderId: id}]);
+    this.router.navigate(['tabs/order/order-review', {orderInfo: JSON.stringify(order)}]);
   }
 }
