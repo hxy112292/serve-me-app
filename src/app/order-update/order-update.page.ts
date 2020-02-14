@@ -31,7 +31,6 @@ export class OrderUpdatePage implements OnInit {
       price: '',
       username: '',
       star: 0,
-      starStr: '',
       phone: '',
       email: '',
     };
@@ -74,20 +73,6 @@ export class OrderUpdatePage implements OnInit {
         return;
       }
       this.serviceList = (res as any).result;
-      // tslint:disable-next-line:prefer-for-of
-      for (let i = 0; i < this.serviceList.length; i++) {
-        for (let j = 0; j < Number(this.serviceList[i].star); j++) {
-          if (j === 0 ) {
-            this.star = '★';
-          } else {
-            this.star += '★';
-          }
-        }
-        for (let k = 0; k < 5 - Number(this.serviceList[i].star); k++) {
-          this.star += '☆';
-        }
-        this.serviceList[i].starStr = this.star;
-      }
       this.service = this.serviceList[0];
       this.getCost();
     });
