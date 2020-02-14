@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>orderUpdate</ion-title>
+    <ion-title>Order Update</ion-title>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
@@ -35,7 +35,7 @@
         <ion-row>
           <ion-col [size]="3">star:</ion-col>
           <ion-col><ionic4-star-rating #rating
-                                       activeColor = "#FFFF00"
+                                       activeColor = "orange"
                                        readonly = "true"
                                        fontSize="small"
                                        [(ngModel)]="service.star">
@@ -65,28 +65,28 @@
     <ion-label position="stacked" style="font-size: larger">Your phone</ion-label>
     <ion-input [(ngModel)]="constant.getUser().phone" disabled="true"></ion-input>
   </ion-item>
-  <ion-item>
-    <ion-title>
-      <div *ngIf="order.costOff != null && order.costOff != ''">
-        <ion-text style="font-size: x-large">
-          Total: ${{order.costOff}}
-        </ion-text>
-        <ion-text style="font-size: small">
-          (20%OFF)
-        </ion-text>
-      </div>
-      <div *ngIf="order.costNoOff != null && order.costNoOff != ''">
-        <ion-text style="font-size: x-large">
-          Total: ${{order.costNoOff}}
-        </ion-text>
-        <ion-text style="font-size: small">
-          (No Discount)
-        </ion-text>
-      </div>
-    </ion-title>
-  </ion-item>
+  <ion-title>
+    <p></p>
+    <div *ngIf="order.costOff != null && order.costOff != ''">
+      <ion-text style="font-size: x-large">
+        Total: ${{order.costOff}}
+      </ion-text>
+      <ion-text style="font-size: small">
+        (20%OFF)
+      </ion-text>
+    </div>
+    <div *ngIf="order.costNoOff != null && order.costNoOff != ''">
+      <ion-text style="font-size: x-large">
+        Total: ${{order.costNoOff}}
+      </ion-text>
+      <ion-text style="font-size: small">
+        (No Discount)
+      </ion-text>
+    </div>
+  </ion-title>
 
   <div class="ion-text-center">
+    <p></p>
     <ion-button (click)="updateOrder()">update</ion-button>
   </div>
 

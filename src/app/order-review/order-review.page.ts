@@ -47,7 +47,6 @@ export class OrderReviewPage implements OnInit {
       customerId: '',
       serviceId: '',
       star: 5,
-      starStr: '',
       content: '',
       createTime: '',
       updateTime: ''

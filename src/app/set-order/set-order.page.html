@@ -35,7 +35,7 @@
         <ion-row>
           <ion-col [size]="3">star:</ion-col>
           <ion-col><ionic4-star-rating #rating
-                                       activeColor = "#FFFF00"
+                                       activeColor = "orange"
                                        readonly = "true"
                                        fontSize="small"
                                        [(ngModel)]="service.star">
@@ -94,29 +94,28 @@
       </ion-grid>
     </ion-item>
   </div>
-  <ion-item>
-    <ion-row>
-      <ion-col class="ion-text-left" [size]="9">
-        <div *ngIf="constant.getUser() != null && constant.getUser().id != null && constant.getUser().id != '' && constant.getUser().role != 'GUEST'">
-          <ion-text style="font-size: x-large">
-            Total: ${{order.costOff}}
-          </ion-text>
-          <ion-text style="font-size: small">
-            (20%OFF)
-          </ion-text>
-        </div>
-        <div *ngIf="constant.getUser() == null || constant.getUser().id == null || constant.getUser().id == '' || constant.getUser().role == 'GUEST'">
-          <ion-text style="font-size: x-large">
-            Total: ${{order.costNoOff}}
-          </ion-text>
-          <ion-text style="font-size: small">
-            (No Discount)
-          </ion-text>
-        </div>
-      </ion-col>
-      <ion-col class="ion-text-end" [size]="3">
-        <ion-button (click)="checkOut()">Check out</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-item>
+
+  <ion-title>
+    <p></p>
+    <div *ngIf="constant.getUser() != null && constant.getUser().id != null && constant.getUser().id != '' && constant.getUser().role != 'GUEST'">
+      <ion-text style="font-size: x-large">
+        Total: ${{order.costOff}}
+      </ion-text>
+      <ion-text style="font-size: small">
+        (20%OFF)
+      </ion-text>
+    </div>
+    <div *ngIf="constant.getUser() == null || constant.getUser().id == null || constant.getUser().id == '' || constant.getUser().role == 'GUEST'">
+      <ion-text style="font-size: x-large">
+        Total: ${{order.costNoOff}}
+      </ion-text>
+      <ion-text style="font-size: small">
+        (No Discount)
+      </ion-text>
+    </div>
+  </ion-title>
+  <div class="ion-text-center">
+    <p></p>
+    <ion-button (click)="checkOut()">Check out</ion-button>
+  </div>
 </ion-content>
