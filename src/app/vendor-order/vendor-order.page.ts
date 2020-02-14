@@ -60,7 +60,7 @@ export class VendorOrderPage implements OnInit {
     });
   }
 
-  async cancelOrder(orderId: string) {
+  async cancelOrder(order: Order) {
     const alert = await this.alertController.create({
       header: 'Confirm!',
       message: '<strong>Do you want to cancel an order?</strong>',
@@ -75,7 +75,8 @@ export class VendorOrderPage implements OnInit {
           text: 'Okay',
           handler: () => {
             this.http.put(this.constant.baseUrl + '/order/update', {
-              id: orderId,
+              id: order.id,
+              customerId: order.customerId,
               status: 'CANCELED'
             }).subscribe( res => {this.getOrderByVendor(); });
           }

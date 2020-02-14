@@ -47,11 +47,11 @@ export class OrderPage implements OnInit {
     }, 2000);
   }
 
-  updateOrder(order) {
+  updateOrder(order: Order) {
     this.router.navigate(['/tabs/order/order-update', {orderInfo: JSON.stringify(order)}]);
   }
 
-  async cancelOrder(orderId) {
+  async cancelOrder(order: Order) {
     const alert = await this.alertController.create({
       header: 'Confirm!',
       message: '<strong>Do you want to cancel an order? If you cancel an order, you will lose 10 points</strong>!',
@@ -66,7 +66,8 @@ export class OrderPage implements OnInit {
           text: 'Okay',
           handler: () => {
             this.http.put(this.constant.baseUrl + '/order/update', {
-              id: orderId,
+              id: order.id,
+              customerId: order.customerId,
               status: 'CANCELED'
             }).subscribe( res => {this.getOrderList(); });
           }
@@ -77,7 +78,7 @@ export class OrderPage implements OnInit {
     await alert.present();
   }
 
-  reviewOrder(id: string) {
+  reviewOrder(order: Order) {
 
   }
 

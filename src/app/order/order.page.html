@@ -24,10 +24,10 @@
       </ion-card-content>
       <div *ngIf="order.status == 'NOT_ACCEPTED'">
         <ion-button (click)="updateOrder(order)">update</ion-button>
-        <ion-button (click)="cancelOrder(order.id)">cancel</ion-button>
+        <ion-button (click)="cancelOrder(order)">cancel</ion-button>
       </div>
       <div *ngIf="order.status == 'FINISHED'">
-        <ion-button (click)="reviewOrder(order.id)">review</ion-button>
+        <ion-button (click)="reviewOrder(order)">review</ion-button>
       </div>
     </ion-card>
   </div>
