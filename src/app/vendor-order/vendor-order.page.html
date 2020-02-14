@@ -13,19 +13,17 @@
   </ion-refresher>
 
   <div *ngFor="let order of orderList">
-    <ion-card (click)="orderDetail(order.id)">
+    <ion-card>
       <ion-card-header>
         <ion-card-subtitle>OrderNo: {{order.id}}, Create time: {{order.createTime | date:'MMM dd yyyy HH:mm:ss'}}</ion-card-subtitle>
         <ion-card-title>{{order.status}}</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <p>service: {{order.serviceType}}</p>
-        <p>customer name: {{order.customerName}}</p>
-        <p>customer phone: {{order.customerPhone}}</p>
-        <p>address: {{order.address}}</p>
-        <p>price: ${{order.price}}/day</p>
-        <p>start time: {{order.dateStart | date:'MMM dd yyyy'}}</p>
-        <p>end time: {{order.dateEnd | date: 'MMM dd yyyy'}}</p>
+        <p>Service: {{order.serviceType}}, ${{order.price}}/day</p>
+        <p>Customer name: {{order.customerName}}</p>
+        <p>Customer phone: {{order.customerPhone}}</p>
+        <p>Address: {{order.address}}</p>
+        <p>Time: {{order.dateStart | date:'MMM dd yyyy'}} - {{order.dateEnd | date: 'MMM dd yyyy'}}</p>
       </ion-card-content>
       <div *ngIf="order.status == 'NOT_ACCEPTED'">
         <ion-button (click)="acceptOrder(order.id)">accept</ion-button>
