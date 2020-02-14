@@ -47,15 +47,58 @@ export class VendorOrderPage implements OnInit {
     }, 2000);
   }
 
-  acceptOrder(id: string) {
-
+  acceptOrder(orderId: string) {
+    this.http.put( this.constant.baseUrl + '/order/update', {
+      id: orderId,
+      status: 'PROCESSING'
+    }).subscribe( res => {
+      if ((res as any).code !== 0) {
+        alert((res as any).message);
+        return;
+      }
+      this.getOrderByVendor();
+    });
   }
 
-  cancelOrder(id: string) {
-
+  async cancelOrder(orderId: string) {
+    const alert = await this.alertController.create({
+      header: 'Confirm!',
+      message: '<strong>Do you want to cancel an order?</strong>',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+          }
+        }, {
+          text: 'Okay',
+          handler: () => {
+            this.http.put(this.constant.baseUrl + '/order/update', {
+              id: orderId,
+              status: 'CANCELED'
+            }).subscribe( res => {this.getOrderByVendor(); });
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 
-  finishOrder(id: string) {
+  finishOrder(orderId: string) {
+    this.http.put( this.constant.baseUrl + '/order/update', {
+      id: orderId,
+      status: 'FINISHED'
+    }).subscribe( res => {
+      if ((res as any).code !== 0) {
+        alert((res as any).message);
+        return;
+      }
+      this.getOrderByVendor();
+    });
+  }
 
+  orderDetail(id) {
+    this.router.navigate(['tabs/me/vendor-order-detail', {orderId: id}]);
   }
 }

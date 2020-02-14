@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Vendor Order Details</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>{{service.type}}</ion-card-subtitle>
+      <ion-card-title>Vendor: {{service.username}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>price: ${{service.price}}/day</p>
+      <p>city: {{service.city}}</p>
+      <p>star: {{service.starStr}}</p>
+      <p>phone: {{service.phone}}</p>
+      <p>email: {{service.email}}</p>
+    </ion-card-content>
+  </ion-card>
+  <ion-item>
+    <ion-label position="stacked" style="font-size: larger">Start time</ion-label>
+    <ion-datetime [(ngModel)]="order.dateStart" (ionChange)="getCost()" display-format="MMM DD YYYY" readonly="true"></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked" style="font-size: larger">End time</ion-label>
+    <ion-datetime [(ngModel)]="order.dateEnd" (ionChange)="getCost()" display-format="MMM DD YYYY" readonly="true"></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked" style="font-size: larger">Address</ion-label>
+    <ion-input [(ngModel)]="order.address" readonly="true"> </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked" style="font-size: larger">Your name</ion-label>
+    <ion-input [(ngModel)]="constant.getUser().username" readonly="true"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked" style="font-size: larger">Your phone</ion-label>
+    <ion-input [(ngModel)]="constant.getUser().phone" readonly="true"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-title>
+      <p>Total: ${{cost}}</p>
+    </ion-title>
+  </ion-item>
+</ion-content>

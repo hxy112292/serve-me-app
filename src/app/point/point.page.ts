@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ConstantsService} from '../constants.service';
 import {Point} from '../entity/point';
+import { Order } from '../entity/order';
 
 @Component({
   selector: 'app-point',
@@ -12,6 +13,7 @@ export class PointPage implements OnInit {
 
   pointTotal: number;
   pointList: Point[];
+  reason: any;
 
   constructor(private http: HttpClient,
               private constant: ConstantsService) {
@@ -35,6 +37,15 @@ export class PointPage implements OnInit {
       this.pointList = (res as any).result;
       // tslint:disable-next-line:prefer-for-of
       for ( let i = 0; i < this.pointList.length; i++) {
+        this.reason = JSON.parse(this.pointList[i].reason) as any;
+        console.log(this.reason.reason);
+        if (this.reason.reason === 'PLACE_ORDER') {
+          this.pointList[i].reasonShow = 'Order #' + this.reason.orderId + ' placed';
+        } else if (this.reason.reason === 'CANCEL_ORDER') {
+          this.pointList[i].reasonShow = 'Order #' + this.reason.orderId + ' canceled';
+        } else if (this.reason.reason === 'SIGN_UP') {
+          this.pointList[i].reasonShow = 'Sign up';
+        }
         this.pointTotal += this.pointList[i].point;
       }
     });

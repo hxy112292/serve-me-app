@@ -41,6 +41,10 @@ const routes: Routes = [
           {
             path: 'order-update',
             loadChildren: () => import('../order-update/order-update.module').then( m => m.OrderUpdatePageModule)
+          },
+          {
+            path: 'order-detail',
+            loadChildren: () => import('../order-detail/order-detail.module').then( m => m.OrderDetailPageModule)
           }
         ]
       },
@@ -75,6 +79,10 @@ const routes: Routes = [
           {
             path: 'vendor-order',
             loadChildren: () => import('../vendor-order/vendor-order.module').then( m => m.VendorOrderPageModule)
+          },
+          {
+            path: 'vendor-order-detail',
+            loadChildren: () => import('../vendor-order-detail/vendor-order-detail.module').then( m => m.VendorOrderDetailPageModule)
           }
         ]
       },

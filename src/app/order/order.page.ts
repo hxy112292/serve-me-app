@@ -65,10 +65,9 @@ export class OrderPage implements OnInit {
         }, {
           text: 'Okay',
           handler: () => {
-            this.http.delete(this.constant.baseUrl + '/order/delete', {
-              params: {
-                id: orderId
-              }
+            this.http.put(this.constant.baseUrl + '/order/update', {
+              id: orderId,
+              status: 'CANCELED'
             }).subscribe( res => {this.getOrderList(); });
           }
         }
@@ -80,5 +79,9 @@ export class OrderPage implements OnInit {
 
   reviewOrder(id: string) {
 
+  }
+
+  orderDetail(id) {
+    this.router.navigate(['tabs/order/order-detail', {orderId: id}]);
   }
 }
