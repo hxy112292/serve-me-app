@@ -44,12 +44,16 @@ export class MePage implements OnInit {
   }
 
   point() {
-    if (this.constant.getUser() != null && this.constant.getUser().id != null && this.constant.getUser().id != '') {
+    if (this.constant.getUser() != null && this.constant.getUser().id != null && this.constant.getUser().id !== ''
+        && this.constant.getUser().role !== 'GUEST') {
       this.router.navigate(['/tabs/me/point']);
     }
   }
 
   vendorOrder() {
-    this.router.navigate(['/tabs/me/vendor-order']);
+    if (this.constant.getUser() != null && this.constant.getUser().id != null && this.constant.getUser().id !== ''
+        && this.constant.getUser().role !== 'GUEST') {
+      this.router.navigate(['/tabs/me/vendor-order']);
+    }
   }
 }

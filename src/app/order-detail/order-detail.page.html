@@ -24,11 +24,11 @@
   </ion-card>
   <ion-item>
     <ion-label position="stacked" style="font-size: larger">Start time</ion-label>
-    <ion-datetime [(ngModel)]="order.dateStart" (ionChange)="getCost()" display-format="MMM DD YYYY" readonly="true"></ion-datetime>
+    <ion-datetime [(ngModel)]="order.dateStart" display-format="MMM DD YYYY" readonly="true"></ion-datetime>
   </ion-item>
   <ion-item>
     <ion-label position="stacked" style="font-size: larger">End time</ion-label>
-    <ion-datetime [(ngModel)]="order.dateEnd" (ionChange)="getCost()" display-format="MMM DD YYYY" readonly="true"></ion-datetime>
+    <ion-datetime [(ngModel)]="order.dateEnd" display-format="MMM DD YYYY" readonly="true"></ion-datetime>
   </ion-item>
   <ion-item>
     <ion-label position="stacked" style="font-size: larger">Address</ion-label>
@@ -44,7 +44,22 @@
   </ion-item>
   <ion-item>
     <ion-title>
-      <p>Total: ${{cost}}</p>
+      <div *ngIf="constant.getUser() != null && constant.getUser().id != null && constant.getUser().id != '' && constant.getUser().role != 'GUEST'">
+        <ion-text style="font-size: x-large">
+          Total: ${{order.costOff}}
+        </ion-text>
+        <ion-text style="font-size: small">
+          (20%OFF)
+        </ion-text>
+      </div>
+      <div *ngIf="constant.getUser() == null || constant.getUser().id == null || constant.getUser().id == '' || constant.getUser().role == 'GUEST'">
+        <ion-text style="font-size: x-large">
+          Total: ${{order.costNoOff}}
+        </ion-text>
+        <ion-text style="font-size: small">
+          (No Discount)
+        </ion-text>
+      </div>
     </ion-title>
   </ion-item>
 </ion-content>

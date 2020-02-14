@@ -15,7 +15,8 @@ export class SetOrderPage implements OnInit {
 
   service: Service;
   order: Order;
-  cost: number;
+  costNoOFF: number;
+  costOFF: number;
   user: User;
 
   constructor(private route: ActivatedRoute,
@@ -34,6 +35,8 @@ export class SetOrderPage implements OnInit {
       serviceType: '',
       address: '',
       price: '',
+      costOff: '',
+      costNoOff: '',
       dateStart: '',
       dateEnd: '',
       status: '',
@@ -69,8 +72,11 @@ export class SetOrderPage implements OnInit {
     if (this.order.dateEnd == null || this.order.dateEnd === '') {
       return;
     }
-    this.cost = Math.floor(((new Date(this.order.dateEnd).getTime() - new Date(this.order.dateStart).getTime()) / 1000 / 60 / 60 / 24 + 1)
-        * Number(this.service.price));
+    this.costNoOFF = ((new Date(this.order.dateEnd).getTime() - new Date(this.order.dateStart).getTime()) / 1000 / 60 / 60 / 24 + 1)
+        * Number(this.service.price);
+    this.costOFF = this.costNoOFF * 0.8;
+    this.order.costNoOff = this.costNoOFF.toFixed(2);
+    this.order.costOff = this.costOFF.toFixed(2);
   }
 
   checkOut() {
@@ -87,12 +93,12 @@ export class SetOrderPage implements OnInit {
       return;
     }
     if (this.constant.getUser() == null || this.constant.getUser().id == null || this.constant.getUser().id === '') {
-      if (this.user.phone == null || this.user.phone === '') {
-        alert('you need to choose an phone');
-        return;
-      }
       if (this.user.username == null || this.user.username === '') {
         alert('you need to choose an username');
+        return;
+      }
+      if (this.user.phone == null || this.user.phone === '') {
+        alert('you need to choose an phone');
         return;
       }
       this.http.post(this.constant.baseUrl + '/user/signup', {

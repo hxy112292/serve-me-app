@@ -16,7 +16,8 @@ export class OrderUpdatePage implements OnInit {
   serviceList: Service[];
   star: string;
   order: Order;
-  cost: number;
+  costNoOFF: number;
+  costOFF: number;
 
   constructor(private route: ActivatedRoute,
               private http: HttpClient,
@@ -46,6 +47,8 @@ export class OrderUpdatePage implements OnInit {
       serviceType: '',
       address: '',
       price: '',
+      costOff: '',
+      costNoOff: '',
       dateStart: '',
       dateEnd: '',
       status: '',
@@ -97,11 +100,26 @@ export class OrderUpdatePage implements OnInit {
     if (this.order.dateEnd == null || this.order.dateEnd === '') {
       return;
     }
-    this.cost = Math.floor(((new Date(this.order.dateEnd).getTime() - new Date(this.order.dateStart).getTime()) / 1000 / 60 / 60 / 24 + 1)
-        * Number(this.service.price));
+    this.costNoOFF = ((new Date(this.order.dateEnd).getTime() - new Date(this.order.dateStart).getTime()) / 1000 / 60 / 60 / 24 + 1)
+        * Number(this.service.price);
+    this.costOFF = this.costNoOFF * 0.8;
+    this.order.costNoOff = this.costNoOFF.toFixed(2);
+    this.order.costOff = this.costOFF.toFixed(2);
   }
 
   updateOrder() {
+    if (this.order.dateStart == null || this.order.dateStart === '') {
+      alert('you need to choose a date start');
+      return;
+    }
+    if (this.order.dateEnd == null || this.order.dateEnd === '') {
+      alert('you need to choose a date end');
+      return;
+    }
+    if (this.order.address == null || this.order.address === '') {
+      alert('you need to choose an address');
+      return;
+    }
     this.http.put( this.constant.baseUrl + '/order/update', this.order).subscribe( res => {
       if ((res as any).code !== 0) {
         alert((res as any).message);

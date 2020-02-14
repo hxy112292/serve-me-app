@@ -11,6 +11,8 @@ export class Order {
     serviceType: string;
     address: string;
     price: string;
+    costOff: string;
+    costNoOff: string;
     dateStart: string;
     dateEnd: string;
     status: string;

@@ -17,7 +17,6 @@ export class OrderDetailPage implements OnInit {
   star: string;
   orderId: string;
   order: Order;
-  cost: number;
 
   constructor(private route: ActivatedRoute,
               private http: HttpClient,
@@ -47,6 +46,8 @@ export class OrderDetailPage implements OnInit {
       serviceType: '',
       address: '',
       price: '',
+      costOff: '',
+      costNoOff: '',
       dateStart: '',
       dateEnd: '',
       status: '',
@@ -98,18 +99,6 @@ export class OrderDetailPage implements OnInit {
         this.serviceList[i].starStr = this.star;
       }
       this.service = this.serviceList[0];
-      this.getCost();
     });
-  }
-
-  getCost() {
-    if (this.order.dateStart == null || this.order.dateStart === '') {
-      return;
-    }
-    if (this.order.dateEnd == null || this.order.dateEnd === '') {
-      return;
-    }
-    this.cost = Math.floor(((new Date(this.order.dateEnd).getTime() - new Date(this.order.dateStart).getTime()) / 1000 / 60 / 60 / 24 + 1)
-        * Number(this.service.price));
   }
 }
