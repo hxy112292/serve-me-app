@@ -15,11 +15,11 @@
   <div *ngFor="let order of orderList">
     <ion-card>
       <ion-card-header>
-        <ion-card-subtitle>{{order.serviceType}}</ion-card-subtitle>
+        <ion-card-subtitle>OrderNo: {{order.id}}, Create time: {{order.createTime | date:'MMM dd yyyy HH:mm:ss'}}</ion-card-subtitle>
         <ion-card-title>{{order.status}}</ion-card-title>
       </ion-card-header>
-
       <ion-card-content>
+        <p>service: {{order.serviceType}}</p>
         <p>customer name: {{order.customerName}}</p>
         <p>customer phone: {{order.customerPhone}}</p>
         <p>address: {{order.address}}</p>

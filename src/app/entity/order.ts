@@ -14,5 +14,6 @@ export class Order {
     dateStart: string;
     dateEnd: string;
     status: string;
-
+    createTime: string;
+    updateTime: string;
 }

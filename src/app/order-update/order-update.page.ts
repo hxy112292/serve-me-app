@@ -49,6 +49,8 @@ export class OrderUpdatePage implements OnInit {
       dateStart: '',
       dateEnd: '',
       status: '',
+      createTime: '',
+      updateTime: ''
     };
   }
 
