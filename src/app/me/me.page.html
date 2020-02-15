@@ -9,32 +9,31 @@
       <div *ngIf="constant.getUser() == null || constant.getUser().id==null ||
       constant.getUser().id=='' || constant.getUser().role=='GUEST'">
           <ion-item (click)="login()">
-              Login/Sign up
+              <ion-icon name="contact"></ion-icon>
+              <ion-text>　Login/Sign up</ion-text>
           </ion-item>
       </div>
       <div *ngIf="constant.getUser() != null && constant.getUser().id!=null && constant.getUser().id!='' && constant.getUser().role=='USER'">
           <ion-item (click)="personalInfo()">
-              <ion-row style="width: 100%">
-                  <ion-col size="9">
-                      {{constant.getUser().username}}'s profile
-                  </ion-col>
-                  <ion-col text-end>
-                      >>
-                  </ion-col>
-              </ion-row>
+              <ion-icon name="contact"></ion-icon>
+              <ion-text>　{{constant.getUser().username}}'s profile</ion-text>
           </ion-item>
       </div>
       <ion-item (click)="point()">
-        Points
+          <ion-icon name="pricetag"></ion-icon>
+          <ion-text>　Points</ion-text>
       </ion-item>
       <ion-item (click)="myorder()">
-        My Orders
+          <ion-icon name="reorder"></ion-icon>
+          <ion-text>　My Orders</ion-text>
       </ion-item>
       <ion-item (click)="vendorOrder()">
-        I am a service vendor
+          <ion-icon name="american-football"></ion-icon>
+          <ion-text>　I am a service vendor</ion-text>
       </ion-item>
       <ion-item (click)="setting()">
-        Settings
+          <ion-icon name="settings"></ion-icon>
+          <ion-text>　Settings</ion-text>
       </ion-item>
     <br/><br/>
       <div *ngIf="constant.getUser() != null && constant.getUser().id!=null && constant.getUser().id!='' && constant.getUser().role=='USER'" text-center (click)="logout()">
