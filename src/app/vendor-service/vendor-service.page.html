@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Vendor Service</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="ion-text-center">
+    <p><ion-button (click)="addService()">Add new service</ion-button></p>
+  </div>
+  <div *ngFor="let service of serviceList">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>Service No: {{service.id}}</ion-card-subtitle>
+        <ion-card-title>{{service.type}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col [size]="3">
+              Price:
+            </ion-col>
+            <ion-col>
+              ${{service.price}}/day
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col [size]="3">
+              City:
+            </ion-col>
+            <ion-col>
+              {{service.city}}
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col [size]="3">
+              Star:
+            </ion-col>
+            <ion-col>
+              <ionic4-star-rating #rating
+                                  activeColor = "orange"
+                                  readonly = "true"
+                                  fontSize="small"
+                                  [(ngModel)]="service.star">
+              </ionic4-star-rating>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-button (click)="toUpdateService(service)">Update</ion-button>
+        <ion-button (click)="deleteService(service.id)">Delete</ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

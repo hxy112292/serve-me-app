@@ -46,4 +46,13 @@ export class ServiceDetailPage implements OnInit {
   toSetOrder(service: Service) {
     this.router.navigate(['/tabs/home/set-order', {serviceInfo: JSON.stringify(service)}]);
   }
+
+  doRefresh(event) {
+    console.log('Begin async operation');
+    this.getReviews();
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 2000);
+  }
 }

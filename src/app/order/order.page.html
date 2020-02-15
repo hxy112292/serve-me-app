@@ -57,14 +57,14 @@
             <ion-col>{{order.dateStart | date:'MMM dd yyyy'}} - {{order.dateEnd | date: 'MMM dd yyyy'}}</ion-col>
           </ion-row>
         </ion-grid>
+        <div *ngIf="order.status == 'NOT_ACCEPTED'">
+          <ion-button (click)="updateOrder(order)">update</ion-button>
+          <ion-button (click)="cancelOrder(order)">cancel</ion-button>
+        </div>
+        <div *ngIf="order.status == 'FINISHED'">
+          <ion-button (click)="reviewOrder(order)">review</ion-button>
+        </div>
       </ion-card-content>
-      <div *ngIf="order.status == 'NOT_ACCEPTED'">
-        <ion-button (click)="updateOrder(order)">update</ion-button>
-        <ion-button (click)="cancelOrder(order)">cancel</ion-button>
-      </div>
-      <div *ngIf="order.status == 'FINISHED'">
-        <ion-button (click)="reviewOrder(order)">review</ion-button>
-      </div>
     </ion-card>
   </div>
 </ion-content>

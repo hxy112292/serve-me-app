@@ -99,4 +99,8 @@ export class VendorOrderPage implements OnInit {
       this.getOrderByVendor();
     });
   }
+
+  toVendorService() {
+    this.router.navigate(['tabs/me/vendor-service']);
+  }
 }
