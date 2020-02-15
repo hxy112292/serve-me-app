@@ -52,7 +52,8 @@ export class OrderUpdatePage implements OnInit {
       dateEnd: '',
       status: '',
       createTime: '',
-      updateTime: ''
+      updateTime: '',
+      star: 0
     };
   }
 

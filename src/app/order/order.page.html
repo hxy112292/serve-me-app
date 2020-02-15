@@ -12,7 +12,7 @@
   <div *ngFor="let order of orderList">
     <ion-card>
       <ion-card-header>
-        <ion-card-subtitle>OrderNo: {{order.id}}, Create time: {{order.createTime | date:'MMM dd yyyy HH:mm:ss'}}</ion-card-subtitle>
+        <ion-card-subtitle>OrderNo: {{order.id}}, {{order.createTime | date:'MMM dd yyyy HH:mm:ss'}}</ion-card-subtitle>
         <ion-card-title>{{order.serviceType}}  ({{order.status}})</ion-card-title>
       </ion-card-header>
       <ion-card-content>
@@ -56,6 +56,21 @@
             </ion-col>
             <ion-col>{{order.dateStart | date:'MMM dd yyyy'}} - {{order.dateEnd | date: 'MMM dd yyyy'}}</ion-col>
           </ion-row>
+          <div *ngIf="order.status === 'REVIEWED'">
+            <ion-row>
+              <ion-col [size]="4">
+                Star:
+              </ion-col>
+              <ion-col>
+                <ionic4-star-rating #rating
+                                     activeColor = "orange"
+                                     readonly = "true"
+                                     fontSize="small"
+                                     [(ngModel)]="order.star">
+                </ionic4-star-rating>
+              </ion-col>
+            </ion-row>
+          </div>
         </ion-grid>
         <div *ngIf="order.status == 'NOT_ACCEPTED'">
           <ion-button (click)="updateOrder(order)">update</ion-button>

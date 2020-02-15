@@ -8,14 +8,16 @@ import { OrderPageRoutingModule } from './order-routing.module';
 
 
 import { OrderPage } from './order.page';
+import {StarRatingModule} from 'ionic4-star-rating';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    OrderPageRoutingModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        OrderPageRoutingModule,
+        StarRatingModule
+    ],
   declarations: [OrderPage]
 })
 export class OrderPageModule {}

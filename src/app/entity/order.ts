@@ -16,6 +16,7 @@ export class Order {
     dateStart: string;
     dateEnd: string;
     status: string;
+    star: number;
     createTime: string;
     updateTime: string;
 }

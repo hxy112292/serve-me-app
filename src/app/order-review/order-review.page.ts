@@ -38,7 +38,8 @@ export class OrderReviewPage implements OnInit {
       dateEnd: '',
       status: '',
       createTime: '',
-      updateTime: ''
+      updateTime: '',
+      star: 0
     };
     this.review = {
       id: '',

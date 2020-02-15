@@ -41,7 +41,8 @@ export class SetOrderPage implements OnInit {
       dateEnd: '',
       status: '',
       createTime: '',
-      updateTime: ''
+      updateTime: '',
+      star: 0
     };
 
     this.user = {
