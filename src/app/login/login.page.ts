@@ -39,8 +39,8 @@ export class LoginPage implements OnInit {
       }
       this.constant.setUser((res as any).result);
       localStorage.setItem('uid', this.constant.getUser().id);
+      this.router.navigate(['/tabs/me']);
     });
-    this.router.navigate(['/tabs/me']);
   }
 
   jumpToSignup() {

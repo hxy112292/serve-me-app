@@ -40,12 +40,20 @@ export class SignupPage implements OnInit {
       alert('you must set a password');
       return;
     }
+    if (this.user.password.length < 6) {
+      alert('password must have at least 6 digits');
+      return;
+    }
     if (this.user.phone == null || this.user.phone === '') {
       alert('you must set a phone');
       return;
     }
     if (this.user.email == null || this.user.email === '') {
       alert('you must set a email');
+      return;
+    }
+    if (!this.user.email.match('@')) {
+      alert('email format is wrong');
       return;
     }
     if (this.user.password !== this. repeatPassword) {
@@ -60,6 +68,7 @@ export class SignupPage implements OnInit {
         }
         this.constant.setUser((res as any).result);
         localStorage.setItem('uid', this.constant.getUser().id);
+        this.router.navigate(['/tabs/me']);
       });
     } else if (this.constant.getUser().id != null && this.constant. getUser().id !== '' &&
         this.constant.getUser() != null && this.constant.getUser().role === 'GUEST') {
@@ -75,10 +84,9 @@ export class SignupPage implements OnInit {
         }
         this.constant.setUser((res as any).result);
         localStorage.setItem('uid', this.constant.getUser().id);
+        this.router.navigate(['/tabs/me']);
       });
     }
-
-    this.router.navigate(['/tabs/me']);
   }
 }
 
