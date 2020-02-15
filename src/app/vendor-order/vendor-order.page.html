@@ -18,7 +18,10 @@
   <div *ngFor="let order of orderList">
     <ion-card>
       <ion-card-header>
-        <ion-card-subtitle>OrderNo: {{order.id}}, {{order.createTime | date:'MMM dd yyyy HH:mm:ss'}}</ion-card-subtitle>
+        <ion-card-subtitle>
+          <ion-icon name="document"></ion-icon>
+          <ion-text>OrderNo: {{order.id}}, {{order.createTime | date:'MMM dd yyyy HH:mm:ss'}}</ion-text>
+        </ion-card-subtitle>
         <ion-card-title>{{order.serviceType}}  ({{order.status}})</ion-card-title>
       </ion-card-header>
       <ion-card-content>
