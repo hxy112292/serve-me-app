@@ -36,6 +36,10 @@ export class SignupPage implements OnInit {
       alert('you must set a username');
       return;
     }
+    if (this.user.username.length < 5) {
+      alert('username must have at least 5 letters');
+      return;
+    }
     if (this.user.password == null || this.user.password === '') {
       alert('you must set a password');
       return;
