@@ -47,6 +47,8 @@ export class MePage implements OnInit {
     if (this.constant.getUser() != null && this.constant.getUser().id != null && this.constant.getUser().id !== ''
         && this.constant.getUser().role !== 'GUEST') {
       this.router.navigate(['/tabs/me/point']);
+    } else {
+      alert('Please log in');
     }
   }
 
@@ -54,6 +56,8 @@ export class MePage implements OnInit {
     if (this.constant.getUser() != null && this.constant.getUser().id != null && this.constant.getUser().id !== ''
         && this.constant.getUser().role !== 'GUEST') {
       this.router.navigate(['/tabs/me/vendor-order']);
+    } else {
+      alert('Please log in');
     }
   }
 }

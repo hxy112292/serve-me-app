@@ -48,8 +48,8 @@ export class SignupPage implements OnInit {
       alert('password must have at least 6 digits');
       return;
     }
-    if (this.user.phone == null || this.user.phone === '') {
-      alert('you must set a phone');
+    if (this.user.password !== this. repeatPassword) {
+      alert('your password and repeatPassword is different');
       return;
     }
     if (this.user.email == null || this.user.email === '') {
@@ -60,8 +60,12 @@ export class SignupPage implements OnInit {
       alert('email format is wrong');
       return;
     }
-    if (this.user.password !== this. repeatPassword) {
-      alert('your password and repeatPassword is different');
+    if (this.user.phone == null || this.user.phone === '') {
+      alert('you must set a phone');
+      return;
+    }
+    if (!(this.user.phone.match('[+][0-9]') || this.user.phone.match('[0-9]')) || this.user.phone.length < 7 ) {
+      alert('you must set a right phone number');
       return;
     }
     if (this.constant.getUser() == null || this.constant.getUser().role == null || this.constant.getUser().role === '') {

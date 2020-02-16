@@ -24,12 +24,4 @@ export class SettingPage implements OnInit {
     // this.router.navigate(['/tabs/me/setting']);
     // this.router.navigate(['/tabs/home/order']);
   }
-  // notification() {
-  //   this.localNotifications.schedule({
-  //     id: 1,
-  //     text: 'Single ILocalNotification',
-  //     // sound: isAndroid? 'file://sound.mp3': 'file://beep.caf',
-  //     data: { secret: key }
-  //   });
-  // }
 }
