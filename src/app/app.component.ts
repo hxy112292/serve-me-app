@@ -105,17 +105,19 @@ export class AppComponent {
       userId: this.constant.getUser().id
     }).subscribe( res => {
       this.constant.setSetting((res as any).result);
-      if ( this.constant.getSetting().notification == null || this.constant.getSetting().notification === ''
-          || this.constant.getSetting().notification === 'true') {
-        if (this.constant.getSetting().vibration == null || this.constant.getSetting().vibration === ''
-            || this.constant.getSetting().vibration === 'true') {
-          this.vibration.vibrate(1500);
+      if (this.constant.getUser() != null && this.constant.getUser().id != null && this.constant.getUser().id !== '') {
+        if ( this.constant.getSetting().notification == null || this.constant.getSetting().notification === ''
+            || this.constant.getSetting().notification === 'true') {
+          if (this.constant.getSetting().vibration == null || this.constant.getSetting().vibration === ''
+              || this.constant.getSetting().vibration === 'true') {
+            this.vibration.vibrate(1500);
+          }
+          this.localNotifications.schedule({
+            id: 2,
+            title: 'Welcome',
+            text: 'Hi, ' + this.constant.getUser().username + '. Have a good day'
+          });
         }
-        this.localNotifications.schedule({
-          id: 2,
-          title: 'Welcome',
-          text: 'Hi, ' + this.constant.getUser().username + '. Have a good day'
-        });
       }
     });
   }
