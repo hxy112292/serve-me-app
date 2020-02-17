@@ -8,7 +8,8 @@ import {Setting} from './entity/setting';
 export class ConstantsService {
 
   // readonly baseUrl: string = 'https://serve-me-hxy.herokuapp.com';
-  readonly baseUrl: string = 'https://35.193.61.114:6066';
+  // readonly baseUrl: string = 'https://35.193.61.114:6066';
+  readonly baseUrl: string = 'https://www.hxyvip.club:6066';
   user: User;
   setting: Setting;
 
