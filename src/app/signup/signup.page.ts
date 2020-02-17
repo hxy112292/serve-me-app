@@ -5,6 +5,8 @@ import {User} from '../entity/user';
 import {HttpClient} from '@angular/common/http';
 import {ConstantsService} from '../constants.service';
 import {FCM} from '@ionic-native/fcm/ngx';
+import {Vibration} from '@ionic-native/vibration/ngx';
+import {LocalNotifications} from '@ionic-native/local-notifications/ngx';
 
 @Component({
   selector: 'app-signup',
@@ -19,6 +21,8 @@ export class SignupPage implements OnInit {
   constructor(private http: HttpClient,
               private constant: ConstantsService,
               private fcm: FCM,
+              private vibration: Vibration,
+              private localNotifications: LocalNotifications,
               private router: Router) {
     this.user = {
       id: '',
@@ -121,6 +125,18 @@ export class SignupPage implements OnInit {
       userId: this.constant.getUser().id
     }).subscribe( res => {
       this.constant.setSetting((res as any).result);
+      if ( this.constant.getSetting().notification == null || this.constant.getSetting().notification === ''
+          || this.constant.getSetting().notification === 'true') {
+        if (this.constant.getSetting().vibration == null || this.constant.getSetting().vibration === ''
+            || this.constant.getSetting().vibration === 'true') {
+          this.vibration.vibrate(1500);
+        }
+        this.localNotifications.schedule({
+          id: 2,
+          title: 'Welcome',
+          text: 'Hi, ' + this.constant.getUser().username + '. Have a good day'
+        });
+      }
     });
   }
 }

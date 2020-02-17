@@ -59,8 +59,8 @@ export class AppComponent {
   initFCM() {
     this.fcm.onNotification().subscribe(data => {
       if (this.constant.getSetting().vibration == null || this.constant.getSetting().vibration === ''
-          || this.constant.getSetting().vibration === 'on') {
-        this.vibration.vibrate(3000);
+          || this.constant.getSetting().vibration === 'true') {
+        this.vibration.vibrate(2000);
       }
       if (data.wasTapped) {
         console.log('Received in background');
@@ -105,6 +105,18 @@ export class AppComponent {
       userId: this.constant.getUser().id
     }).subscribe( res => {
       this.constant.setSetting((res as any).result);
+      if ( this.constant.getSetting().notification == null || this.constant.getSetting().notification === ''
+          || this.constant.getSetting().notification === 'true') {
+        if (this.constant.getSetting().vibration == null || this.constant.getSetting().vibration === ''
+            || this.constant.getSetting().vibration === 'true') {
+          this.vibration.vibrate(1500);
+        }
+        this.localNotifications.schedule({
+          id: 2,
+          title: 'Welcome',
+          text: 'Hi, ' + this.constant.getUser().username + '. Have a good day'
+        });
+      }
     });
   }
 }
