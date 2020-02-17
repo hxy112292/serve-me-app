@@ -34,6 +34,10 @@
       <ion-label>Set a price ($/day): </ion-label>
       <ion-input [(ngModel)]="service.price" placeholder="Write your price"></ion-input>
     </ion-item>
+    <ion-item lines="none">
+      <ion-checkbox [(ngModel)]="privacyAgree" slot="start"></ion-checkbox>
+      <ion-label class="ion-text-wrap">I agree that I will pay 20% of money received to the app holder.</ion-label>
+    </ion-item>
   </ion-list>
   <div class="ion-text-center">
     <ion-button (click)="addService()">Add Service</ion-button>

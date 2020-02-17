@@ -12,6 +12,7 @@ import {Service} from '../entity/service';
 export class VendorServiceAddPage implements OnInit {
 
   service: Service;
+  privacyAgree: string;
 
   constructor(private http: HttpClient,
               private constant: ConstantsService,
@@ -45,6 +46,10 @@ export class VendorServiceAddPage implements OnInit {
     }
     if (this.service.price == null || this.service.price === '') {
       alert('you need to set a price');
+      return;
+    }
+    if (this.privacyAgree == null || this.privacyAgree === 'false') {
+      alert('you need to agree the privacy');
       return;
     }
     this.service.vendorId = this.constant.getUser().id;
