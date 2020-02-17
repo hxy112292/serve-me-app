@@ -82,11 +82,11 @@
           </div>
         </ion-grid>
         <div *ngIf="order.status == 'NOT_ACCEPTED'">
-          <ion-button (click)="acceptOrder(order.id)">accept</ion-button>
+          <ion-button (click)="acceptOrder(order)">accept</ion-button>
           <ion-button (click)="cancelOrder(order)">cancel</ion-button>
         </div>
         <div *ngIf="order.status == 'PROCESSING'">
-          <ion-button (click)="finishOrder(order.id)">finish</ion-button>
+          <ion-button (click)="finishOrder(order)">finish</ion-button>
         </div>
       </ion-card-content>
     </ion-card>

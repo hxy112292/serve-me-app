@@ -69,6 +69,7 @@ export class OrderPage implements OnInit {
             this.http.put(this.constant.baseUrl + '/order/update', {
               id: order.id,
               customerId: order.customerId,
+              vendorId: order.vendorId,
               status: 'CANCELED'
             }).subscribe( res => {this.getOrderList(); });
           }

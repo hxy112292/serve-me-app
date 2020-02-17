@@ -48,9 +48,11 @@ export class VendorOrderPage implements OnInit {
     }, 2000);
   }
 
-  acceptOrder(orderId: string) {
+  acceptOrder(order: Order) {
     this.http.put( this.constant.baseUrl + '/order/update', {
-      id: orderId,
+      id: order.id,
+      customerId: order.customerId,
+      vendorId: order.vendorId,
       status: 'PROCESSING'
     }).subscribe( res => {
       if ((res as any).code !== 0) {
@@ -78,6 +80,7 @@ export class VendorOrderPage implements OnInit {
             this.http.put(this.constant.baseUrl + '/order/update', {
               id: order.id,
               customerId: order.customerId,
+              vendorId: order.vendorId,
               status: 'CANCELED'
             }).subscribe( res => {this.getOrderByVendor(); });
           }
@@ -87,9 +90,11 @@ export class VendorOrderPage implements OnInit {
     await alert.present();
   }
 
-  finishOrder(orderId: string) {
+  finishOrder(order: Order) {
     this.http.put( this.constant.baseUrl + '/order/update', {
-      id: orderId,
+      id: order.id,
+      customerId: order.customerId,
+      vendorId: order.vendorId,
       status: 'FINISHED'
     }).subscribe( res => {
       if ((res as any).code !== 0) {

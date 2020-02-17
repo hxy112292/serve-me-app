@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import {User} from '../entity/user';
 import {HttpClient} from '@angular/common/http';
 import {ConstantsService} from '../constants.service';
+import {FCM} from '@ionic-native/fcm/ngx';
 
 @Component({
   selector: 'app-signup',
@@ -17,6 +18,7 @@ export class SignupPage implements OnInit {
 
   constructor(private http: HttpClient,
               private constant: ConstantsService,
+              private fcm: FCM,
               private router: Router) {
     this.user = {
       id: '',
@@ -76,6 +78,8 @@ export class SignupPage implements OnInit {
         }
         this.constant.setUser((res as any).result);
         localStorage.setItem('uid', this.constant.getUser().id);
+        this.getToken();
+        this.initSetting();
         this.router.navigate(['/tabs/me']);
       });
     } else if (this.constant.getUser().id != null && this.constant. getUser().id !== '' &&
@@ -92,9 +96,32 @@ export class SignupPage implements OnInit {
         }
         this.constant.setUser((res as any).result);
         localStorage.setItem('uid', this.constant.getUser().id);
+        this.getToken();
+        this.initSetting();
         this.router.navigate(['/tabs/me']);
       });
     }
+  }
+
+  getToken() {
+    this.fcm.getToken().then(token => {
+      // Register your new token in your back-end if you want
+      // backend.registerToken(token);
+      if (this.constant.getUser() != null && this.constant.getUser().id != null && this.constant.getUser().id !== '') {
+        this.http.post(this.constant.baseUrl + '/fcm/register', {
+          userId: this.constant.getUser().id,
+          fcmToken: token
+        }).subscribe( res => {});
+      }
+    });
+  }
+
+  initSetting() {
+    this.http.post(this.constant.baseUrl + '/setting/init', {
+      userId: this.constant.getUser().id
+    }).subscribe( res => {
+      this.constant.setSetting((res as any).result);
+    });
   }
 }
 

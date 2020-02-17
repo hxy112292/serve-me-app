@@ -7,6 +7,7 @@ import {HttpClient} from '@angular/common/http';
 import {ConstantsService} from './constants.service';
 import {FCM} from '@ionic-native/fcm/ngx';
 import {LocalNotifications} from '@ionic-native/local-notifications/ngx';
+import {Vibration} from '@ionic-native/vibration/ngx';
 
 @Component({
   selector: 'app-root',
@@ -24,6 +25,7 @@ export class AppComponent {
     private http: HttpClient,
     private constant: ConstantsService,
     private fcm: FCM,
+    private vibration: Vibration,
     private localNotifications: LocalNotifications
   ) {
     this.initializeApp();
@@ -34,8 +36,8 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.statusBar.overlaysWebView(false);
       this.splashScreen.hide();
-      this.getUserInfo();
       this.initFCM();
+      this.getUserInfo();
     });
   }
 
@@ -48,12 +50,18 @@ export class AppComponent {
         }
       }).subscribe(res => {
         this.constant.setUser((res as any).result);
+        this.getToken();
+        this.initSetting();
       });
     }
   }
 
   initFCM() {
     this.fcm.onNotification().subscribe(data => {
+      if (this.constant.getSetting().vibration == null || this.constant.getSetting().vibration === ''
+          || this.constant.getSetting().vibration === 'on') {
+        this.vibration.vibrate(3000);
+      }
       if (data.wasTapped) {
         console.log('Received in background');
       } else {
@@ -80,9 +88,23 @@ export class AppComponent {
     this.fcm.getToken().then(token => {
       // Register your new token in your back-end if you want
       // backend.registerToken(token);
+      if (this.constant.getUser() != null && this.constant.getUser().id != null && this.constant.getUser().id !== '') {
+        this.http.post(this.constant.baseUrl + '/fcm/register', {
+          userId: this.constant.getUser().id,
+          fcmToken: token
+        }).subscribe( res => {});
+      }
     });
   }
   unsubscribeFromTopic() {
     this.fcm.unsubscribeFromTopic('enappd');
+  }
+
+  initSetting() {
+    this.http.post(this.constant.baseUrl + '/setting/init', {
+      userId: this.constant.getUser().id
+    }).subscribe( res => {
+      this.constant.setSetting((res as any).result);
+    });
   }
 }
