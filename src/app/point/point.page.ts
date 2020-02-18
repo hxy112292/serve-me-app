@@ -38,7 +38,6 @@ export class PointPage implements OnInit {
       // tslint:disable-next-line:prefer-for-of
       for ( let i = 0; i < this.pointList.length; i++) {
         this.reason = JSON.parse(this.pointList[i].reason) as any;
-        console.log(this.reason.reason);
         if (this.reason.reason === 'PLACE_ORDER') {
           this.pointList[i].reasonShow = 'Order #' + this.reason.orderId + ' placed';
         } else if (this.reason.reason === 'CANCEL_ORDER') {
