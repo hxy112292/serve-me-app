@@ -55,7 +55,7 @@ export class MePage implements OnInit {
   vendorOrder() {
     if (this.constant.getUser() != null && this.constant.getUser().id != null && this.constant.getUser().id !== ''
         && this.constant.getUser().role !== 'GUEST') {
-      this.router.navigate(['/tabs/me/vendor-order']);
+      this.router.navigate(['/tabs/me/vendor-center']);
     } else {
       alert('Please log in');
     }

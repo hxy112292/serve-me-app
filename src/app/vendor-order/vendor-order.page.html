@@ -1,95 +1,80 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Vendor Order</ion-title>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content>
-  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
-
-  <div class="ion-text-center">
-    <p><ion-button (click)="toVendorService()">Manage my services</ion-button></p>
-  </div>
-  <div *ngFor="let order of orderList">
-    <ion-card>
-      <ion-card-header>
-        <ion-card-subtitle>
-          <ion-icon name="document"></ion-icon>
-          <ion-text>OrderNo: {{order.id}}, {{order.createTime | date:'MMM dd yyyy HH:mm:ss'}}</ion-text>
-        </ion-card-subtitle>
-        <ion-card-title>{{order.serviceType}}  ({{order.status}})</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <ion-grid>
+<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+  <ion-refresher-content></ion-refresher-content>
+</ion-refresher>
+<div *ngFor="let order of orderList">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>
+        <ion-icon name="document"></ion-icon>
+        <ion-text>OrderNo: {{order.id}}, {{order.createTime | date:'MMM dd yyyy HH:mm:ss'}}</ion-text>
+      </ion-card-subtitle>
+      <ion-card-title>{{order.serviceType}}  ({{order.status}})</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col [size]="5">Price: </ion-col>
+          <ion-col>${{order.price}}/day</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col [size]="5">Total: </ion-col>
+          <ion-col>
+            <div *ngIf="order.costOff != null && order.costOff != ''">
+              <p>${{order.costOff}} (20% off)</p>
+            </div>
+            <div *ngIf="order.costNoOff != null && order.costNoOff != ''">
+              <p>${{order.costNoOff}} (No Discount)</p>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col [size]="5">
+            Customer Name:
+          </ion-col>
+          <ion-col>{{order.customerName}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col [size]="5">
+            Customer Phone:
+          </ion-col>
+          <ion-col>{{order.customerPhone}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col [size]="5">
+            Address:
+          </ion-col>
+          <ion-col>{{order.address}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col [size]="5">
+            Time:
+          </ion-col>
+          <ion-col>{{order.dateStart | date:'MMM dd yyyy'}} - {{order.dateEnd | date: 'MMM dd yyyy'}}</ion-col>
+        </ion-row>
+        <div *ngIf="order.status === 'REVIEWED'">
           <ion-row>
-            <ion-col [size]="5">Price: </ion-col>
-            <ion-col>${{order.price}}/day</ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col [size]="5">Total: </ion-col>
+            <ion-col [size]="5">
+              Star:
+            </ion-col>
             <ion-col>
-              <div *ngIf="order.costOff != null && order.costOff != ''">
-                <p>${{order.costOff}} (20% off)</p>
-              </div>
-              <div *ngIf="order.costNoOff != null && order.costNoOff != ''">
-                <p>${{order.costNoOff}} (No Discount)</p>
-              </div>
+              <ionic4-star-rating #rating
+                                  activeColor = "orange"
+                                  readonly = "true"
+                                  fontSize="small"
+                                  [(ngModel)]="order.star">
+              </ionic4-star-rating>
             </ion-col>
           </ion-row>
-          <ion-row>
-            <ion-col [size]="5">
-              Customer Name:
-            </ion-col>
-            <ion-col>{{order.customerName}}</ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col [size]="5">
-              Customer Phone:
-            </ion-col>
-            <ion-col>{{order.customerPhone}}</ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col [size]="5">
-              Address:
-            </ion-col>
-            <ion-col>{{order.address}}</ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col [size]="5">
-              Time:
-            </ion-col>
-            <ion-col>{{order.dateStart | date:'MMM dd yyyy'}} - {{order.dateEnd | date: 'MMM dd yyyy'}}</ion-col>
-          </ion-row>
-          <div *ngIf="order.status === 'REVIEWED'">
-            <ion-row>
-              <ion-col [size]="5">
-                Star:
-              </ion-col>
-              <ion-col>
-                <ionic4-star-rating #rating
-                                    activeColor = "orange"
-                                    readonly = "true"
-                                    fontSize="small"
-                                    [(ngModel)]="order.star">
-                </ionic4-star-rating>
-              </ion-col>
-            </ion-row>
-          </div>
-        </ion-grid>
-        <div *ngIf="order.status == 'NOT_ACCEPTED'">
-          <ion-button (click)="acceptOrder(order)">accept</ion-button>
-          <ion-button (click)="cancelOrder(order)">cancel</ion-button>
         </div>
-        <div *ngIf="order.status == 'PROCESSING'">
-          <ion-button (click)="finishOrder(order)">finish</ion-button>
-        </div>
-      </ion-card-content>
-    </ion-card>
-  </div>
-
-</ion-content>
+      </ion-grid>
+      <div *ngIf="order.status == 'NOT_ACCEPTED'">
+        <ion-button (click)="acceptOrder(order)">accept</ion-button>
+        <ion-button (click)="cancelOrder(order)">cancel</ion-button>
+      </div>
+      <div *ngIf="order.status == 'PROCESSING'">
+        <ion-button (click)="finishOrder(order)">finish</ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</div>

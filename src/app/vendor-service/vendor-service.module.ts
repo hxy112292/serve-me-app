@@ -17,6 +17,9 @@ import {StarRatingModule} from 'ionic4-star-rating';
         VendorServicePageRoutingModule,
         StarRatingModule
     ],
-  declarations: [VendorServicePage]
+    exports: [
+        VendorServicePage
+    ],
+    declarations: [VendorServicePage]
 })
 export class VendorServicePageModule {}

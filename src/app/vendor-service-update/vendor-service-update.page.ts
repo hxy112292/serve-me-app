@@ -54,7 +54,7 @@ export class VendorServiceUpdatePage implements OnInit {
         alert((res as any).message);
         return;
       }
-      this.router.navigate(['tabs/me/vendor-service']);
+      this.router.navigate(['tabs/me/vendor-center']);
     });
   }
 

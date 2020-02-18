@@ -76,10 +76,10 @@ export class VendorServicePage implements OnInit {
   }
 
   addService() {
-    this.router.navigate(['tabs/me/vendor-service-add']);
+    this.router.navigate(['tabs/me/vendor-center/vendor-service-add']);
   }
 
   toUpdateService(service: Service) {
-    this.router.navigate(['tabs/me/vendor-service-update', {serviceInfo: JSON.stringify(service)}]);
+    this.router.navigate(['tabs/me/vendor-center/vendor-service-update', {serviceInfo: JSON.stringify(service)}]);
   }
 }

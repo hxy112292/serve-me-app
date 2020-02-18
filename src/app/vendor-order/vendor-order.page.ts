@@ -22,6 +22,7 @@ export class VendorOrderPage implements OnInit {
 
 
   ngOnInit() {
+    this.getOrderByVendor();
   }
 
   getOrderByVendor() {
