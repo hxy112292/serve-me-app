@@ -19,14 +19,6 @@ const routes: Routes = [
             path: 'search-vendor',
             loadChildren: () =>
                 import('../search-vendor/search-vendor.module').then(m => m.SearchVendorPageModule)
-          },
-          {
-            path: 'service-detail',
-            loadChildren: () => import('../service-detail/service-detail.module').then( m => m.ServiceDetailPageModule)
-          },
-          {
-            path: 'set-order',
-            loadChildren: () => import('../set-order/set-order.module').then( m => m.SetOrderPageModule)
           }
         ]
       },
@@ -37,14 +29,6 @@ const routes: Routes = [
             path: '',
             loadChildren: () =>
                 import('../order/order.module').then(m => m.OrderPageModule)
-          },
-          {
-            path: 'order-update',
-            loadChildren: () => import('../order-update/order-update.module').then( m => m.OrderUpdatePageModule)
-          },
-          {
-            path: 'order-review',
-            loadChildren: () => import('../order-review/order-review.module').then( m => m.OrderReviewPageModule)
           }
         ]
       },

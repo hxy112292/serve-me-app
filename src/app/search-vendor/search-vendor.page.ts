@@ -25,28 +25,7 @@ export class SearchVendorPage implements OnInit {
               private constant: ConstantsService) { }
 
   ngOnInit() {
-    this.getVendorInfo();
+
   }
 
-  getVendorInfo() {
-    this.city = this.route.snapshot.paramMap.get('city');
-    this.service = this.route.snapshot.paramMap.get('service');
-
-    this.http.get(this.constant.baseUrl + '/service/searchVendor', {
-      params: {
-        city: this.city,
-        type: this.service
-      }
-    }).subscribe(res => {
-      if ((res as any).code !== 0) {
-        alert((res as any).message);
-        return;
-      }
-      this.serviceList = (res as any).result;
-    });
-  }
-
-  toServiceDetail(service: Service) {
-    this.router.navigate(['/tabs/home/service-detail', {serviceInfo: JSON.stringify(service)}]);
-  }
 }
