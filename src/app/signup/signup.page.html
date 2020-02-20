@@ -8,33 +8,38 @@
 </ion-header>
 
 <ion-content>
-<!--  <form>-->
-<!--    <ion-list>-->
-<!--      <ion-item>-->
-<!--        <ion-label position="stacked" color="primary">Username</ion-label>-->
-<!--      </ion-item>-->
-<!--    </ion-list>-->
-<!--  </form>-->
+  <!--  <form>-->
+  <!--    <ion-list>-->
+  <!--      <ion-item>-->
+  <!--        <ion-label position="stacked" color="primary">Username</ion-label>-->
+  <!--      </ion-item>-->
+  <!--    </ion-list>-->
+  <!--  </form>-->
   <ion-list>
     <ion-item>
-      <ion-label position="stacked">Username</ion-label>
-      <ion-input [(ngModel)]="user.username" placeholder="at least 5 letters"></ion-input>
+      <!-- <ion-label position="stacked">Username</ion-label> -->
+      <ion-icon name="person" slot="start"></ion-icon>
+      <ion-input [(ngModel)]="user.username" placeholder="Username"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="stacked">Password</ion-label>
-      <ion-input [(ngModel)]="user.password" type="password" placeholder="at least 6 digits"></ion-input>
+      <!-- <ion-label position="stacked">Password</ion-label> -->
+      <ion-icon name="key" slot="start"></ion-icon>
+      <ion-input [(ngModel)]="user.password" type="password" placeholder="Password"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="stacked">Repeat Password</ion-label>
-      <ion-input [(ngModel)]="repeatPassword" type="password"></ion-input>
+      <!-- <ion-label position="stacked">Repeat Password</ion-label> -->
+      <ion-icon name="key" slot="start"></ion-icon>
+      <ion-input [(ngModel)]="repeatPassword" type="password" placeholder="Repeat password"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="stacked">Email</ion-label>
-      <ion-input [(ngModel)]="user.email"></ion-input>
+      <!-- <ion-label position="stacked">Email</ion-label> -->
+      <ion-icon name="mail" slot="start"></ion-icon>
+      <ion-input [(ngModel)]="user.email" placeholder="E-mail"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="stacked">Phone</ion-label>
-      <ion-input [(ngModel)]="user.phone"></ion-input>
+      <!--      <ion-label position="stacked">Phone</ion-label>-->
+      <ion-icon name="call" slot="start"></ion-icon>
+      <ion-input [(ngModel)]="user.phone" placeholder="Telephone"></ion-input>
     </ion-item>
   </ion-list>
   <div class="ion-text-center">
@@ -45,57 +50,56 @@
 
 
 
-<!--  <form #signupForm="ngForm" novalidate>-->
-<!--    <ion-list lines="none">-->
-<!--      <ion-item>-->
-<!--        <ion-label position="stacked" color="primary">Username</ion-label>-->
-<!--        <ion-input [(ngModel)]="user.username" name="username" type="text" #username="ngModel" required>-->
-<!--        </ion-input>-->
-<!--      </ion-item>-->
-<!--      <ion-text color="danger">-->
-<!--        <p [hidden]="username.valid || submitted == false" class="ion-padding-start">-->
-<!--          Username is required-->
-<!--        </p>-->
-<!--      </ion-text>-->
+  <!--  <form #signupForm="ngForm" novalidate>-->
+  <!--    <ion-list lines="none">-->
+  <!--      <ion-item>-->
+  <!--        <ion-label position="stacked" color="primary">Username</ion-label>-->
+  <!--        <ion-input [(ngModel)]="user.username" name="username" type="text" #username="ngModel" required>-->
+  <!--        </ion-input>-->
+  <!--      </ion-item>-->
+  <!--      <ion-text color="danger">-->
+  <!--        <p [hidden]="username.valid || submitted == false" class="ion-padding-start">-->
+  <!--          Username is required-->
+  <!--        </p>-->
+  <!--      </ion-text>-->
 
-<!--      <ion-item>-->
-<!--        <ion-label position="stacked" color="primary">Password</ion-label>-->
-<!--        <ion-input [(ngModel)]="user.password" name="password" type="password" #password="ngModel" required>-->
-<!--        </ion-input>-->
-<!--      </ion-item>-->
-<!--      <ion-text color="danger">-->
-<!--        <p [hidden]="password.valid || submitted == false" class="ion-padding-start">-->
-<!--          Password is required-->
-<!--        </p>-->
-<!--      </ion-text>-->
+  <!--      <ion-item>-->
+  <!--        <ion-label position="stacked" color="primary">Password</ion-label>-->
+  <!--        <ion-input [(ngModel)]="user.password" name="password" type="password" #password="ngModel" required>-->
+  <!--        </ion-input>-->
+  <!--      </ion-item>-->
+  <!--      <ion-text color="danger">-->
+  <!--        <p [hidden]="password.valid || submitted == false" class="ion-padding-start">-->
+  <!--          Password is required-->
+  <!--        </p>-->
+  <!--      </ion-text>-->
 
-<!--      <ion-item>-->
-<!--        <ion-label position="stacked" color="primary">Email</ion-label>-->
-<!--        <ion-input [(ngModel)]="user.email" name="email" type="email" #email="ngModel" required>-->
-<!--        </ion-input>-->
-<!--      </ion-item>-->
-<!--      <ion-text color="danger">-->
-<!--        <p [hidden]="email.valid || submitted == false" class="ion-padding-start">-->
-<!--          Email is required-->
-<!--        </p>-->
-<!--      </ion-text>-->
+  <!--      <ion-item>-->
+  <!--        <ion-label position="stacked" color="primary">Email</ion-label>-->
+  <!--        <ion-input [(ngModel)]="user.email" name="email" type="email" #email="ngModel" required>-->
+  <!--        </ion-input>-->
+  <!--      </ion-item>-->
+  <!--      <ion-text color="danger">-->
+  <!--        <p [hidden]="email.valid || submitted == false" class="ion-padding-start">-->
+  <!--          Email is required-->
+  <!--        </p>-->
+  <!--      </ion-text>-->
 
-<!--      <ion-item>-->
-<!--        <ion-label position="stacked" color="primary">Phone</ion-label>-->
-<!--        <ion-input [(ngModel)]="user.password" name="phone" type="phone" #password="ngModel" required>-->
-<!--        </ion-input>-->
-<!--      </ion-item>-->
-<!--      <ion-text color="danger">-->
-<!--        <p [hidden]="phone.valid || submitted == false" class="ion-padding-start">-->
-<!--          Phone number is required-->
-<!--        </p>-->
-<!--      </ion-text>-->
-<!--    </ion-list>-->
+  <!--      <ion-item>-->
+  <!--        <ion-label position="stacked" color="primary">Phone</ion-label>-->
+  <!--        <ion-input [(ngModel)]="user.password" name="phone" type="phone" #password="ngModel" required>-->
+  <!--        </ion-input>-->
+  <!--      </ion-item>-->
+  <!--      <ion-text color="danger">-->
+  <!--        <p [hidden]="phone.valid || submitted == false" class="ion-padding-start">-->
+  <!--          Phone number is required-->
+  <!--        </p>-->
+  <!--      </ion-text>-->
+  <!--    </ion-list>-->
 
-<!--    <div class="ion-padding">-->
-<!--      <ion-button (click)="onSignup(signupForm)" type="submit" expand="block">Sign up</ion-button>-->
-<!--    </div>-->
-<!--  </form>-->
+  <!--    <div class="ion-padding">-->
+  <!--      <ion-button (click)="onSignup(signupForm)" type="submit" expand="block">Sign up</ion-button>-->
+  <!--    </div>-->
+  <!--  </form>-->
 
 </ion-content>
-

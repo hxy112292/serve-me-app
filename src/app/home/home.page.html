@@ -1,14 +1,14 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Home</ion-title>
+    <ion-title class="ion-text-center">ServeMe</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-title class="ion-text-center"><p>Welcome to use ServeMe</p></ion-title>
-  <ion-list>
+  <!-- <ion-title class="ion-text-center"><p>Welcome to use ServeMe</p></ion-title> -->
+  <ion-list inset>
     <ion-item>
-      <ion-icon name="ios-home"></ion-icon>
+      <ion-icon name="pin" color="primary"></ion-icon>
       <ion-label>　Choose a city</ion-label>
       <ion-select [(ngModel)]="city">
         <ion-select-option value="Dallas">Dallas</ion-select-option>
@@ -16,7 +16,7 @@
       </ion-select>
     </ion-item>
     <ion-item>
-      <ion-icon name="md-archive"></ion-icon>
+      <ion-icon name="construct" color="primary"></ion-icon>
       <ion-label>　Choose a service</ion-label>
       <ion-select [(ngModel)]="service">
         <ion-select-option value="Appliances">Appliances</ion-select-option>

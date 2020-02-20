@@ -1,27 +1,37 @@
 {
   "project_info": {
-    "project_number": "33272699792",
-    "firebase_url": "https://hxyjyf2.firebaseio.com",
-    "project_id": "hxyjyf2",
-    "storage_bucket": "hxyjyf2.appspot.com"
+    "project_number": "1095958332556",
+    "firebase_url": "https://serve-me-firebase.firebaseio.com",
+    "project_id": "serve-me-firebase",
+    "storage_bucket": "serve-me-firebase.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:33272699792:android:aac388904a9dbbb2f83115",
+        "mobilesdk_app_id": "1:1095958332556:android:e2b94b64ff57b19a8227a9",
         "android_client_info": {
           "package_name": "io.ionic.serve.me.hxy"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1095958332556-mfbsc2o4sa4k2q9721osqeml2j6578kd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyAUMOUcx82xaQ3ca3LyvKL-1nLDKY24keg"
+          "current_key": "AIzaSyCjMrHIfCiLdu5Gu_FwvFkHrXLxhX09QOs"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1095958332556-mfbsc2o4sa4k2q9721osqeml2j6578kd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

@@ -1,43 +1,43 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Me</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>Me</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-      <div *ngIf="constant.getUser() == null || constant.getUser().id==null ||
+    <ion-list inset>
+        <div *ngIf="constant.getUser() == null || constant.getUser().id==null ||
       constant.getUser().id=='' || constant.getUser().role=='GUEST'">
-          <ion-item (click)="login()">
-              <ion-icon name="contact"></ion-icon>
-              <ion-text>　Login/Sign up</ion-text>
-          </ion-item>
-      </div>
-      <div *ngIf="constant.getUser() != null && constant.getUser().id!=null && constant.getUser().id!='' && constant.getUser().role=='USER'">
-          <ion-item (click)="personalInfo()">
-              <ion-icon name="contact"></ion-icon>
-              <ion-text>　{{constant.getUser().username}}'s profile</ion-text>
-          </ion-item>
-      </div>
-      <ion-item (click)="point()">
-          <ion-icon name="pricetag"></ion-icon>
-          <ion-text>　Points</ion-text>
-      </ion-item>
-      <ion-item (click)="myorder()">
-          <ion-icon name="reorder"></ion-icon>
-          <ion-text>　My Orders</ion-text>
-      </ion-item>
-      <ion-item (click)="vendorOrder()">
-          <ion-icon name="american-football"></ion-icon>
-          <ion-text>　I am a service vendor</ion-text>
-      </ion-item>
-      <ion-item (click)="setting()">
-          <ion-icon name="settings"></ion-icon>
-          <ion-text>　Settings</ion-text>
-      </ion-item>
-    <br/><br/>
-      <div *ngIf="constant.getUser() != null && constant.getUser().id!=null && constant.getUser().id!='' && constant.getUser().role=='USER'" text-center (click)="logout()">
-          <ion-button>LOGOUT</ion-button>
-      </div>
-  </ion-list>
+            <ion-item (click)="login()">
+                <ion-icon name="contact" color="primary"></ion-icon>
+                <ion-text>　Login/Sign up</ion-text>
+            </ion-item>
+        </div>
+        <div *ngIf="constant.getUser() != null && constant.getUser().id!=null && constant.getUser().id!='' && constant.getUser().role=='USER'">
+            <ion-item (click)="personalInfo()">
+                <ion-icon name="contact" color="primary"></ion-icon>
+                <ion-text>　{{constant.getUser().username}}'s profile</ion-text>
+            </ion-item>
+        </div>
+        <ion-item (click)="point()">
+            <ion-icon name="ribbon" color="primary"></ion-icon>
+            <ion-text>　Points</ion-text>
+        </ion-item>
+        <ion-item (click)="myorder()">
+            <ion-icon name="clipboard" color="primary"></ion-icon>
+            <ion-text>　My Orders</ion-text>
+        </ion-item>
+        <ion-item (click)="vendorOrder()">
+            <ion-icon name="people" color="primary"></ion-icon>
+            <ion-text>　I am a service vendor</ion-text>
+        </ion-item>
+        <ion-item (click)="setting()">
+            <ion-icon name="settings" color="primary"></ion-icon>
+            <ion-text>　Settings</ion-text>
+        </ion-item>
+        <br/><br/>
+        <div *ngIf="constant.getUser() != null && constant.getUser().id!=null && constant.getUser().id!='' && constant.getUser().role=='USER'" text-center (click)="logout()">
+            <ion-button>LOGOUT</ion-button>
+        </div>
+    </ion-list>
 </ion-content>
