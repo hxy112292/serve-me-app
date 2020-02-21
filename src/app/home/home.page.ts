@@ -21,7 +21,11 @@ export class HomePage implements OnInit {
     this.slideOpts = {
       initialSlide: 1,
       speed: 400,
-      autoplay: true
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false
+      },
+      loop: true
     };
   }
 
