@@ -12,11 +12,17 @@ import {ConstantsService} from "../constants.service";
 export class HomePage implements OnInit {
   city: any;
   service: any;
+  slideOpts: any;
 
   constructor(private http: HttpClient,
               private navCtrl: NavController,
               private constant: ConstantsService,
               private router: Router) {
+    this.slideOpts = {
+      initialSlide: 1,
+      speed: 400,
+      autoplay: true
+    };
   }
 
   ngOnInit() {
