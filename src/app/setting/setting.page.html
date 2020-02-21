@@ -11,12 +11,12 @@
   <ion-list>
     <ion-item (click)="sounds()">
       <ion-label>Vibration on/off</ion-label>
-      <ion-toggle [(ngModel)]="setting.vibration" slot="start" name="blueberry" (ionChange)="settingChange()" ></ion-toggle>
+      <ion-toggle [(ngModel)]="setting.vibration" slot="start" color="primary" (ionChange)="settingChange()" ></ion-toggle>
     </ion-item>
 
     <ion-item>
       <ion-label>Notification on/off</ion-label>
-      <ion-toggle [(ngModel)]="setting.notification" slot="start" name="blueberry" (ionChange)="settingChange()" ></ion-toggle>
+      <ion-toggle [(ngModel)]="setting.notification" slot="start" color="secondary" (ionChange)="settingChange()" ></ion-toggle>
     </ion-item>
 
 
