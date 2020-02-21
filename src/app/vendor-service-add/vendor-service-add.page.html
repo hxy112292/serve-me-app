@@ -36,7 +36,10 @@
     </ion-item>
     <ion-item lines="none">
       <ion-checkbox [(ngModel)]="privacyAgree" slot="start"></ion-checkbox>
-      <ion-label class="ion-text-wrap">I agree that I will pay 20% of money received to the app holder.</ion-label>
+      <ion-text class="ion-text-wrap" (click)="toPrivacy()">
+        I agree that I will pay 20% of money received to the app holder.
+        <ion-text color="primary">privacy</ion-text>
+      </ion-text>
     </ion-item>
   </ion-list>
   <div class="ion-text-center">

@@ -68,4 +68,8 @@ export class VendorServiceAddPage implements OnInit {
       this.router.navigate(['tabs/me/vendor-center']);
     });
   }
+
+  toPrivacy() {
+    this.router.navigate(['tabs/me/vendor-center/vendor-privacy']);
+  }
 }

@@ -50,7 +50,7 @@ export class HomePage implements OnInit {
     }
 
     toSignIn() {
-      this.router.navigate(['tabs/me/login']);
+      this.router.navigate(['tabs/me']);
     }
 
 }
