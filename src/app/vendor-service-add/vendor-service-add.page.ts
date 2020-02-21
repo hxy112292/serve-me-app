@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {ConstantsService} from '../constants.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Service} from '../entity/service';
+import {AlertController} from '@ionic/angular';
 
 @Component({
   selector: 'app-vendor-service-add',
@@ -17,7 +18,8 @@ export class VendorServiceAddPage implements OnInit {
   constructor(private http: HttpClient,
               private constant: ConstantsService,
               private router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              public alertController: AlertController) {
 
     this.service = {
       id: '',
@@ -37,19 +39,20 @@ export class VendorServiceAddPage implements OnInit {
 
   addService() {
     if (this.service.city == null || this.service.city === '') {
-      alert('you need to choose a city');
+      this.constant.alert('you need to choose a city');
       return;
     }
     if (this.service.type == null || this.service.type === '') {
-      alert('you need to choose a service');
+      this.constant.alert('you need to choose a service');
       return;
     }
     if (this.service.price == null || this.service.price === '') {
-      alert('you need to set a price');
+      this.constant.alert('you need to set a price');
       return;
     }
+
     if (this.privacyAgree == null || this.privacyAgree === 'false') {
-      alert('you need to agree the privacy');
+      this.constant.alert('you need to agree the privacy');
       return;
     }
     this.service.vendorId = this.constant.getUser().id;

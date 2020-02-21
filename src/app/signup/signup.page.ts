@@ -39,45 +39,45 @@ export class SignupPage implements OnInit {
 
   signup() {
     if (this.user.username == null || this.user.username === '') {
-      alert('you must set a username');
+      this.constant.alert('you must set a username');
       return;
     }
     if (this.user.username.length < 5) {
-      alert('username must have at least 5 letters');
+      this.constant.alert('username must have at least 5 letters');
       return;
     }
     if (this.user.password == null || this.user.password === '') {
-      alert('you must set a password');
+      this.constant.alert('you must set a password');
       return;
     }
     if (this.user.password.length < 6) {
-      alert('password must have at least 6 digits');
+      this.constant.alert('password must have at least 6 digits');
       return;
     }
     if (this.user.password !== this. repeatPassword) {
-      alert('your password and repeatPassword is different');
+      this.constant.alert('your password and repeatPassword is different');
       return;
     }
     if (this.user.email == null || this.user.email === '') {
-      alert('you must set a email');
+      this.constant.alert('you must set a email');
       return;
     }
     if (!this.user.email.match('@')) {
-      alert('email format is wrong');
+      this.constant.alert('email format is wrong');
       return;
     }
     if (this.user.phone == null || this.user.phone === '') {
-      alert('you must set a phone');
+      this.constant.alert('you must set a phone');
       return;
     }
     if (!(this.user.phone.match('[+][0-9]') || this.user.phone.match('[0-9]')) || this.user.phone.length < 7 ) {
-      alert('you must set a right phone number');
+      this.constant.alert('you must set a right phone number');
       return;
     }
     if (this.constant.getUser() == null || this.constant.getUser().role == null || this.constant.getUser().role === '') {
       this.http.post(this.constant.baseUrl + '/user/signup', this.user).subscribe(res => {
         if ((res as any).code !== 0) {
-          alert((res as any).message);
+          this.constant.alert((res as any).message);
           return;
         }
         this.constant.setUser((res as any).result);
@@ -95,7 +95,7 @@ export class SignupPage implements OnInit {
       this.constant.getUser().role = 'USER';
       this.http.put(this.constant.baseUrl + '/user/update', this.constant.getUser()).subscribe(res => {
         if ((res as any).code !== 0) {
-          alert((res as any).message);
+          this.constant.alert((res as any).message);
           return;
         }
         this.constant.setUser((res as any).result);

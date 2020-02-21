@@ -28,11 +28,11 @@ export class LoginPage implements OnInit {
 
   login() {
     if (this.username == null || this.username === '') {
-      alert('you must set a username');
+      this.constant.alert('you must set a username');
       return;
     }
     if (this.password == null || this.password === '') {
-      alert('you must set a password');
+      this.constant.alert('you must set a password');
       return;
     }
     this.http.post(this.constant.baseUrl + '/user/login', {
@@ -40,7 +40,7 @@ export class LoginPage implements OnInit {
       password: this.password,
     }).subscribe(res => {
       if ((res as any).code !== 0) {
-        alert((res as any).message);
+        this.constant.alert((res as any).message);
         return;
       }
       this.constant.setUser((res as any).result);

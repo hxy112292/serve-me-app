@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NavController} from '@ionic/angular';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
+import {ConstantsService} from "../constants.service";
 
 @Component({
   selector: 'app-home',
@@ -14,6 +15,7 @@ export class HomePage implements OnInit {
 
   constructor(private http: HttpClient,
               private navCtrl: NavController,
+              private constant: ConstantsService,
               private router: Router) {
   }
 
@@ -22,11 +24,11 @@ export class HomePage implements OnInit {
 
   searchVendor() {
     if (this.city == null || this.city === '') {
-      alert('you need to choose a city');
+      this.constant.alert('you need to choose a city');
       return;
     }
     if (this.service == null || this.service === '') {
-      alert('you need to choose a service');
+      this.constant.alert('you need to choose a service');
       return;
     }
     // this.navCtrl.navigateForward('/tabs/home/search-vendor');

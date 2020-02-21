@@ -32,7 +32,7 @@ export class SettingPage implements OnInit {
   settingChange() {
     this.http.put(this.constant.baseUrl + '/setting/update', this.setting).subscribe( res => {
       if ((res as any).code !== 0) {
-        alert((res as any).message);
+        this.constant.alert((res as any).message);
         return;
       }
     });

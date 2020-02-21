@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {User} from './entity/user';
 import {Setting} from './entity/setting';
+import {AlertController} from "@ionic/angular";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class ConstantsService {
   user: User;
   setting: Setting;
 
-  constructor() {
+  constructor(public alertController: AlertController) {
     this.user = {
       id: '',
       username: '',
@@ -56,6 +57,17 @@ export class ConstantsService {
     } else {
       this.user = user;
     }
+  }
+
+  async alert(text: string) {
+    const alert = await this.alertController.create({
+      header: 'Alert',
+      // subHeader: subtitle,
+      message: text,
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
 

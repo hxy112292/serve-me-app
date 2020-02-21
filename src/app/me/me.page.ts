@@ -48,7 +48,7 @@ export class MePage implements OnInit {
         && this.constant.getUser().role !== 'GUEST') {
       this.router.navigate(['/tabs/me/point']);
     } else {
-      alert('Please log in');
+      this.constant.alert('Please log in');
     }
   }
 
@@ -57,7 +57,7 @@ export class MePage implements OnInit {
         && this.constant.getUser().role !== 'GUEST') {
       this.router.navigate(['/tabs/me/vendor-center']);
     } else {
-      alert('Please log in');
+      this.constant.alert('Please log in');
     }
   }
 }
