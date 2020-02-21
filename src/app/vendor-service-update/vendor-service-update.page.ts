@@ -3,6 +3,7 @@ import {Service} from '../entity/service';
 import {HttpClient} from '@angular/common/http';
 import {ConstantsService} from '../constants.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {isNumber} from 'util';
 
 @Component({
   selector: 'app-vendor-service-update',
@@ -44,8 +45,8 @@ export class VendorServiceUpdatePage implements OnInit {
       alert('you need to choose a service');
       return;
     }
-    if (this.service.price == null || this.service.price === '') {
-      alert('you need to set a price');
+    if (!isNumber(this.service.price)) {
+      alert('you need to enter a correct price data');
       return;
     }
     this.service.vendorId = this.constant.getUser().id;
