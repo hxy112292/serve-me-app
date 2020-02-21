@@ -12,14 +12,17 @@ import {Order} from '../entity/order';
 })
 export class VendorOrderPage implements OnInit {
 
+  orderList: Order[];
+  searchValue: string;
+  orderDate: string;
+
   constructor(private http: HttpClient,
               private constant: ConstantsService,
               private router: Router,
               private route: ActivatedRoute,
-              public alertController: AlertController) { }
-
-  orderList: Order[];
-
+              public alertController: AlertController) {
+    this.searchValue = '';
+  }
 
   ngOnInit() {
     this.getOrderByVendor();
@@ -108,5 +111,13 @@ export class VendorOrderPage implements OnInit {
 
   toVendorService() {
     this.router.navigate(['tabs/me/vendor-service']);
+  }
+
+  calOrderDate(orderTime) {
+    if ((new Date().getTime() - new Date(orderTime).getTime()) <= Number(this.orderDate) * 24 * 60 * 60 * 1000) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
