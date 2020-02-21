@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NavController} from '@ionic/angular';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
-import {ConstantsService} from "../constants.service";
+import {ConstantsService} from '../constants.service';
 
 @Component({
   selector: 'app-home',
@@ -40,4 +40,17 @@ export class HomePage implements OnInit {
     // this.navCtrl.navigateForward('/tabs/home/search-vendor');
     this.router.navigate(['/tabs/home/search-vendor', {city: this.city, service: this.service}]);
   }
+
+    toIntroduction() {
+      this.router.navigate(['tabs/home/introduction']);
+    }
+
+    toJoinUs() {
+      this.router.navigate(['tabs/home/join-us']);
+    }
+
+    toSignIn() {
+      this.router.navigate(['tabs/me/login']);
+    }
+
 }

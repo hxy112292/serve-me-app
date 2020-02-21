@@ -19,6 +19,14 @@ const routes: Routes = [
             path: 'search-vendor',
             loadChildren: () =>
                 import('../search-vendor/search-vendor.module').then(m => m.SearchVendorPageModule)
+          },
+          {
+            path: 'introduction',
+            loadChildren: () => import('../introduction/introduction.module').then( m => m.IntroductionPageModule)
+          },
+          {
+            path: 'join-us',
+            loadChildren: () => import('../join-us/join-us.module').then( m => m.JoinUsPageModule)
           }
         ]
       },
@@ -83,6 +91,10 @@ const routes: Routes = [
                 path: 'vendor-service-update',
                 loadChildren: () => import('../vendor-service-update/vendor-service-update.module')
                     .then( m => m.VendorServiceUpdatePageModule)
+              },
+              {
+                path: 'vendor-privacy',
+                loadChildren: () => import('../vendor-privacy/vendor-privacy.module').then( m => m.VendorPrivacyPageModule)
               }
             ]
           }
