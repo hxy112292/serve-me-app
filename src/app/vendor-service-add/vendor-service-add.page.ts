@@ -4,6 +4,7 @@ import {ConstantsService} from '../constants.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Service} from '../entity/service';
 import {AlertController} from '@ionic/angular';
+import {isNumber} from 'util';
 
 @Component({
   selector: 'app-vendor-service-add',
@@ -50,7 +51,10 @@ export class VendorServiceAddPage implements OnInit {
       this.constant.alert('you need to set a price');
       return;
     }
-
+    if (!isNumber(this.service.price)  ) {
+      this.constant.alert('you need to enter a correct price data');
+      return;
+    }
     if (this.privacyAgree == null || this.privacyAgree === 'false') {
       this.constant.alert('you need to agree the privacy');
       return;
