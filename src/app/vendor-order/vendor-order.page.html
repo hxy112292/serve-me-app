@@ -6,68 +6,53 @@
   <ion-card>
     <ion-card-header>
       <ion-card-subtitle>
-        <ion-icon name="document"></ion-icon>
-        <ion-text>OrderNo: {{order.id}}, {{order.createTime | date:'MMM dd yyyy HH:mm:ss'}}</ion-text>
+        <ion-icon name="wallet" color="danger"></ion-icon>
+        <ion-text>　OrderNo: {{order.id}}, {{order.createTime | date:'MMM dd yyyy HH:mm:ss'}}</ion-text>
       </ion-card-subtitle>
       <ion-card-title>{{order.serviceType}}  ({{order.status}})</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-grid>
-        <ion-row>
-          <ion-col [size]="5">Price: </ion-col>
-          <ion-col>${{order.price}}/day</ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col [size]="5">Total: </ion-col>
-          <ion-col>
+      <ion-list lines="none">
+        <ion-item>
+          <ion-icon name="card" color="warning"></ion-icon>
+          <ion-label>　Price:</ion-label>
+          <ion-text>${{order.price}}/day</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="card" color="warning"></ion-icon>
+          <ion-label>　Total:</ion-label>
+          <ion-text>
             <div *ngIf="order.costOff != null && order.costOff != ''">
-              <p>${{order.costOff}} (20% off)</p>
+              ${{order.costOff}} (20% off)
             </div>
             <div *ngIf="order.costNoOff != null && order.costNoOff != ''">
-              <p>${{order.costNoOff}} (No Discount)</p>
+              ${{order.costNoOff}} (No Discount)
             </div>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col [size]="5">
-            Customer Name:
-          </ion-col>
-          <ion-col>{{order.customerName}}</ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col [size]="5">
-            Customer Phone:
-          </ion-col>
-          <ion-col>{{order.customerPhone}}</ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col [size]="5">
-            Address:
-          </ion-col>
-          <ion-col>{{order.address}}</ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col [size]="5">
-            Time:
-          </ion-col>
-          <ion-col>{{order.dateStart | date:'MMM dd yyyy'}} - {{order.dateEnd | date: 'MMM dd yyyy'}}</ion-col>
-        </ion-row>
+          </ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="person" color="primary"></ion-icon>
+          <ion-label>　Customer:</ion-label>
+          <ion-text>{{order.customerName}}</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="pin" color="tertiary"></ion-icon>
+          <ion-label>　Address:</ion-label>
+          <ion-text>{{order.address}}</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="calendar" color="danger"></ion-icon>
+          <ion-label>　Time:</ion-label>
+          <ion-text>{{order.dateStart | date:'MMM dd'}} - {{order.dateEnd | date: 'MMM dd'}}</ion-text>
+        </ion-item>
         <div *ngIf="order.status === 'REVIEWED'">
-          <ion-row>
-            <ion-col [size]="5">
-              Star:
-            </ion-col>
-            <ion-col>
-              <ionic4-star-rating #rating
-                                  activeColor = "orange"
-                                  readonly = "true"
-                                  fontSize="small"
-                                  [(ngModel)]="order.star">
-              </ionic4-star-rating>
-            </ion-col>
-          </ion-row>
+          <ion-item>
+            <ion-icon name="star" color="secondary"></ion-icon>
+            <ion-label>　Star:</ion-label>
+            <ionic4-star-rating #rating activeColor = "orange" readonly = "true" fontSize="small" [(ngModel)]="order.star"></ionic4-star-rating>
+          </ion-item>
         </div>
-      </ion-grid>
+      </ion-list>
       <div *ngIf="order.status == 'NOT_ACCEPTED'">
         <ion-button (click)="acceptOrder(order)" color="primary">accept</ion-button>
         <ion-button (click)="cancelOrder(order)" color="danger">cancel</ion-button>
