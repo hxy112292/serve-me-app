@@ -10,14 +10,16 @@
 <ion-content>
   <ion-list>
     <ion-item>
-      <ion-label>Choose a city</ion-label>
+      <ion-icon name="pin" color="primary"></ion-icon>
+      <ion-label>　Choose a city</ion-label>
       <ion-select [(ngModel)]="service.city">
         <ion-select-option value="Dallas">Dallas</ion-select-option>
         <ion-select-option value="Arlington">Arlington</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
-      <ion-label>Choose a service type</ion-label>
+      <ion-icon name="construct" color="danger"></ion-icon>
+      <ion-label>　Choose a service type</ion-label>
       <ion-select [(ngModel)]="service.type">
         <ion-select-option value="Appliances">Appliances</ion-select-option>
         <ion-select-option value="Electrical">Electrical</ion-select-option>
@@ -31,7 +33,8 @@
       </ion-select>
     </ion-item>
     <ion-item>
-      <ion-label>Set a price ($/day): </ion-label>
+      <ion-icon name="card" color="warning"></ion-icon>
+      <ion-label>　Set a price ($/day): </ion-label>
       <ion-input [(ngModel)]="service.price" placeholder="Write your price"></ion-input>
     </ion-item>
   </ion-list>
