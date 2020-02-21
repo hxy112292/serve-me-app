@@ -1,4 +1,10 @@
 
+<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+  <ion-refresher-content></ion-refresher-content>
+</ion-refresher>
+
+<br>
+<br>
 <ion-list>
   <ion-item lines="none">
     <ion-searchbar [(ngModel)]="searchValue" showCancelButton="focus" placeholder="id, customer, address, service"></ion-searchbar>
@@ -16,10 +22,6 @@
   </ion-item>
 </ion-list>
 
-
-<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-  <ion-refresher-content></ion-refresher-content>
-</ion-refresher>
 <div *ngFor="let order of orderList">
   <div *ngIf="order.id == searchValue || order.customerName.toLowerCase().match(searchValue.toLowerCase())
   || order.address.toLowerCase().match(searchValue.toLowerCase())

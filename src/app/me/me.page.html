@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content>
-    <ion-list inset>
+    <ion-list>
         <div *ngIf="constant.getUser() == null || constant.getUser().id==null ||
       constant.getUser().id=='' || constant.getUser().role=='GUEST'">
             <ion-item (click)="login()">
