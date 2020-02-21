@@ -27,7 +27,7 @@
     "@ionic-native/vibration": "^5.21.0",
     "@ionic/angular": "^4.7.1",
     "cordova-android": "^8.1.0",
-    "cordova-ios": "5.1.1",
+    "cordova-ios": "^5.1.1",
     "cordova-plugin-badge": "^0.8.8",
     "cordova-plugin-fcm-with-dependecy-updated": "^4.1.1",
     "cordova-plugin-local-notification": "^0.9.0-beta.2",
@@ -92,7 +92,6 @@
       "cordova-plugin-local-notification": {}
     },
     "platforms": [
-      "ios",
       "android"
     ]
   }
