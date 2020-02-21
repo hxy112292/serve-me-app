@@ -38,21 +38,21 @@ export class VendorServiceUpdatePage implements OnInit {
 
   updateService() {
     if (this.service.city == null || this.service.city === '') {
-      alert('you need to choose a city');
+      this.constant.alert('you need to choose a city');
       return;
     }
     if (this.service.type == null || this.service.type === '') {
-      alert('you need to choose a service');
+      this.constant.alert('you need to choose a service');
       return;
     }
     if (!isNumber(this.service.price)) {
-      alert('you need to enter a correct price data');
+      this.constant.alert('you need to enter a correct price data');
       return;
     }
     this.service.vendorId = this.constant.getUser().id;
     this.http.put(this.constant.baseUrl + '/service/update', this.service).subscribe( res => {
       if ((res as any).code !== 0) {
-        alert((res as any).message);
+        this.constant.alert((res as any).message);
         return;
       }
       this.router.navigate(['tabs/me/vendor-center']);
