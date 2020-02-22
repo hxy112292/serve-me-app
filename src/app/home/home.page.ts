@@ -19,7 +19,7 @@ export class HomePage implements OnInit {
               private constant: ConstantsService,
               private router: Router) {
     this.slideOpts = {
-      initialSlide: 1,
+      initialSlide: 0,
       speed: 400,
       autoplay: {
         delay: 2500,
