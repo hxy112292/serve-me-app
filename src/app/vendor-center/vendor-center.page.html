@@ -16,7 +16,25 @@
 
 <ion-content>
   <div *ngIf="vendorPage == 'vendorOrder'">
-    <app-vendor-order></app-vendor-order>
+    <div *ngIf="isNewVendor == true">
+      <ion-card>
+        <img src="assets/img/WelcomeVendor.png" />
+        <ion-card-header>
+          <ion-card-title>
+            Welcome to be a vendor
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-text>You are a new vendor, please go to service segment to add your first service.</ion-text>
+          <div class="ion-text-center">
+            <ion-button (click)="changeVendorPage('vendorService')">GO TO SERVICE</ion-button>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <div *ngIf="isNewVendor != true">
+      <app-vendor-order></app-vendor-order>
+    </div>
   </div>
   <div *ngIf="vendorPage == 'vendorService'">
     <app-vendor-service></app-vendor-service>
