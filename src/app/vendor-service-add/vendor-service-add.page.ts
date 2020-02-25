@@ -51,7 +51,7 @@ export class VendorServiceAddPage implements OnInit {
       this.constant.alert('you need to set a price');
       return;
     }
-    if (!isNumber(this.service.price)  ) {
+    if (!this.stringIsNumber(this.service.price)  ) {
       this.constant.alert('you need to enter a correct price data');
       return;
     }
@@ -71,5 +71,10 @@ export class VendorServiceAddPage implements OnInit {
 
   toPrivacy() {
     this.router.navigate(['tabs/me/vendor-center/vendor-privacy']);
+  }
+
+  stringIsNumber(s) {
+    const x = +s; // made cast obvious for demonstration
+    return x.toString() === s;
   }
 }

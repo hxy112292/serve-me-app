@@ -45,7 +45,7 @@ export class VendorServiceUpdatePage implements OnInit {
       this.constant.alert('you need to choose a service');
       return;
     }
-    if (!isNumber(this.service.price)) {
+    if (!this.stringIsNumber(this.service.price)) {
       this.constant.alert('you need to enter a correct price data');
       return;
     }
@@ -59,4 +59,8 @@ export class VendorServiceUpdatePage implements OnInit {
     });
   }
 
+  stringIsNumber(s) {
+    const x = +s; // made cast obvious for demonstration
+    return x.toString() === s;
+  }
 }
