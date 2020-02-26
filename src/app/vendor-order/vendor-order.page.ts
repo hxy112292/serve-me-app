@@ -15,6 +15,8 @@ export class VendorOrderPage implements OnInit {
   orderList: Order[];
   searchValue: string;
   orderDate: string;
+  orderStatus: string;
+  orderReviewStar: number;
 
   constructor(private http: HttpClient,
               private constant: ConstantsService,
