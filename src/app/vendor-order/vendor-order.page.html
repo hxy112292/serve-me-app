@@ -2,17 +2,13 @@
 <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
   <ion-refresher-content
           pullingIcon="arrow-dropdown"
-          pullingText="Pull to refresh"
-          refreshingSpinner="circles"
-          refreshingText="Refreshing...">
+          refreshingSpinner="circles">
   </ion-refresher-content>
 </ion-refresher>
 <br>
 <br>
+<ion-searchbar [(ngModel)]="searchValue" showCancelButton="focus" placeholder="id, customer, address, service"></ion-searchbar>
 <ion-list>
-  <ion-item lines="none">
-    <ion-searchbar [(ngModel)]="searchValue" showCancelButton="focus" placeholder="id, customer, address, service"></ion-searchbar>
-  </ion-item>
   <ion-item>
     <ion-icon name="calendar" color="danger"></ion-icon>
     <ion-label>　Search By Create Time</ion-label>
