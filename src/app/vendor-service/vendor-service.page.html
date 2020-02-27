@@ -15,14 +15,16 @@
     <ion-card-header>
       <ion-card-subtitle>
         <ion-icon name="construct" color="danger"></ion-icon>
-        <ion-text>Service No: {{service.id}}</ion-text>
+        <ion-text>　Service No: {{service.id}}</ion-text>
       </ion-card-subtitle>
       <ion-card-title>{{service.type}}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <ion-grid>
         <ion-row>
-          <ion-icon name="card" color="warning"></ion-icon>
+          <ion-col [size]="1">
+            <ion-icon name="card" color="warning"></ion-icon>
+          </ion-col>
           <ion-col [size]="3">
             Price:
           </ion-col>
@@ -31,7 +33,9 @@
           </ion-col>
         </ion-row>
         <ion-row>
-          <ion-icon name="pin" color="tertiary"></ion-icon>
+          <ion-col [size]="1">
+            <ion-icon name="pin" color="tertiary"></ion-icon>
+          </ion-col>
           <ion-col [size]="3">
             City:
           </ion-col>
@@ -40,7 +44,9 @@
           </ion-col>
         </ion-row>
         <ion-row>
-          <ion-icon name="star" color="secondary"></ion-icon>
+          <ion-col [size]="1">
+            <ion-icon name="star" color="secondary"></ion-icon>
+          </ion-col>
           <ion-col [size]="3">
             Star:
           </ion-col>
