@@ -37,14 +37,18 @@
       <ion-label>　Set a price ($/day): </ion-label>
       <ion-input [(ngModel)]="service.price" placeholder="Write your price"></ion-input>
     </ion-item>
-    <ion-item lines="none">
-      <ion-checkbox [(ngModel)]="privacyAgree" slot="start"></ion-checkbox>
-      <ion-text class="ion-text-wrap" (click)="toPrivacy()">
+  </ion-list>
+  <ion-grid>
+    <ion-row>
+      <ion-col [size]="2" style="text-align: center;align-self:center">
+        <ion-checkbox [(ngModel)]="privacyAgree"></ion-checkbox>
+      </ion-col>
+      <ion-col (click)="toPrivacy()">
         I agree that I will pay 20% of money received to the app holder.
         <ion-text color="primary">privacy</ion-text>
-      </ion-text>
-    </ion-item>
-  </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   <div class="ion-text-center">
     <ion-button (click)="addService()" color="tertiary">Add Service</ion-button>
   </div>
