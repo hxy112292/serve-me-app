@@ -62,7 +62,7 @@ export class SignupPage implements OnInit {
       this.constant.alert('password must not more than 20 characters');
       return;
     }
-    if (!this.user.password.match('[!@#$%^&*()~`,.<>?/:;\'\"]')) {
+    if (!this.user.password.match('[!@#$%^&*()~`,.<>?/:;\'\"{}\[\]|\\]')) {
       this.constant.alert('password must contain at least one special character: @ , . $ *');
       return;
     }
