@@ -43,7 +43,11 @@ export class SignupPage implements OnInit {
       return;
     }
     if (this.user.username.length < 5) {
-      this.constant.alert('username must have at least 5 letters');
+      this.constant.alert('username must have at least 5 characters');
+      return;
+    }
+    if (this.user.username.length > 15) {
+      this.constant.alert('username must not more than 15 characters');
       return;
     }
     if (this.user.password == null || this.user.password === '') {
@@ -51,7 +55,23 @@ export class SignupPage implements OnInit {
       return;
     }
     if (this.user.password.length < 6) {
-      this.constant.alert('password must have at least 6 digits');
+      this.constant.alert('password must have at least 6 characters');
+      return;
+    }
+    if (this.user.password.length > 20) {
+      this.constant.alert('password must not more than 20 characters');
+      return;
+    }
+    if (!this.user.password.match('[!@#$%^&*()~`,.<>?/:;\'\"]')) {
+      this.constant.alert('password must contain at least one special character: @ , . $ *');
+      return;
+    }
+    if (!this.user.password.match('[a-z]')) {
+      this.constant.alert('password must contain at least one lower case character');
+      return;
+    }
+    if (!this.user.password.match('[A-Z]')) {
+      this.constant.alert('password must contain at least one Upper case character');
       return;
     }
     if (this.user.password !== this. repeatPassword) {
