@@ -24,6 +24,7 @@ export class VendorOrderPage implements OnInit {
               private route: ActivatedRoute,
               public alertController: AlertController) {
     this.searchValue = '';
+    this.orderStatus = '';
   }
 
   ngOnInit() {
@@ -47,6 +48,10 @@ export class VendorOrderPage implements OnInit {
 
   doRefresh(event) {
     console.log('Begin async operation');
+    this.searchValue = '';
+    this.orderDate = '';
+    this.orderStatus = '';
+    this.orderReviewStar = 0;
     this.getOrderByVendor();
     setTimeout(() => {
       console.log('Async operation has ended');
@@ -121,5 +126,15 @@ export class VendorOrderPage implements OnInit {
     } else {
       return false;
     }
+  }
+
+  orderStatusChange() {
+    if (this.orderStatus !== 'REVIEWED') {
+      this.orderReviewStar = null;
+    }
+  }
+
+  orderReviewStarChange() {
+    this.orderStatus = 'REVIEWED';
   }
 }

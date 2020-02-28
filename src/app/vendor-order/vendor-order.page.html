@@ -8,36 +8,60 @@
 <br>
 <br>
 <ion-searchbar [(ngModel)]="searchValue" showCancelButton="focus" placeholder="id, customer, address, service"></ion-searchbar>
-<ion-list lines="full">
-  <ion-item>
-    <ion-icon name="calendar" color="danger"></ion-icon>
-    <ion-label>　Search By Create Time</ion-label>
+<ion-segment>
+  <ion-segment-button>
     <ion-select [(ngModel)]="orderDate">
+      <ion-select-option value="">All TIME</ion-select-option>
       <ion-select-option value="3">Last 3 days</ion-select-option>
       <ion-select-option value="7">Last 7 days</ion-select-option>
       <ion-select-option value="30">Last 30 days</ion-select-option>
       <ion-select-option value="365">Last 1 year</ion-select-option>
-      <ion-select-option value="">All</ion-select-option>
     </ion-select>
-  </ion-item>
-  <ion-item>
-    <ion-icon name="stats" color="success"></ion-icon>
-    <ion-label>　Search By status</ion-label>
-    <ion-select [(ngModel)]="orderStatus">
+  </ion-segment-button>
+  <ion-segment-button>
+    <ion-select [(ngModel)]="orderStatus" (ionChange)="orderStatusChange()">
+      <ion-select-option value="">All STATUS</ion-select-option>
       <ion-select-option value="NOT_ACCEPTED">NOT_ACCEPTED</ion-select-option>
       <ion-select-option value="PROCESSING">PROCESSING</ion-select-option>
       <ion-select-option value="FINISHED">FINISHED</ion-select-option>
       <ion-select-option value="REVIEWED">REVIEWED</ion-select-option>
       <ion-select-option value="CANCELED">CANCELED</ion-select-option>
-      <ion-select-option value="">All</ion-select-option>
     </ion-select>
-  </ion-item>
-  <ion-item lines="none">
-    <ion-icon name="star" color="warning"></ion-icon>
-    <ion-label>　Search by star</ion-label>
-    <ionic4-star-rating #rating activeColor = "orange" readonly = "false" rating = "5" fontSize="medium" [(ngModel)]="orderReviewStar"></ionic4-star-rating>
-  </ion-item>
-</ion-list>
+  </ion-segment-button>
+  <ion-segment-button>
+    <ionic4-star-rating #rating activeColor = "orange" readonly = "false" rating = "5" fontSize="medium" [(ngModel)]="orderReviewStar" (change)="orderReviewStarChange()"></ionic4-star-rating>
+  </ion-segment-button>
+</ion-segment>
+<!--<ion-list lines="full">-->
+<!--  <ion-item>-->
+<!--    <ion-icon name="calendar" color="danger"></ion-icon>-->
+<!--    <ion-label>　Search By Create Time</ion-label>-->
+<!--    <ion-select [(ngModel)]="orderDate">-->
+<!--      <ion-select-option value="3">Last 3 days</ion-select-option>-->
+<!--      <ion-select-option value="7">Last 7 days</ion-select-option>-->
+<!--      <ion-select-option value="30">Last 30 days</ion-select-option>-->
+<!--      <ion-select-option value="365">Last 1 year</ion-select-option>-->
+<!--      <ion-select-option value="">All</ion-select-option>-->
+<!--    </ion-select>-->
+<!--  </ion-item>-->
+<!--  <ion-item>-->
+<!--    <ion-icon name="stats" color="success"></ion-icon>-->
+<!--    <ion-label>　Search By status</ion-label>-->
+<!--    <ion-select [(ngModel)]="orderStatus">-->
+<!--      <ion-select-option value="NOT_ACCEPTED">NOT_ACCEPTED</ion-select-option>-->
+<!--      <ion-select-option value="PROCESSING">PROCESSING</ion-select-option>-->
+<!--      <ion-select-option value="FINISHED">FINISHED</ion-select-option>-->
+<!--      <ion-select-option value="REVIEWED">REVIEWED</ion-select-option>-->
+<!--      <ion-select-option value="CANCELED">CANCELED</ion-select-option>-->
+<!--      <ion-select-option value="">All</ion-select-option>-->
+<!--    </ion-select>-->
+<!--  </ion-item>-->
+<!--  <ion-item lines="none">-->
+<!--    <ion-icon name="star" color="warning"></ion-icon>-->
+<!--    <ion-label>　Search by star</ion-label>-->
+<!--    <ionic4-star-rating #rating activeColor = "orange" readonly = "false" rating = "5" fontSize="medium" [(ngModel)]="orderReviewStar"></ionic4-star-rating>-->
+<!--  </ion-item>-->
+<!--</ion-list>-->
 
 <div *ngFor="let order of orderList">
   <div *ngIf="order.id == searchValue || order.customerName.toLowerCase().match(searchValue.toLowerCase())
