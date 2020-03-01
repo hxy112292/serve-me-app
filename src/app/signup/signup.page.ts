@@ -50,6 +50,10 @@ export class SignupPage implements OnInit {
       this.constant.alert('username must not more than 15 characters');
       return;
     }
+    if (this.user.username.match('[!@#$%^&*()~`,.<>?/:;\'\"{}\[\]|\\]')) {
+      this.constant.alert('username must not contain any special character: @ , . $ *');
+      return;
+    }
     if (this.user.password == null || this.user.password === '') {
       this.constant.alert('you must set a password');
       return;
