@@ -133,8 +133,4 @@ export class VendorOrderPage implements OnInit {
       this.orderReviewStar = null;
     }
   }
-
-  orderReviewStarChange() {
-    this.orderStatus = 'REVIEWED';
-  }
 }

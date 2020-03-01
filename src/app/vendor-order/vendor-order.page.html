@@ -28,9 +28,11 @@
       <ion-select-option value="CANCELED">CANCELED</ion-select-option>
     </ion-select>
   </ion-segment-button>
-  <ion-segment-button>
-    <ionic4-star-rating #rating activeColor = "orange" readonly = "false" rating = "5" fontSize="medium" [(ngModel)]="orderReviewStar" (change)="orderReviewStarChange()"></ionic4-star-rating>
-  </ion-segment-button>
+  <div *ngIf="orderStatus == 'REVIEWED'">
+    <ion-segment-button>
+      <ionic4-star-rating #rating activeColor = "orange" readonly = "false" rating = "5" fontSize="medium" [(ngModel)]="orderReviewStar"></ionic4-star-rating>
+    </ion-segment-button>
+  </div>
 </ion-segment>
 <!--<ion-list lines="full">-->
 <!--  <ion-item>-->
