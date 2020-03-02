@@ -14,7 +14,7 @@ import {isNumber} from 'util';
 export class VendorServiceAddPage implements OnInit {
 
   service: Service;
-  privacyAgree: string;
+  privacyAgree: boolean;
 
   constructor(private http: HttpClient,
               private constant: ConstantsService,
@@ -33,6 +33,8 @@ export class VendorServiceAddPage implements OnInit {
       phone: '',
       email: ''
     };
+
+    this.privacyAgree = false;
   }
 
   ngOnInit() {
@@ -55,7 +57,7 @@ export class VendorServiceAddPage implements OnInit {
       this.constant.alert('you need to enter a correct price data');
       return;
     }
-    if (this.privacyAgree == null || this.privacyAgree === 'false') {
+    if (this.privacyAgree == null || this.privacyAgree === false) {
       this.constant.alert('you need to agree the privacy');
       return;
     }
