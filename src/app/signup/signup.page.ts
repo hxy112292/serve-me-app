@@ -19,12 +19,14 @@ export class SignupPage implements OnInit {
   repeatPassword: any;
   showUsernameRule: boolean;
   showPasswordRule: boolean;
+  privacyAgree: boolean;
   alertTitle: string;
   alertMessage: string;
   alertNameMessage: string;
   alertPassMessage: string;
   alertEmailMessage: string;
   alertPhoneMessage: string;
+  alertPrivacyMessage: string;
 
   constructor(private http: HttpClient,
               private constant: ConstantsService,
@@ -47,6 +49,7 @@ export class SignupPage implements OnInit {
     this.alertNameMessage = '';
     this.alertPassMessage = '';
     this.alertPhoneMessage = '';
+    this.alertPrivacyMessage = '';
   }
 
   ngOnInit() {
@@ -58,6 +61,7 @@ export class SignupPage implements OnInit {
     this.PasswordCheck();
     this.EmailCheck();
     this.PhoneCheck();
+    this.PrivacyCheck();
 
     if (this.alertNameMessage !== '' && this.alertNameMessage != null) {
       this.alertMessage += '<br>USERNAME ERROR:<br>';
@@ -74,6 +78,10 @@ export class SignupPage implements OnInit {
     if (this.alertPhoneMessage !== '' && this.alertPhoneMessage != null) {
       this.alertMessage += '<br>PHONE ERROR:<br>';
       this.alertMessage += this.alertPhoneMessage;
+    }
+    if (this.alertPrivacyMessage !== '' && this.alertPrivacyMessage != null) {
+      this.alertMessage += '<br>PRIVACY ERROR<br>';
+      this.alertMessage += this.alertPrivacyMessage;
     }
     if (this.alertMessage !== '' && this.alertMessage != null) {
       this.constant.alert(this.alertMessage);
@@ -154,6 +162,7 @@ export class SignupPage implements OnInit {
     this.alertNameMessage = '';
     this.alertPassMessage = '';
     this.alertPhoneMessage = '';
+    this.alertPrivacyMessage = '';
   }
 
   UsernameCheck() {
@@ -207,6 +216,12 @@ export class SignupPage implements OnInit {
     }
   }
 
+  PrivacyCheck() {
+    if (this.alertPrivacyMessage == null || this.alertPrivacyMessage === '') {
+      this.alertPrivacyMessage += '● privacy has not been agreed<br>';
+    }
+  }
+
   UsernameRuleShow() {
     this.showUsernameRule = true;
     this.showPasswordRule = false;
@@ -236,6 +251,10 @@ export class SignupPage implements OnInit {
       repeatPasswordInput.setAttribute('type', 'password');
       passwordEye.setAttribute('color', 'medium');
     }
+  }
+
+  toPrivacy() {
+    this.router.navigate(['tabs/me/user-privacy']);
   }
 }
 

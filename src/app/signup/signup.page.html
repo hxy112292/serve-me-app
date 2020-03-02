@@ -75,6 +75,17 @@
       <ion-input [(ngModel)]="user.phone" placeholder="Telephone"></ion-input>
     </ion-item>
   </ion-list>
+  <ion-grid>
+    <ion-row>
+      <ion-col [size]="2" style="text-align: center;align-self:center">
+        <ion-checkbox [(ngModel)]="privacyAgree"></ion-checkbox>
+      </ion-col>
+      <ion-col (click)="toPrivacy()">
+        I agree the privacy.
+        <ion-text color="primary">privacy</ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   <div class="ion-text-center">
     <ion-button (click)="signup()">SUBMIT</ion-button>
   </div>

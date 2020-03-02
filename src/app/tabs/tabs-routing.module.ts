@@ -69,6 +69,10 @@ const routes: Routes = [
             loadChildren: () => import('../point/point.module').then( m => m.PointPageModule)
           },
           {
+            path: 'user-privacy',
+            loadChildren: () => import('../user-privacy/user-privacy.module').then( m => m.UserPrivacyPageModule)
+          },
+          {
             path: 'vendor-center',
             children: [
               {
