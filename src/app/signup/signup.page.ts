@@ -158,52 +158,52 @@ export class SignupPage implements OnInit {
 
   UsernameCheck() {
     if (this.user.username == null || this.user.username === '') {
-      this.alertNameMessage += '● username is empty<br>';
+      this.alertNameMessage += '• username is empty<br>';
     }
     if (this.user.username.length < 5 || this.user.username.length > 15) {
-      this.alertNameMessage += '● username has not 5-15 characters<br>';
+      this.alertNameMessage += '• username has not 5-15 characters<br>';
     }
     if (this.user.username.match('[!@#$%^&*()~`,.<>?/:;\'\"{}\[\]|\\]')) {
-      this.alertNameMessage += '● username only support alphabet and number<br>';
+      this.alertNameMessage += '• username only support alphabet and number<br>';
     }
   }
 
   PasswordCheck() {
     if (this.user.password == null || this.user.password === '') {
-      this.alertPassMessage += '● password is empty<br>';
+      this.alertPassMessage += '• password is empty<br>';
     }
     if (this.user.password.length < 6 || this.user.password.length > 20) {
-      this.alertPassMessage += '● password has not 6-20 characters<br>';
+      this.alertPassMessage += '• password has not 6-20 characters<br>';
     }
     if (!this.user.password.match('[!@#$%^&*()~`,.<>?/:;\'\"{}\[\]|\\]')) {
-      this.alertPassMessage += '● password has not special character: @ , . $ *<br>';
+      this.alertPassMessage += '• password has not special character: @ , . $ *<br>';
     }
     if (!this.user.password.match('[a-z]')) {
-      this.alertPassMessage += '● password has not lowercase<br>';
+      this.alertPassMessage += '• password has not lowercase<br>';
     }
     if (!this.user.password.match('[A-Z]')) {
-      this.alertPassMessage += '● password has not uppercase<br>';
+      this.alertPassMessage += '• password has not uppercase<br>';
     }
     if (this.user.password !== this. repeatPassword) {
-      this.alertPassMessage += '● password and repeatPassword is different<br>';
+      this.alertPassMessage += '• password and repeatPassword is different<br>';
     }
   }
 
   EmailCheck() {
     if (this.user.email == null || this.user.email === '') {
-      this.alertEmailMessage += '● email is empty<br>';
+      this.alertEmailMessage += '• email is empty<br>';
     }
     if (!this.user.email.match('@')) {
-      this.alertEmailMessage += '● email format is wrong<br>';
+      this.alertEmailMessage += '• email format is wrong<br>';
     }
   }
 
   PhoneCheck() {
     if (this.user.phone == null || this.user.phone === '') {
-      this.alertPhoneMessage += '● phone is empty<br>';
+      this.alertPhoneMessage += '• phone is empty<br>';
     }
     if (!(this.user.phone.match('[+][0-9]') || this.user.phone.match('[0-9]')) || this.user.phone.length < 7 ) {
-      this.alertPhoneMessage += '● phone format is wrong<br>';
+      this.alertPhoneMessage += '• phone format is wrong<br>';
     }
   }
 
