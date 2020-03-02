@@ -221,5 +221,21 @@ export class SignupPage implements OnInit {
     this.showPasswordRule = false;
     this.showUsernameRule = false;
   }
+
+  showPasswordOrNot() {
+    const passwordInput = document.getElementById('password');
+    const repeatPasswordInput = document.getElementById('repeatPassword');
+    const passwordEye = document.getElementById('passwordEye');
+
+    if (passwordEye.getAttribute('color') === 'medium') {
+      passwordInput.setAttribute('type', 'text');
+      repeatPasswordInput.setAttribute('type', 'text');
+      passwordEye.setAttribute('color', 'primary');
+    } else {
+      passwordInput.setAttribute('type', 'password');
+      repeatPasswordInput.setAttribute('type', 'password');
+      passwordEye.setAttribute('color', 'medium');
+    }
+  }
 }
 
