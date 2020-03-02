@@ -17,6 +17,14 @@ export class SignupPage implements OnInit {
 
   user: User;
   repeatPassword: any;
+  showUsernameRule: boolean;
+  showPasswordRule: boolean;
+  alertTitle: string;
+  alertMessage: string;
+  alertNameMessage: string;
+  alertPassMessage: string;
+  alertEmailMessage: string;
+  alertPhoneMessage: string;
 
   constructor(private http: HttpClient,
               private constant: ConstantsService,
@@ -32,72 +40,47 @@ export class SignupPage implements OnInit {
       phone: '',
       role: 'USER'
     };
+
+    this.alertTitle = '';
+    this.alertMessage = '';
+    this.alertEmailMessage = '';
+    this.alertNameMessage = '';
+    this.alertPassMessage = '';
+    this.alertPhoneMessage = '';
   }
 
   ngOnInit() {
   }
 
   signup() {
-    if (this.user.username == null || this.user.username === '') {
-      this.constant.alert('you must set a username');
+
+    this.UsernameCheck();
+    this.PasswordCheck();
+    this.EmailCheck();
+    this.PhoneCheck();
+
+    if (this.alertNameMessage !== '' && this.alertNameMessage != null) {
+      this.alertMessage += '<br>USERNAME ERROR:<br>';
+      this.alertMessage += this.alertNameMessage;
+    }
+    if (this.alertPassMessage !== '' && this.alertPassMessage != null) {
+      this.alertMessage += '<br>PASSWORD ERROR:<br>';
+      this.alertMessage += this.alertPassMessage;
+    }
+    if (this.alertEmailMessage !== '' && this.alertEmailMessage != null) {
+      this.alertMessage += '<br>EMAIL ERROR:<br>';
+      this.alertMessage += this.alertEmailMessage;
+    }
+    if (this.alertPhoneMessage !== '' && this.alertPhoneMessage != null) {
+      this.alertMessage += '<br>PHONE ERROR:<br>';
+      this.alertMessage += this.alertPhoneMessage;
+    }
+    if (this.alertMessage !== '' && this.alertMessage != null) {
+      this.constant.alert(this.alertMessage);
+      this.initAllAlert();
       return;
     }
-    if (this.user.username.length < 5) {
-      this.constant.alert('username must have at least 5 characters');
-      return;
-    }
-    if (this.user.username.length > 15) {
-      this.constant.alert('username must not more than 15 characters');
-      return;
-    }
-    if (this.user.username.match('[!@#$%^&*()~`,.<>?/:;\'\"{}\[\]|\\]')) {
-      this.constant.alert('username must not contain any special character: @ , . $ *');
-      return;
-    }
-    if (this.user.password == null || this.user.password === '') {
-      this.constant.alert('you must set a password');
-      return;
-    }
-    if (this.user.password.length < 6) {
-      this.constant.alert('password must have at least 6 characters');
-      return;
-    }
-    if (this.user.password.length > 20) {
-      this.constant.alert('password must not more than 20 characters');
-      return;
-    }
-    if (!this.user.password.match('[!@#$%^&*()~`,.<>?/:;\'\"{}\[\]|\\]')) {
-      this.constant.alert('password must contain at least one special character: @ , . $ *');
-      return;
-    }
-    if (!this.user.password.match('[a-z]')) {
-      this.constant.alert('password must contain at least one lower case character');
-      return;
-    }
-    if (!this.user.password.match('[A-Z]')) {
-      this.constant.alert('password must contain at least one Upper case character');
-      return;
-    }
-    if (this.user.password !== this. repeatPassword) {
-      this.constant.alert('your password and repeatPassword is different');
-      return;
-    }
-    if (this.user.email == null || this.user.email === '') {
-      this.constant.alert('you must set a email');
-      return;
-    }
-    if (!this.user.email.match('@')) {
-      this.constant.alert('email format is wrong');
-      return;
-    }
-    if (this.user.phone == null || this.user.phone === '') {
-      this.constant.alert('you must set a phone');
-      return;
-    }
-    if (!(this.user.phone.match('[+][0-9]') || this.user.phone.match('[0-9]')) || this.user.phone.length < 7 ) {
-      this.constant.alert('you must set a right phone number');
-      return;
-    }
+
     if (this.constant.getUser() == null || this.constant.getUser().role == null || this.constant.getUser().role === '') {
       this.http.post(this.constant.baseUrl + '/user/signup', this.user).subscribe(res => {
         if ((res as any).code !== 0) {
@@ -162,6 +145,81 @@ export class SignupPage implements OnInit {
         });
       }
     });
+  }
+
+  initAllAlert() {
+    this.alertTitle = '';
+    this.alertMessage = '';
+    this.alertEmailMessage = '';
+    this.alertNameMessage = '';
+    this.alertPassMessage = '';
+    this.alertPhoneMessage = '';
+  }
+
+  UsernameCheck() {
+    if (this.user.username == null || this.user.username === '') {
+      this.alertNameMessage += '● username is empty<br>';
+    }
+    if (this.user.username.length < 5 || this.user.username.length > 15) {
+      this.alertNameMessage += '● username has not 5-15 characters<br>';
+    }
+    if (this.user.username.match('[!@#$%^&*()~`,.<>?/:;\'\"{}\[\]|\\]')) {
+      this.alertNameMessage += '● username only support alphabet and number<br>';
+    }
+  }
+
+  PasswordCheck() {
+    if (this.user.password == null || this.user.password === '') {
+      this.alertPassMessage += '● password is empty<br>';
+    }
+    if (this.user.password.length < 6 || this.user.password.length > 20) {
+      this.alertPassMessage += '● password has not 6-20 characters<br>';
+    }
+    if (!this.user.password.match('[!@#$%^&*()~`,.<>?/:;\'\"{}\[\]|\\]')) {
+      this.alertPassMessage += '● password has not special character: @ , . $ *<br>';
+    }
+    if (!this.user.password.match('[a-z]')) {
+      this.alertPassMessage += '● password has not lowercase<br>';
+    }
+    if (!this.user.password.match('[A-Z]')) {
+      this.alertPassMessage += '● password has not uppercase<br>';
+    }
+    if (this.user.password !== this. repeatPassword) {
+      this.alertPassMessage += '● password and repeatPassword is different<br>';
+    }
+  }
+
+  EmailCheck() {
+    if (this.user.email == null || this.user.email === '') {
+      this.alertEmailMessage += '● email is empty<br>';
+    }
+    if (!this.user.email.match('@')) {
+      this.alertEmailMessage += '● email format is wrong<br>';
+    }
+  }
+
+  PhoneCheck() {
+    if (this.user.phone == null || this.user.phone === '') {
+      this.alertPhoneMessage += '● phone is empty<br>';
+    }
+    if (!(this.user.phone.match('[+][0-9]') || this.user.phone.match('[0-9]')) || this.user.phone.length < 7 ) {
+      this.alertPhoneMessage += '● phone format is wrong<br>';
+    }
+  }
+
+  UsernameRuleShow() {
+    this.showUsernameRule = true;
+    this.showPasswordRule = false;
+  }
+
+  PasswordRuleShow() {
+    this.showUsernameRule = false;
+    this.showPasswordRule = true;
+  }
+
+  ruleClose() {
+    this.showPasswordRule = false;
+    this.showUsernameRule = false;
   }
 }
 
