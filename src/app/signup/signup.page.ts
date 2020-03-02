@@ -50,6 +50,8 @@ export class SignupPage implements OnInit {
     this.alertPassMessage = '';
     this.alertPhoneMessage = '';
     this.alertPrivacyMessage = '';
+
+    this.privacyAgree = false;
   }
 
   ngOnInit() {
@@ -217,7 +219,7 @@ export class SignupPage implements OnInit {
   }
 
   PrivacyCheck() {
-    if (this.alertPrivacyMessage == null || this.alertPrivacyMessage === '') {
+    if (this.privacyAgree == null || this.privacyAgree === false) {
       this.alertPrivacyMessage += '● privacy has not been agreed<br>';
     }
   }
