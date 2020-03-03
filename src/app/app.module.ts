@@ -15,6 +15,9 @@ import { FCM } from '@ionic-native/fcm/ngx';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { StarRatingModule } from 'ionic4-star-rating';
 
+import { AppUpdate } from '@ionic-native/app-update/ngx';
+import { AppVersion } from '@ionic-native/app-version/ngx';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -26,6 +29,8 @@ import { StarRatingModule } from 'ionic4-star-rating';
     Vibration,
     FCM,
     LocalNotifications,
+    AppUpdate,
+    AppVersion,
     // LocalNotifications,
     StarRatingModule,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {ConstantsService} from '../constants.service';
 import { Vibration } from '@ionic-native/vibration/ngx';
+import { AppUpdate } from '@ionic-native/app-update/ngx';
+import { AppVersion } from '@ionic-native/app-version/ngx';
 
 @Component({
   selector: 'app-me',
@@ -10,12 +12,27 @@ import { Vibration } from '@ionic-native/vibration/ngx';
 })
 export class MePage implements OnInit {
 
+  appVersionNumber: string;
+
   constructor(private router: Router,
               public constant: ConstantsService,
-              private vibration: Vibration) { }
+              private vibration: Vibration,
+              private appUpdate: AppUpdate,
+              private appVersion: AppVersion) {
+  }
 
   ngOnInit() {
+    this.getVersion();
   }
+
+  getVersion() {
+    this.appVersion.getVersionNumber().then( res => {
+      this.appVersionNumber = res;
+    }).catch( err => {
+      this.constant.alert(err);
+    });
+  }
+
   login() {
     this.router.navigate(['tabs/me/login']);
   }
@@ -59,5 +76,15 @@ export class MePage implements OnInit {
     } else {
       this.constant.alert('Please log in');
     }
+  }
+
+  checkVersion() {
+    this.getVersion();
+    const updateUrl = this.constant.baseUrl + '/update/xml';
+    this.appUpdate.checkAppUpdate(updateUrl).then(() => { console.log('Update available'); }).catch(
+        err => {
+          this.constant.alert(err);
+        }
+    );
   }
 }
