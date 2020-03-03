@@ -10,69 +10,113 @@
 <ion-content>
   <ion-card>
     <ion-card-header>
-      <ion-card-subtitle>{{service.type}}</ion-card-subtitle>
+      <ion-card-subtitle>
+        <ion-icon name="construct" color="danger"></ion-icon>
+        <ion-text>　{{service.type}}</ion-text>
+      </ion-card-subtitle>
       <ion-card-title>Vendor: {{service.username}}</ion-card-title>
     </ion-card-header>
-
     <ion-card-content>
       <ion-grid>
         <ion-row>
-          <ion-col [size]="3">price:</ion-col>
-          <ion-col>${{service.price}}/day</ion-col>
+          <ion-col [size]="1">
+            <ion-icon name="card" color="warning"></ion-icon>
+          </ion-col>
+          <ion-col [size]="4">
+            Price:
+          </ion-col>
+          <ion-col>
+            ${{service.price}}/day
+          </ion-col>
         </ion-row>
         <ion-row>
-          <ion-col [size]="3">city:</ion-col>
-          <ion-col>{{service.city}}</ion-col>
+          <ion-col [size]="1">
+            <ion-icon name="pin" color="tertiary"></ion-icon>
+          </ion-col>
+          <ion-col [size]="4">
+            City:
+          </ion-col>
+          <ion-col>
+            {{service.city}}
+          </ion-col>
         </ion-row>
         <ion-row>
-          <ion-col [size]="3">phone:</ion-col>
-          <ion-col>{{service.phone}}</ion-col>
+          <ion-col [size]="1">
+            <ion-icon name="call" color="primary"></ion-icon>
+          </ion-col>
+          <ion-col [size]="4">
+            Phone:
+          </ion-col>
+          <ion-col>
+            {{service.phone}}
+          </ion-col>
         </ion-row>
         <ion-row>
-          <ion-col [size]="3">email:</ion-col>
-          <ion-col>{{service.email}}</ion-col>
+          <ion-col [size]="1">
+            <ion-icon name="mail" color="danger"></ion-icon>
+          </ion-col>
+          <ion-col [size]="4">
+            Email:
+          </ion-col>
+          <ion-col>
+            {{service.email}}
+          </ion-col>
         </ion-row>
         <ion-row>
-          <ion-col [size]="3">star:</ion-col>
-          <ion-col><ionic4-star-rating #rating
-                                       activeColor = "orange"
-                                       readonly = "true"
-                                       fontSize="small"
-                                       [(ngModel)]="service.star">
-          </ionic4-star-rating>
+          <ion-col [size]="1">
+            <ion-icon name="clipboard" color="success"></ion-icon>
+          </ion-col>
+          <ion-col [size]="4">
+            Order Total:
+          </ion-col>
+          <ion-col>
+            {{service.orderTotal}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col [size]="1">
+            <ion-icon name="star" color="secondary"></ion-icon>
+          </ion-col>
+          <ion-col [size]="4">
+            Star:
+          </ion-col>
+          <ion-col>
+            <ionic4-star-rating #rating activeColor = "orange" readonly = "true" fontSize="small" [(ngModel)]="service.star"></ionic4-star-rating>
           </ion-col>
         </ion-row>
       </ion-grid>
     </ion-card-content>
   </ion-card>
   <ion-item>
-    <ion-label position="stacked" style="font-size: larger">Choose your start time</ion-label>
+    <ion-icon name="calendar" color="danger" slot="start"></ion-icon>
+    <ion-label>Start Date:</ion-label>
     <ion-datetime [(ngModel)]="order.dateStart" (ionChange)="getCost()" display-format="MMM DD YYYY" picker-format="MMM DD YYYY"></ion-datetime>
   </ion-item>
   <ion-item>
-    <ion-label position="stacked" style="font-size: larger">Choose your end time</ion-label>
+    <ion-icon name="calendar" color="danger" slot="start"></ion-icon>
+    <ion-label>End Date:</ion-label>
     <ion-datetime [(ngModel)]="order.dateEnd" (ionChange)="getCost()" display-format="MMM DD YYYY" picker-format="MMM DD YYYY"></ion-datetime>
   </ion-item>
   <ion-item>
-    <ion-label position="stacked" style="font-size: larger">Set a address</ion-label>
-    <ion-input [(ngModel)]="order.address"> </ion-input>
+    <ion-icon name="pin" color="tertiary" slot="start"></ion-icon>
+    <ion-input [(ngModel)]="order.address" placeholder="Your address"> </ion-input>
   </ion-item>
   <ion-item>
-    <ion-label position="stacked" style="font-size: larger">Your name</ion-label>
+    <ion-icon name="contact" color="dark" slot="start"></ion-icon>
     <div *ngIf="constant.getUser() != null && constant.getUser().id != null && constant.getUser().id != ''">
       <ion-input [(ngModel)]="constant.getUser().username" disabled="true"></ion-input>
     </div>
     <div *ngIf="constant.getUser() == null || constant.getUser().id == null || constant.getUser().id == ''">
-      <ion-input [(ngModel)]="user.username"></ion-input>
+      <ion-input [(ngModel)]="user.username" placeholder="Your name"></ion-input>
     </div>
   </ion-item>
   <ion-item>
-    <ion-label position="stacked" style="font-size: larger">Your phone</ion-label>
+    <ion-icon name="call" color="primary" slot="start"></ion-icon>
     <div *ngIf="constant.getUser() != null && constant.getUser().id != null && constant.getUser().id != ''">
       <ion-input [(ngModel)]="constant.getUser().phone" disabled="true"></ion-input>
     </div>
     <div *ngIf="constant.getUser() == null || constant.getUser().id == null || constant.getUser().id == ''">
-      <ion-input [(ngModel)]="user.phone"></ion-input>
+      <ion-input [(ngModel)]="user.phone" placeholder="Your phone"></ion-input>
     </div>
   </ion-item>
   <div *ngIf="constant.getUser() == null || constant.getUser().id==null ||
