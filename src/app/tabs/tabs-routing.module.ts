@@ -27,6 +27,14 @@ const routes: Routes = [
           {
             path: 'join-us',
             loadChildren: () => import('../join-us/join-us.module').then( m => m.JoinUsPageModule)
+          },
+          {
+            path: 'service-detail',
+            loadChildren: () => import('../service-detail/service-detail.module').then( m => m.ServiceDetailPageModule)
+          },
+          {
+            path: 'set-order',
+            loadChildren: () => import('../set-order/set-order.module').then( m => m.SetOrderPageModule)
           }
         ]
       },

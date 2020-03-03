@@ -31,7 +31,8 @@ export class VendorServiceAddPage implements OnInit {
       username: '',
       star: 5,
       phone: '',
-      email: ''
+      email: '',
+      orderTotal: 0
     };
 
     this.privacyAgree = false;

@@ -1,0 +1,121 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Set Order</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>{{service.type}}</ion-card-subtitle>
+      <ion-card-title>Vendor: {{service.username}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col [size]="3">price:</ion-col>
+          <ion-col>${{service.price}}/day</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col [size]="3">city:</ion-col>
+          <ion-col>{{service.city}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col [size]="3">phone:</ion-col>
+          <ion-col>{{service.phone}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col [size]="3">email:</ion-col>
+          <ion-col>{{service.email}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col [size]="3">star:</ion-col>
+          <ion-col><ionic4-star-rating #rating
+                                       activeColor = "orange"
+                                       readonly = "true"
+                                       fontSize="small"
+                                       [(ngModel)]="service.star">
+          </ionic4-star-rating>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  <ion-item>
+    <ion-label position="stacked" style="font-size: larger">Choose your start time</ion-label>
+    <ion-datetime [(ngModel)]="order.dateStart" (ionChange)="getCost()" display-format="MMM DD YYYY" picker-format="MMM DD YYYY"></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked" style="font-size: larger">Choose your end time</ion-label>
+    <ion-datetime [(ngModel)]="order.dateEnd" (ionChange)="getCost()" display-format="MMM DD YYYY" picker-format="MMM DD YYYY"></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked" style="font-size: larger">Set a address</ion-label>
+    <ion-input [(ngModel)]="order.address"> </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked" style="font-size: larger">Your name</ion-label>
+    <div *ngIf="constant.getUser() != null && constant.getUser().id != null && constant.getUser().id != ''">
+      <ion-input [(ngModel)]="constant.getUser().username" disabled="true"></ion-input>
+    </div>
+    <div *ngIf="constant.getUser() == null || constant.getUser().id == null || constant.getUser().id == ''">
+      <ion-input [(ngModel)]="user.username"></ion-input>
+    </div>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked" style="font-size: larger">Your phone</ion-label>
+    <div *ngIf="constant.getUser() != null && constant.getUser().id != null && constant.getUser().id != ''">
+      <ion-input [(ngModel)]="constant.getUser().phone" disabled="true"></ion-input>
+    </div>
+    <div *ngIf="constant.getUser() == null || constant.getUser().id == null || constant.getUser().id == ''">
+      <ion-input [(ngModel)]="user.phone"></ion-input>
+    </div>
+  </ion-item>
+  <div *ngIf="constant.getUser() == null || constant.getUser().id==null ||
+      constant.getUser().id=='' || constant.getUser().role=='GUEST'">
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="9">
+            <ion-text>
+              If you sign in, you will get 20% off discounts
+              and get 10 points when you place the
+              order successfully.
+            </ion-text>
+          </ion-col>
+          <ion-col size="3">
+            <ion-text color="primary" (click)="singup()">sign in</ion-text>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </div>
+
+  <ion-title>
+    <p></p>
+    <div *ngIf="constant.getUser() != null && constant.getUser().id != null && constant.getUser().id != '' && constant.getUser().role != 'GUEST'">
+      <ion-text style="font-size: x-large">
+        Total: ${{order.costOff}}
+      </ion-text>
+      <ion-text style="font-size: small">
+        (20%OFF)
+      </ion-text>
+    </div>
+    <div *ngIf="constant.getUser() == null || constant.getUser().id == null || constant.getUser().id == '' || constant.getUser().role == 'GUEST'">
+      <ion-text style="font-size: x-large">
+        Total: ${{order.costNoOff}}
+      </ion-text>
+      <ion-text style="font-size: small">
+        (No Discount)
+      </ion-text>
+    </div>
+  </ion-title>
+  <div class="ion-text-center">
+    <p></p>
+    <ion-button (click)="checkOut()">Check out</ion-button>
+  </div>
+</ion-content>

@@ -28,7 +28,8 @@ export class VendorServiceUpdatePage implements OnInit {
       username: '',
       star: 5,
       phone: '',
-      email: ''
+      email: '',
+      orderTotal: 0
     };
   }
 

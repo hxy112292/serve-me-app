@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Search Vendor</ion-title>
+    <ion-title>Select Vendor</ion-title>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
@@ -8,5 +8,89 @@
 </ion-header>
 
 <ion-content>
-  
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+            pullingIcon="arrow-dropdown"
+            refreshingSpinner="circles">
+    </ion-refresher-content>
+  </ion-refresher>
+  <br>
+  <ion-searchbar [(ngModel)]="vendorName" showCancelButton="focus" placeholder="vendor name"></ion-searchbar>
+  <ion-segment>
+    <ion-segment-button>
+      <ion-select [(ngModel)]="sortOption" (ionChange)="sortServiceList(serviceList)">
+        <ion-select-option value="priceLow">Price: Low to High</ion-select-option>
+        <ion-select-option value="priceHigh">Price: High to Low</ion-select-option>
+        <ion-select-option value="popularLow">Popular: Low to High</ion-select-option>
+        <ion-select-option value="popularHigh">Popular: High to Low</ion-select-option>
+        <ion-select-option value="">Sort: Default</ion-select-option>
+      </ion-select>
+    </ion-segment-button>
+    <ion-segment-button>
+      <ionic4-star-rating #rating activeColor = "orange" readonly = "false" rating = "5" [(ngModel)]="starFilter" fontSize="medium"></ionic4-star-rating>
+    </ion-segment-button>
+  </ion-segment>
+  <div *ngFor="let service of serviceList">
+    <div *ngIf="starFilter <= service.star || starFilter == null">
+      <div *ngIf="service.username.match(vendorName) || vendorName == null || vendorName == ''">
+        <ion-card (click)="toServiceDetail(service)">
+          <ion-card-header>
+            <ion-card-subtitle>
+              <ion-icon name="construct" color="danger"></ion-icon>
+              <ion-text>　Service No: {{service.id}}</ion-text>
+            </ion-card-subtitle>
+            <ion-card-title>{{service.type}}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col [size]="1">
+                  <ion-icon name="card" color="warning"></ion-icon>
+                </ion-col>
+                <ion-col [size]="3">
+                  Price:
+                </ion-col>
+                <ion-col>
+                  ${{service.price}}/day
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col [size]="1">
+                  <ion-icon name="pin" color="tertiary"></ion-icon>
+                </ion-col>
+                <ion-col [size]="3">
+                  City:
+                </ion-col>
+                <ion-col>
+                  {{service.city}}
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col [size]="1">
+                  <ion-icon name="clipboard" color="success"></ion-icon>
+                </ion-col>
+                <ion-col [size]="3">
+                  Order Total:
+                </ion-col>
+                <ion-col>
+                  {{service.orderTotal}}
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col [size]="1">
+                  <ion-icon name="star" color="secondary"></ion-icon>
+                </ion-col>
+                <ion-col [size]="3">
+                  Star:
+                </ion-col>
+                <ion-col>
+                  <ionic4-star-rating #rating activeColor = "orange" readonly = "true" fontSize="small" [(ngModel)]="service.star"></ionic4-star-rating>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+  </div>
 </ion-content>

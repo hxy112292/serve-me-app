@@ -9,4 +9,5 @@ export class Service {
     star: number;
     phone: string;
     email: string;
+    orderTotal: number;
 }
