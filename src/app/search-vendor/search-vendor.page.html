@@ -19,11 +19,11 @@
   <ion-segment>
     <ion-segment-button>
       <ion-select [(ngModel)]="sortOption" (ionChange)="sortServiceList(serviceList)">
+        <ion-select-option value="">Sort: Default</ion-select-option>
         <ion-select-option value="priceLow">Price: Low to High</ion-select-option>
         <ion-select-option value="priceHigh">Price: High to Low</ion-select-option>
         <ion-select-option value="popularLow">Popular: Low to High</ion-select-option>
         <ion-select-option value="popularHigh">Popular: High to Low</ion-select-option>
-        <ion-select-option value="">Sort: Default</ion-select-option>
       </ion-select>
     </ion-segment-button>
     <ion-segment-button>
