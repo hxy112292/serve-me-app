@@ -2,3 +2,12 @@ ion-col{
   font-size: medium;
   color: black;
 }
+
+select {
+  border: 1px solid #aaa;
+}
+
+.custom-alert [aria-checked=true] .alert-checkbox-icon {
+  background: pink !important;
+  border-color: pink !important;
+}

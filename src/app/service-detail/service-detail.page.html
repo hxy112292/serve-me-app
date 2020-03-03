@@ -95,39 +95,63 @@
   <div class="ion-text-center">
     <ion-button (click)="toSetOrder(service)">Set Order</ion-button>
   </div>
-
-
-  <ion-title class="ion-text-center"><p>Reviews</p></ion-title>
+  <ion-title class="ion-text-center" style="font-size: x-large"><p>Reviews</p></ion-title>
+  <ion-segment>
+    <ion-segment-button>
+      <ion-select [(ngModel)]="reviewTime">
+        <ion-select-option value="">All TIME</ion-select-option>
+        <ion-select-option value="3">Last 3 days</ion-select-option>
+        <ion-select-option value="7">Last 7 days</ion-select-option>
+        <ion-select-option value="30">Last 30 days</ion-select-option>
+        <ion-select-option value="365">Last 1 year</ion-select-option>
+      </ion-select>
+    </ion-segment-button>
+    <ion-segment-button>
+      <ion-select [(ngModel)]="reviewType">
+        <ion-select-option value="">All Reviews</ion-select-option>
+        <ion-select-option value="GOOD REVIEWS">Good Reviews</ion-select-option>
+        <ion-select-option value="MEDIUM REVIEWS">Medium Reviews</ion-select-option>
+        <ion-select-option value="BAD REVIEWS">Bad Reviews</ion-select-option>
+      </ion-select>
+    </ion-segment-button>
+  </ion-segment>
   <ion-list>
     <div *ngFor="let review of reviewList">
-      <ion-item text-wrap>
-        <ion-grid>
-          <ion-row>
-            <ion-col [size]="2">
-              star:
-            </ion-col>
-            <ion-col [size]="4">
-              <ionic4-star-rating #rating
-                                  activeColor = "orange"
-                                  readonly = "true"
-                                  fontSize="small"
-                                  [(ngModel)]="review.star">
-              </ionic4-star-rating>
-            </ion-col>
-            <ion-col>
-              {{review.createTime | date: 'MMM dd yyyy HH:mm:ss'}}
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col [size]="2">
-              review:
-            </ion-col>
-            <ion-col>
-              {{review.content}}
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-item>
+      <div *ngIf="calReviewDate(review.createTime) || reviewTime == null || reviewTime == ''">
+        <div *ngIf="checkReviewStar(review.star) || reviewType == null || reviewType == ''">
+          <ion-item text-wrap>
+            <ion-grid>
+              <ion-row>
+                <ion-col [size]="2" style="text-align: center">
+                  <ion-icon name="contact" color="medium" style="font-size: 35px"></ion-icon>
+                  <ion-text>{{review.customerName}}</ion-text>
+                </ion-col>
+                <ion-col>
+                  <ion-card>
+                    <ion-card-header>
+                      <ion-card-subtitle>
+                        <ion-icon name="calendar" color="danger"></ion-icon>
+                        <ion-text>　{{review.createTime | date: 'MMM dd yyyy HH:mm:ss'}}</ion-text>
+                      </ion-card-subtitle>
+                      <ion-card-title>
+                        <ionic4-star-rating #rating
+                                            activeColor = "orange"
+                                            readonly = "true"
+                                            fontSize="small"
+                                            [(ngModel)]="review.star">
+                        </ionic4-star-rating>
+                      </ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                      <ion-text>{{review.content}}</ion-text>
+                    </ion-card-content>
+                  </ion-card>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+        </div>
+      </div>
     </div>
   </ion-list>
 </ion-content>

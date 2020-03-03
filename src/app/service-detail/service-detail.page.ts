@@ -15,6 +15,8 @@ export class ServiceDetailPage implements OnInit {
   service: Service;
   reviewList: Review[];
   star: string;
+  reviewTime: string;
+  reviewType: string;
 
   constructor(private route: ActivatedRoute,
               private http: HttpClient,
@@ -54,5 +56,38 @@ export class ServiceDetailPage implements OnInit {
       console.log('Async operation has ended');
       event.target.complete();
     }, 2000);
+  }
+
+  calReviewDate(reviewTime) {
+    if ((new Date().getTime() - new Date(reviewTime).getTime()) <= Number(this.reviewTime) * 24 * 60 * 60 * 1000) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  checkReviewStar(star) {
+    if (this.reviewType === 'GOOD REVIEWS') {
+      if (star >= 4) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    if (this.reviewType === 'MEDIUM REVIEWS') {
+      if (star === 3) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    if (this.reviewType === 'BAD REVIEWS') {
+      if (star <= 2) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    return true;
   }
 }

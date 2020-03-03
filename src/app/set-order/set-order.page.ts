@@ -89,6 +89,10 @@ export class SetOrderPage implements OnInit {
       alert('you need to choose a date end');
       return;
     }
+    if (new Date(this.order.dateEnd) < new Date(this.order.dateStart)) {
+      alert('your start date is later than the end date');
+      return;
+    }
     if (this.order.address == null || this.order.address === '') {
       alert('you need to choose an address');
       return;
