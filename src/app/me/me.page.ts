@@ -81,7 +81,13 @@ export class MePage implements OnInit {
   checkVersion() {
     this.getVersion();
     const updateUrl = this.constant.baseUrl + '/update/xml';
-    this.appUpdate.checkAppUpdate(updateUrl).then(() => { console.log('Update available'); }).catch(
+    this.appUpdate.checkAppUpdate(updateUrl).then(
+        res => {
+          console.log(res);
+          if (res.code === 202) {
+            this.constant.alert('Congratulation! The version is latest!');
+          }
+        }).catch(
         err => {
           this.constant.alert(err);
         }
