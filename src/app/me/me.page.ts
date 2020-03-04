@@ -29,7 +29,7 @@ export class MePage implements OnInit {
     this.appVersion.getVersionNumber().then( res => {
       this.appVersionNumber = res;
     }).catch( err => {
-      this.constant.alert(err);
+      console.log(err);
     });
   }
 
@@ -89,8 +89,12 @@ export class MePage implements OnInit {
           }
         }).catch(
         err => {
-          this.constant.alert(err);
+          console.log(err);
         }
     );
+  }
+
+  toAddress() {
+    this.router.navigate(['tabs/me/address']);
   }
 }

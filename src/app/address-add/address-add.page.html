@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Address Add</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-icon name="contact" color="dark" slot="start"></ion-icon>
+      <ion-label>Name:</ion-label>
+      <ion-input [(ngModel)]="address.customerName"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="call" color="primary" slot="start"></ion-icon>
+      <ion-label>Phone:</ion-label>
+      <ion-input [(ngModel)]="address.phone"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="pin" color="tertiary" slot="start"></ion-icon>
+      <ion-label>Address:</ion-label>
+      <ion-input [(ngModel)]="address.address"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="send" color="warning" slot="start"></ion-icon>
+      <ion-label>Zip Code:</ion-label>
+      <ion-input [(ngModel)]="address.zipCode"></ion-input>
+    </ion-item>
+  </ion-list>
+  <br>
+  <div class="ion-text-center">
+    <ion-button (click)="addAddress()" color="tertiary">Add Address</ion-button>
+  </div>
+</ion-content>

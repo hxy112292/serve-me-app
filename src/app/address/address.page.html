@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Address</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+            pullingIcon="arrow-dropdown"
+            refreshingSpinner="circles">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <br>
+  <div class="ion-text-center">
+    <ion-button (click)="addAddress()" color="secondary">Add new address</ion-button>
+  </div>
+  <div *ngFor="let address of addressList">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>
+          <ion-icon name="map" color="danger"></ion-icon>
+          <ion-text>　Address No: {{address.id}}</ion-text>
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col [size]="1">
+              <ion-icon name="contact" color="dark"></ion-icon>
+            </ion-col>
+            <ion-col [size]="3">
+              Name:
+            </ion-col>
+            <ion-col>
+              {{address.customerName}}
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col [size]="1">
+              <ion-icon name="call" color="primary"></ion-icon>
+            </ion-col>
+            <ion-col [size]="3">
+              Phone:
+            </ion-col>
+            <ion-col>
+              {{address.phone}}
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col [size]="1">
+              <ion-icon name="pin" color="tertiary"></ion-icon>
+            </ion-col>
+            <ion-col [size]="3">
+              Address:
+            </ion-col>
+            <ion-col text-wrap>
+              {{address.address}}
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col [size]="1">
+              <ion-icon name="send" color="warning"></ion-icon>
+            </ion-col>
+            <ion-col [size]="3">
+              Zip Code:
+            </ion-col>
+            <ion-col text-wrap>
+              {{address.zipCode}}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-button (click)="updateAddress(address)" color="primary">Update</ion-button>
+        <ion-button (click)="deleteAddress(address.id)" color="danger">Delete</ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

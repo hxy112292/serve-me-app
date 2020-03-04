@@ -81,6 +81,18 @@ const routes: Routes = [
             loadChildren: () => import('../user-privacy/user-privacy.module').then( m => m.UserPrivacyPageModule)
           },
           {
+            path: 'address',
+            loadChildren: () => import('../address/address.module').then( m => m.AddressPageModule)
+          },
+          {
+            path: 'address-add',
+            loadChildren: () => import('../address-add/address-add.module').then( m => m.AddressAddPageModule)
+          },
+          {
+            path: 'address-update',
+            loadChildren: () => import('../address-update/address-update.module').then( m => m.AddressUpdatePageModule)
+          },
+          {
             path: 'vendor-center',
             children: [
               {
