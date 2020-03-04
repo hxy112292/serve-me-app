@@ -115,7 +115,7 @@
       </ion-select>
     </ion-segment-button>
   </ion-segment>
-  <ion-list>
+  <ion-list lines="full">
     <div *ngFor="let review of reviewList">
       <div *ngIf="calReviewDate(review.createTime) || reviewTime == null || reviewTime == ''">
         <div *ngIf="checkReviewStar(review.star) || reviewType == null || reviewType == ''">

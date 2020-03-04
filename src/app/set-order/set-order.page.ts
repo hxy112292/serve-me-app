@@ -34,6 +34,7 @@ export class SetOrderPage implements OnInit {
       serviceId: '',
       serviceType: '',
       address: '',
+      addressId: '',
       price: '',
       costOff: '',
       costNoOff: '',
