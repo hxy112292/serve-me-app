@@ -5,6 +5,9 @@ import {ConstantsService} from '../constants.service';
 import {User} from '../entity/user';
 import {Order} from '../entity/order';
 import {Service} from '../entity/service';
+import {Address} from '../entity/address';
+import { ModalController } from '@ionic/angular';
+import {AddressChoosePage} from './address-choose/address-choose.page';
 
 @Component({
   selector: 'app-set-order',
@@ -18,11 +21,13 @@ export class SetOrderPage implements OnInit {
   costNoOFF: number;
   costOFF: number;
   user: User;
+  address: Address;
 
   constructor(private route: ActivatedRoute,
               private http: HttpClient,
               private router: Router,
-              private constant: ConstantsService) {
+              private constant: ConstantsService,
+              public modalController: ModalController) {
     this.order = {
       id: '',
       customerId: this.constant.getUser().id,
@@ -53,6 +58,17 @@ export class SetOrderPage implements OnInit {
       email: '',
       phone: '',
       role: 'GUEST'
+    };
+
+    this.address = {
+      id: '',
+      userId: '',
+      customerName: '',
+      phone: '',
+      address: '',
+      zipCode: '',
+      createTime: '',
+      updateTime: ''
     };
   }
 
@@ -94,54 +110,39 @@ export class SetOrderPage implements OnInit {
       alert('your start date is later than the end date');
       return;
     }
-    if (this.order.address == null || this.order.address === '') {
+    if (this.address.address == null || this.address.address === '') {
       alert('you need to choose an address');
       return;
     }
-    if (this.constant.getUser() == null || this.constant.getUser().id == null || this.constant.getUser().id === '') {
-      if (this.user.username == null || this.user.username === '') {
-        alert('you need to choose an username');
-        return;
-      }
-      if (this.user.phone == null || this.user.phone === '') {
-        alert('you need to choose an phone');
-        return;
-      }
-      this.http.post(this.constant.baseUrl + '/user/signup', {
-        username: this.user.username,
-        phone: this.user.phone,
-        role: 'GUEST'
-      }).subscribe(res => {
-        if ((res as any).code !== 0) {
-          alert((res as any).message);
-          return;
-        }
-        this.constant.setUser((res as any).result);
-        localStorage.setItem('uid', this.constant.getUser().id);
-        this.order.customerId = this.constant.getUser().id;
-        this.order.costOff = null;
-        this.http.post(this.constant.baseUrl + '/order/insert', this.order).subscribe(r => {
-          if ((r as any).code !== 0) {
-            alert((r as any).message);
-            return;
-          }
-        });
-      });
+    this.order.customerId = this.constant.getUser().id;
+    this.order.addressId = this.address.id;
+    if (this.constant.getUser().role === 'GUEST') {
+      this.order.costOff = null;
     } else {
-      this.order.customerId = this.constant.getUser().id;
       this.order.costNoOff = null;
-      this.http.post(this.constant.baseUrl + '/order/insert', this.order).subscribe(res => {
-        if ((res as any).code !== 0) {
-          alert((res as any).message);
-          return;
-        }
-      });
     }
+    this.http.post(this.constant.baseUrl + '/order/insert', this.order).subscribe(res => {
+      if ((res as any).code !== 0) {
+        alert((res as any).message);
+        return;
+      }
+    });
 
     this.router.navigate(['/tabs/order']);
   }
 
   singup() {
     this.router.navigate(['/tabs/me/login']);
+  }
+
+  async toAddressChoose() {
+    const modal = await this.modalController.create({
+      component: AddressChoosePage
+    });
+    await modal.present();
+    const data = ((await modal.onDidDismiss()) as any).data;
+    if (data != null) {
+      this.address = data;
+    }
   }
 }

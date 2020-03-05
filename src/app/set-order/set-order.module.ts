@@ -8,6 +8,7 @@ import { SetOrderPageRoutingModule } from './set-order-routing.module';
 
 import { SetOrderPage } from './set-order.page';
 import {StarRatingModule} from 'ionic4-star-rating';
+import {AddressChoosePageModule} from './address-choose/address-choose.module';
 
 @NgModule({
     imports: [
@@ -15,7 +16,8 @@ import {StarRatingModule} from 'ionic4-star-rating';
         FormsModule,
         IonicModule,
         SetOrderPageRoutingModule,
-        StarRatingModule
+        StarRatingModule,
+        AddressChoosePageModule
     ],
   declarations: [SetOrderPage]
 })

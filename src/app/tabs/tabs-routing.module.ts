@@ -34,7 +34,16 @@ const routes: Routes = [
           },
           {
             path: 'set-order',
-            loadChildren: () => import('../set-order/set-order.module').then( m => m.SetOrderPageModule)
+            children: [
+              {
+                path: '',
+                loadChildren: () => import('../set-order/set-order.module').then( m => m.SetOrderPageModule)
+              },
+              {
+                path: 'address-choose',
+                loadChildren: () => import('../set-order/address-choose/address-choose.module').then(m => m.AddressChoosePageModule)
+              }
+            ]
           }
         ]
       },

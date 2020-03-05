@@ -1,0 +1,103 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Address Choose</ion-title>
+    <ion-icon name="close" (click)="dismiss(null)" slot="start" style="font-size: x-large;margin-left: 3%;"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+            pullingIcon="arrow-dropdown"
+            refreshingSpinner="circles">
+    </ion-refresher-content>
+  </ion-refresher>
+  <br>
+  <div *ngIf="addPageShow == false">
+    <div class="ion-text-center">
+      <ion-button (click)="addButtonShow()" color="secondary">ADD NEW ADDRESS</ion-button>
+    </div>
+  </div>
+  <div *ngIf="addPageShow == true">
+    <ion-card>
+      <ion-card-content>
+        <ion-card-title>
+          <ion-icon name="close" (click)="addButtonShow()"style="font-size: x-large;margin-right: 3%;"></ion-icon>
+        </ion-card-title>
+        <ion-list lines="full">
+          <ion-item>
+            <ion-icon name="contact" color="dark" slot="start"></ion-icon>
+            <ion-label>Name:</ion-label>
+            <ion-input [(ngModel)]="addressAdd.customerName"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="call" color="primary" slot="start"></ion-icon>
+            <ion-label>Phone:</ion-label>
+            <ion-input [(ngModel)]="addressAdd.phone"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="pin" color="tertiary" slot="start"></ion-icon>
+            <ion-label>Address:</ion-label>
+            <ion-input [(ngModel)]="addressAdd.address"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="send" color="warning" slot="start"></ion-icon>
+            <ion-label>Zip Code:</ion-label>
+            <ion-input [(ngModel)]="addressAdd.zipCode"></ion-input>
+          </ion-item>
+        </ion-list>
+        <br>
+        <div class="ion-text-center">
+          <ion-button (click)="addAddress()" color="tertiary">ADD NEW ADDRESS</ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <ion-list lines="full">
+    <div *ngFor="let address of addressList">
+      <ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-col [size]="1" style="text-align:center;align-self: center">
+              <ion-checkbox (click)="dismiss(address)"></ion-checkbox>
+            </ion-col>
+            <ion-col>
+              <ion-card>
+                <ion-card-content>
+                  <ion-grid>
+                    <ion-row>
+                      <ion-col [size]="3">
+                        Name:
+                      </ion-col>
+                      <ion-col>
+                        {{address.customerName}}
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col [size]="3">
+                        Phone:
+                      </ion-col>
+                      <ion-col>
+                        {{address.phone}}
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col [size]="3">
+                        Address:
+                      </ion-col>
+                      <ion-col>
+                        {{address.address}}, {{address.zipCode}}
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </div>
+  </ion-list>
+
+
+</ion-content>

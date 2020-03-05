@@ -37,18 +37,23 @@ export class AddressUpdatePage implements OnInit {
   updateAddress() {
     if (this.address.customerName == null || this.address.customerName === '') {
       this.constant.alert('the name is null');
+      return;
     }
     if (this.address.phone == null || this.address.phone === '') {
       this.constant.alert('the phone is null');
+      return;
     }
     if (!(this.address.phone.match('[+][0-9]') || this.address.phone.match('[0-9]')) || this.address.phone.length < 7 ) {
       this.constant.alert('the phone format is wrong');
+      return;
     }
     if (this.address.address == null || this.address.address === '') {
       this.constant.alert('the address is null');
+      return;
     }
     if (this.address.zipCode == null || this.address.zipCode === '') {
       this.constant.alert('the zipCode is null');
+      return;
     }
     this.address.userId = this.constant.getUser().id;
     this.http.put(this.constant.baseUrl + '/address/updateAddress', this.address).subscribe( res => {
