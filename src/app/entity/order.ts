@@ -10,6 +10,7 @@ export class Order {
     serviceId: string;
     serviceType: string;
     address: string;
+    addressId: string;
     price: string;
     costOff: string;
     costNoOff: string;
