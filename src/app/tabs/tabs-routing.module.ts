@@ -95,6 +95,10 @@ const routes: Routes = [
               {
                 path: 'vendor-privacy',
                 loadChildren: () => import('../vendor-privacy/vendor-privacy.module').then( m => m.VendorPrivacyPageModule)
+              },
+              {
+                path: 'vendor-order-detail',
+                loadChildren: () => import('../vendor-order-detail/vendor-order-detail.module').then( m => m.VendorOrderDetailPageModule)
               }
             ]
           }

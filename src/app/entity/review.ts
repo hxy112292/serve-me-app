@@ -4,6 +4,7 @@ export class Review {
     orderId: string;
     vendorId: string;
     customerId: string;
+    customerName: string;
     serviceId: string;
     star: number;
     content: string;

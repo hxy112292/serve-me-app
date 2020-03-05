@@ -133,4 +133,8 @@ export class VendorOrderPage implements OnInit {
       this.orderReviewStar = null;
     }
   }
+
+  toOrderDetail(order: Order) {
+    this.router.navigate(['tabs/me/vendor-center/vendor-order-detail', {orderInfo: JSON.stringify(order)}]);
+  }
 }
