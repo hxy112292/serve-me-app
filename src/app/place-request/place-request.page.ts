@@ -1,25 +1,23 @@
 import { Component, OnInit } from '@angular/core';
+import {Service} from '../entity/service';
+import {Order} from '../entity/order';
+import {User} from '../entity/user';
+import {Address} from '../entity/address';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {ConstantsService} from '../constants.service';
-import {User} from '../entity/user';
-import {Order} from '../entity/order';
-import {Service} from '../entity/service';
-import {Address} from '../entity/address';
-import { ModalController } from '@ionic/angular';
+import {ModalController} from '@ionic/angular';
 import {AddressChoosePage} from './address-choose/address-choose.page';
 
 @Component({
-  selector: 'app-set-order',
-  templateUrl: './set-order.page.html',
-  styleUrls: ['./set-order.page.scss'],
+  selector: 'app-place-request',
+  templateUrl: './place-request.page.html',
+  styleUrls: ['./place-request.page.scss'],
 })
-export class SetOrderPage implements OnInit {
+export class PlaceRequestPage implements OnInit {
 
   service: Service;
   order: Order;
-  costNoOFF: number;
-  costOFF: number;
   user: User;
   address: Address;
 
@@ -75,31 +73,24 @@ export class SetOrderPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getVendor();
-  }
-  getVendor() {
-    this.service = JSON.parse(this.route.snapshot.paramMap.get('serviceInfo'));
-    this.order.vendorId = this.service.vendorId;
-    this.order.price = this.service.price;
-    this.order.serviceId = this.service.id;
-    this.order.serviceType = this.service.type;
+    this.order.serviceType = this.route.snapshot.paramMap.get('service');
+    this.order.city = this.route.snapshot.paramMap.get('city');
   }
 
-  getCost() {
-    if (this.order.dateStart == null || this.order.dateStart === '') {
-      return;
+
+
+  async toAddressChoose() {
+    const modal = await this.modalController.create({
+      component: AddressChoosePage
+    });
+    await modal.present();
+    const data = ((await modal.onDidDismiss()) as any).data;
+    if (data != null) {
+      this.address = data;
     }
-    if (this.order.dateEnd == null || this.order.dateEnd === '') {
-      return;
-    }
-    this.costNoOFF = ((new Date(this.order.dateEnd).getTime() - new Date(this.order.dateStart).getTime()) / 1000 / 60 / 60 / 24 + 1)
-        * Number(this.service.price);
-    this.costOFF = this.costNoOFF * 0.8;
-    this.order.costNoOff = this.costNoOFF.toFixed(2);
-    this.order.costOff = this.costOFF.toFixed(2);
   }
 
-  checkOut() {
+  placeRequest() {
     if (this.order.dateStart == null || this.order.dateStart === '') {
       alert('you need to choose a date start');
       return;
@@ -118,12 +109,7 @@ export class SetOrderPage implements OnInit {
     }
     this.order.customerId = this.constant.getUser().id;
     this.order.addressId = this.address.id;
-    this.order.status = 'NOT_ACCEPTED';
-    if (this.constant.getUser().role === 'GUEST') {
-      this.order.costOff = null;
-    } else {
-      this.order.costNoOff = null;
-    }
+    this.order.status = 'BIDING';
     this.http.post(this.constant.baseUrl + '/order/insert', this.order).subscribe(res => {
       if ((res as any).code !== 0) {
         alert((res as any).message);
@@ -132,20 +118,5 @@ export class SetOrderPage implements OnInit {
     });
 
     this.router.navigate(['/tabs/order']);
-  }
-
-  singup() {
-    this.router.navigate(['/tabs/me/login']);
-  }
-
-  async toAddressChoose() {
-    const modal = await this.modalController.create({
-      component: AddressChoosePage
-    });
-    await modal.present();
-    const data = ((await modal.onDidDismiss()) as any).data;
-    if (data != null) {
-      this.address = data;
-    }
   }
 }

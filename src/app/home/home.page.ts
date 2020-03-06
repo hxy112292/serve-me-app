@@ -45,16 +45,27 @@ export class HomePage implements OnInit {
     this.router.navigate(['/tabs/home/search-vendor', {city: this.city, service: this.service}]);
   }
 
-    toIntroduction() {
-      this.router.navigate(['tabs/home/introduction']);
-    }
+  toIntroduction() {
+    this.router.navigate(['tabs/home/introduction']);
+  }
 
-    toJoinUs() {
-      this.router.navigate(['tabs/home/join-us']);
-    }
+  toJoinUs() {
+    this.router.navigate(['tabs/home/join-us']);
+  }
 
-    toSignIn() {
-      this.router.navigate(['tabs/me']);
-    }
+  toSignIn() {
+    this.router.navigate(['tabs/me']);
+  }
 
+  placeRequest() {
+    if (this.city == null || this.city === '') {
+      this.constant.alert('you need to choose a city');
+      return;
+    }
+    if (this.service == null || this.service === '') {
+      this.constant.alert('you need to choose a service');
+      return;
+    }
+    this.router.navigate(['tabs/home/place-request', {city: this.city, service: this.service}]);
+  }
 }

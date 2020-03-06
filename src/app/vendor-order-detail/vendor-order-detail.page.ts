@@ -40,7 +40,9 @@ export class VendorOrderDetailPage implements OnInit {
       status: '',
       createTime: '',
       updateTime: '',
-      star: 0
+      star: 0,
+      city: '',
+      description: ''
     };
 
     this.review = {

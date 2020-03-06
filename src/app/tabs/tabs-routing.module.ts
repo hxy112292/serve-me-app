@@ -33,6 +33,10 @@ const routes: Routes = [
             loadChildren: () => import('../service-detail/service-detail.module').then( m => m.ServiceDetailPageModule)
           },
           {
+            path: 'place-request',
+            loadChildren: () => import('../place-request/place-request.module').then( m => m.PlaceRequestPageModule)
+          },
+          {
             path: 'set-order',
             children: [
               {
