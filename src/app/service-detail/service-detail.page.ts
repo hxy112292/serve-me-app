@@ -38,7 +38,7 @@ export class ServiceDetailPage implements OnInit {
       }
     }).subscribe(res => {
       if ((res as any).code !== 0) {
-        alert((res as any).message);
+        this.constant.alert((res as any).message);
         return;
       }
       this.reviewList = (res as any).result;

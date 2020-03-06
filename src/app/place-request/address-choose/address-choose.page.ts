@@ -64,7 +64,7 @@ export class AddressChoosePage implements OnInit {
       }
     }).subscribe(res => {
       if ((res as any).code !== 0) {
-        alert((res as any).message);
+        this.constant.alert((res as any).message);
         this.addressList = null;
         return;
       }
@@ -121,7 +121,7 @@ export class AddressChoosePage implements OnInit {
         role: 'GUEST'
       }).subscribe(res => {
         if ((res as any).code !== 0) {
-          alert((res as any).message);
+          this.constant.alert((res as any).message);
           return;
         }
         this.constant.setUser((res as any).result);
@@ -129,7 +129,7 @@ export class AddressChoosePage implements OnInit {
         this.addressAdd.userId = this.constant.getUser().id;
         this.http.post(this.constant.baseUrl + '/address/insertAddress', this.addressAdd).subscribe(r => {
           if ((r as any).code !== 0) {
-            alert((r as any).message);
+            this.constant.alert((r as any).message);
             return;
           }
         });
@@ -138,7 +138,7 @@ export class AddressChoosePage implements OnInit {
       this.addressAdd.userId = this.constant.getUser().id;
       this.http.post(this.constant.baseUrl + '/address/insertAddress', this.addressAdd).subscribe(res => {
         if ((res as any).code !== 0) {
-          alert((res as any).message);
+          this.constant.alert((res as any).message);
           return;
         }
       });

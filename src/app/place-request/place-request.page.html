@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Place Request</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -9,12 +12,25 @@
     <ion-item>
       <ion-icon name="locate" color="dark" slot="start"></ion-icon>
       <ion-label>City</ion-label>
-      <ion-text>{{order.city}}</ion-text>
+      <ion-select [(ngModel)]="order.city">
+        <ion-select-option value="Dallas">Dallas</ion-select-option>
+        <ion-select-option value="Arlington">Arlington</ion-select-option>
+      </ion-select>
     </ion-item>
     <ion-item>
       <ion-icon name="construct" color="warning" slot="start"></ion-icon>
       <ion-label>Service</ion-label>
-      <ion-text>{{order.serviceType}}</ion-text>
+      <ion-select [(ngModel)]="order.serviceType">
+        <ion-select-option value="Appliances">Appliances</ion-select-option>
+        <ion-select-option value="Electrical">Electrical</ion-select-option>
+        <ion-select-option value="Plumbing">Plumbing</ion-select-option>
+        <ion-select-option value="Home Cleaning">Home Cleaning</ion-select-option>
+        <ion-select-option value="Tutoring">Tutoring</ion-select-option>
+        <ion-select-option value="Packaging and Moving">Packaging and Moving</ion-select-option>
+        <ion-select-option value="Computer Repair">Computer Repair</ion-select-option>
+        <ion-select-option value="Home Repair and Painting">Home Repair and Painting</ion-select-option>
+        <ion-select-option value="PestControl">PestControl</ion-select-option>
+      </ion-select>
     </ion-item>
     <ion-item>
       <ion-icon name="calendar" color="danger" slot="start"></ion-icon>

@@ -32,7 +32,7 @@ export class VendorCenterPage implements OnInit {
       }
     }).subscribe(res => {
           if ((res as any).code !== 0) {
-            alert((res as any).message);
+            this.constant.alert((res as any).message);
             return;
           }
           this.serviceList = (res as any).result;
@@ -41,7 +41,6 @@ export class VendorCenterPage implements OnInit {
           } else {
             this.isNewVendor = false;
           }
-          console.log(this.isNewVendor);
         }
     );
   }

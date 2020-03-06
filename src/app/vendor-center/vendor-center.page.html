@@ -10,6 +10,7 @@
 <ion-toolbar>
   <ion-segment [(ngModel)]="vendorPage" value="vendorOrder">
     <ion-segment-button value="vendorOrder">Order</ion-segment-button>
+    <ion-segment-button value="vendorBid">Bid</ion-segment-button>
     <ion-segment-button value="vendorService">Service</ion-segment-button>
   </ion-segment>
 </ion-toolbar>
@@ -35,6 +36,9 @@
     <div *ngIf="isNewVendor != true">
       <app-vendor-order></app-vendor-order>
     </div>
+  </div>
+  <div *ngIf="vendorPage == 'vendorBid'">
+    <app-vendor-bid></app-vendor-bid>
   </div>
   <div *ngIf="vendorPage == 'vendorService'">
     <app-vendor-service></app-vendor-service>

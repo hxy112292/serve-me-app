@@ -57,7 +57,7 @@ export class AddressAddPage implements OnInit {
     this.address.userId = this.constant.getUser().id;
     this.http.post(this.constant.baseUrl + '/address/insertAddress', this.address).subscribe( res => {
       if ((res as any).code !== 0) {
-        alert((res as any).message);
+        this.constant.alert((res as any).message);
         return;
       }
       this.router.navigate(['tabs/me/address']);

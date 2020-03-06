@@ -92,27 +92,27 @@ export class PlaceRequestPage implements OnInit {
 
   placeRequest() {
     if (this.order.dateStart == null || this.order.dateStart === '') {
-      alert('you need to choose a date start');
+      this.constant.alert('you need to choose a date start');
       return;
     }
     if (this.order.dateEnd == null || this.order.dateEnd === '') {
-      alert('you need to choose a date end');
+      this.constant.alert('you need to choose a date end');
       return;
     }
     if (new Date(this.order.dateEnd) < new Date(this.order.dateStart)) {
-      alert('your start date is later than the end date');
+      this.constant.alert('your start date is later than the end date');
       return;
     }
     if (this.address.address == null || this.address.address === '') {
-      alert('you need to choose an address');
+      this.constant.alert('you need to choose an address');
       return;
     }
     this.order.customerId = this.constant.getUser().id;
     this.order.addressId = this.address.id;
-    this.order.status = 'BIDING';
+    this.order.status = 'BIDDING';
     this.http.post(this.constant.baseUrl + '/order/insert', this.order).subscribe(res => {
       if ((res as any).code !== 0) {
-        alert((res as any).message);
+        this.constant.alert((res as any).message);
         return;
       }
     });

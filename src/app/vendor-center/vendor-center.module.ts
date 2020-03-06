@@ -9,6 +9,7 @@ import { VendorCenterPageRoutingModule } from './vendor-center-routing.module';
 import { VendorCenterPage } from './vendor-center.page';
 import {VendorOrderPageModule} from '../vendor-order/vendor-order.module';
 import {VendorServicePageModule} from '../vendor-service/vendor-service.module';
+import {VendorBidPageModule} from '../vendor-bid/vendor-bid.module';
 
 @NgModule({
     imports: [
@@ -17,7 +18,8 @@ import {VendorServicePageModule} from '../vendor-service/vendor-service.module';
         IonicModule,
         VendorCenterPageRoutingModule,
         VendorOrderPageModule,
-        VendorServicePageModule
+        VendorServicePageModule,
+        VendorBidPageModule
     ],
   declarations: [VendorCenterPage]
 })

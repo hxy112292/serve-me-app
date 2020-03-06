@@ -38,7 +38,7 @@ export class VendorOrderPage implements OnInit {
       }
     }).subscribe(res => {
       if ((res as any).code !== 0) {
-        alert((res as any).message);
+        this.constant.alert((res as any).message);
         this.orderList = null;
         return;
       }
@@ -67,7 +67,7 @@ export class VendorOrderPage implements OnInit {
       status: 'PROCESSING'
     }).subscribe( res => {
       if ((res as any).code !== 0) {
-        alert((res as any).message);
+        this.constant.alert((res as any).message);
         return;
       }
       this.getOrderByVendor();
@@ -109,7 +109,7 @@ export class VendorOrderPage implements OnInit {
       status: 'FINISHED'
     }).subscribe( res => {
       if ((res as any).code !== 0) {
-        alert((res as any).message);
+        this.constant.alert((res as any).message);
         return;
       }
       this.getOrderByVendor();

@@ -136,6 +136,14 @@ const routes: Routes = [
               {
                 path: 'vendor-order-detail',
                 loadChildren: () => import('../vendor-order-detail/vendor-order-detail.module').then( m => m.VendorOrderDetailPageModule)
+              },
+              {
+                path: 'vendor-bid',
+                loadChildren: () => import('../vendor-bid/vendor-bid.module').then( m => m.VendorBidPageModule)
+              },
+              {
+                path: 'vendor-bid-detail',
+                loadChildren: () => import('../vendor-bid-detail/vendor-bid-detail.module').then( m => m.VendorBidDetailPageModule)
               }
             ]
           }

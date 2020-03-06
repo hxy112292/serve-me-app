@@ -32,7 +32,7 @@ export class AddressPage implements OnInit {
       }
     }).subscribe(res => {
       if ((res as any).code !== 0) {
-        alert((res as any).message);
+        this.constant.alert((res as any).message);
         this.addressList = null;
         return;
       }
