@@ -14,6 +14,7 @@ import {isNumber} from 'util';
 export class VendorServiceAddPage implements OnInit {
 
   service: Service;
+  serviceList: Service[];
   privacyAgree: boolean;
 
   constructor(private http: HttpClient,
@@ -63,12 +64,29 @@ export class VendorServiceAddPage implements OnInit {
       return;
     }
     this.service.vendorId = this.constant.getUser().id;
-    this.http.post(this.constant.baseUrl + '/service/insert', this.service).subscribe( res => {
+    this.http.get(this.constant.baseUrl + '/service/searchVendor', {
+      params: {
+        city: this.service.city,
+        type: this.service.type,
+        vendorId: this.service.vendorId
+      }
+    }).subscribe( res => {
       if ((res as any).code !== 0) {
-        alert((res as any).message);
+        this.constant.alert((res as any).message);
         return;
       }
-      this.router.navigate(['tabs/me/vendor-center']);
+      this.serviceList = (res as any).result;
+      if (this.serviceList.length !== 0) {
+        this.constant.alert('the service is exited');
+        return;
+      }
+      this.http.post(this.constant.baseUrl + '/service/insert', this.service).subscribe( r => {
+        if ((res as any).code !== 0) {
+          this.constant.alert((res as any).message);
+          return;
+        }
+        this.router.navigate(['tabs/me/vendor-center']);
+      });
     });
   }
 
