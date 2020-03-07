@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import {Order} from '../entity/order';
 import {HttpClient} from '@angular/common/http';
 import {ConstantsService} from '../constants.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AlertController} from '@ionic/angular';
-import {Order} from '../entity/order';
 
 @Component({
-  selector: 'app-vendor-order',
-  templateUrl: './vendor-order.page.html',
-  styleUrls: ['./vendor-order.page.scss'],
+  selector: 'app-customer-order',
+  templateUrl: './customer-order.page.html',
+  styleUrls: ['./customer-order.page.scss'],
 })
-export class VendorOrderPage implements OnInit {
+export class CustomerOrderPage implements OnInit {
 
   orderList: Order[];
   searchValue: string;
@@ -28,13 +28,13 @@ export class VendorOrderPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getOrderByVendor();
+    this.getOrderByCustomer();
   }
 
-  getOrderByVendor() {
-    this.http.get(this.constant.baseUrl + '/order/findOrderByVendor', {
+  getOrderByCustomer() {
+    this.http.get(this.constant.baseUrl + '/order/findOrderByCustomer', {
       params: {
-        vendorId: this.constant.getUser().id
+        customerId: this.constant.getUser().id
       }
     }).subscribe(res => {
       if ((res as any).code !== 0) {
@@ -52,26 +52,15 @@ export class VendorOrderPage implements OnInit {
     this.orderDate = '';
     this.orderStatus = '';
     this.orderReviewStar = 0;
-    this.getOrderByVendor();
+    this.getOrderByCustomer();
     setTimeout(() => {
       console.log('Async operation has ended');
       event.target.complete();
     }, 2000);
   }
 
-  startOrder(order: Order) {
-    this.http.put( this.constant.baseUrl + '/order/update', {
-      id: order.id,
-      customerId: order.customerId,
-      vendorId: order.vendorId,
-      status: 'PROCESSING'
-    }).subscribe( res => {
-      if ((res as any).code !== 0) {
-        this.constant.alert((res as any).message);
-        return;
-      }
-      this.getOrderByVendor();
-    });
+  updateOrder(order: Order) {
+
   }
 
   async cancelOrder(order: Order) {
@@ -93,31 +82,12 @@ export class VendorOrderPage implements OnInit {
               customerId: order.customerId,
               vendorId: order.vendorId,
               status: 'CANCELED'
-            }).subscribe( res => {this.getOrderByVendor(); });
+            }).subscribe( res => {this.getOrderByCustomer(); });
           }
         }
       ]
     });
     await alert.present();
-  }
-
-  finishOrder(order: Order) {
-    this.http.put( this.constant.baseUrl + '/order/update', {
-      id: order.id,
-      customerId: order.customerId,
-      vendorId: order.vendorId,
-      status: 'FINISHED'
-    }).subscribe( res => {
-      if ((res as any).code !== 0) {
-        this.constant.alert((res as any).message);
-        return;
-      }
-      this.getOrderByVendor();
-    });
-  }
-
-  toVendorService() {
-    this.router.navigate(['tabs/me/vendor-service']);
   }
 
   calOrderDate(orderTime) {
@@ -135,6 +105,18 @@ export class VendorOrderPage implements OnInit {
   }
 
   toOrderDetail(order: Order) {
-    this.router.navigate(['tabs/me/vendor-center/vendor-order-detail', {orderInfo: JSON.stringify(order)}]);
+    if (order.status !== 'BIDDING') {
+      this.router.navigate(['tabs/customer-center/customer-order-detail', {orderInfo: JSON.stringify(order)}]);
+    } else {
+      this.router.navigate(['tabs/home/search-vendor', {
+        city: order.city,
+        service: order.serviceType,
+        orderId: order.id
+      }]);
+    }
+  }
+
+  reviewOrder(order: Order) {
+
   }
 }

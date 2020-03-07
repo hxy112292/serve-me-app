@@ -22,6 +22,7 @@ export class SetOrderPage implements OnInit {
   costOFF: number;
   user: User;
   address: Address;
+  orderId: string;
 
   constructor(private route: ActivatedRoute,
               private http: HttpClient,
@@ -75,14 +76,45 @@ export class SetOrderPage implements OnInit {
   }
 
   ngOnInit() {
+    this.service = JSON.parse(this.route.snapshot.paramMap.get('serviceInfo'));
+    this.orderId = this.route.snapshot.paramMap.get('orderId');
+    this.getOrder();
     this.getVendor();
   }
   getVendor() {
-    this.service = JSON.parse(this.route.snapshot.paramMap.get('serviceInfo'));
     this.order.vendorId = this.service.vendorId;
     this.order.price = this.service.price;
     this.order.serviceId = this.service.id;
     this.order.serviceType = this.service.type;
+  }
+
+  getOrder() {
+    if (this.orderId != null && this.orderId !== '' && this.orderId !== 'null') {
+      this.http.get(this.constant.baseUrl + '/order/findOrderById', {
+        params: {
+          id: this.orderId
+        }
+      }).subscribe(res => {
+        if ((res as any).code !== 0) {
+          this.constant.alert((res as any).message);
+          return;
+        }
+        this.order = (res as any).result;
+        this.getVendor();
+        this.getCost();
+        this.http.get(this.constant.baseUrl + '/address/findByAddressId', {
+          params: {
+            id: this.order.addressId
+          }
+        }).subscribe(r => {
+          if ((r as any).code !== 0) {
+            this.constant.alert((r as any).message);
+            return;
+          }
+          this.address = (r as any).result;
+        });
+      });
+    }
   }
 
   getCost() {
@@ -118,20 +150,31 @@ export class SetOrderPage implements OnInit {
     }
     this.order.customerId = this.constant.getUser().id;
     this.order.addressId = this.address.id;
-    this.order.status = 'NOT_ACCEPTED';
+    this.order.status = 'NOT_STARTED';
+    this.getVendor();
     if (this.constant.getUser().role === 'GUEST') {
       this.order.costOff = null;
     } else {
       this.order.costNoOff = null;
     }
-    this.http.post(this.constant.baseUrl + '/order/insert', this.order).subscribe(res => {
-      if ((res as any).code !== 0) {
-        this.constant.alert((res as any).message);
-        return;
-      }
-    });
+    if (this.orderId != null && this.orderId !== '' && this.orderId !== 'null') {
+      this.http.put(this.constant.baseUrl + '/order/update', this.order).subscribe(res => {
+        if ((res as any).code !== 0) {
+          this.constant.alert((res as any).message);
+          return;
+        }
+      });
+    } else {
+      this.http.post(this.constant.baseUrl + '/order/insert', this.order).subscribe(res => {
+        if ((res as any).code !== 0) {
+          this.constant.alert((res as any).message);
+          return;
+        }
+      });
+    }
 
-    this.router.navigate(['/tabs/order']);
+
+    this.router.navigate(['/tabs/customer-center']);
   }
 
   singup() {

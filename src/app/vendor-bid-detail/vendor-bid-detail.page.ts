@@ -81,7 +81,6 @@ export class VendorBidDetailPage implements OnInit {
         this.bid = this.bidList[0];
         this.isBid = true;
       }
-      console.log(this.bidList);
     });
   }
 

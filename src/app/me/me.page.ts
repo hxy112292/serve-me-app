@@ -38,7 +38,7 @@ export class MePage implements OnInit {
   }
 
   myorder() {
-    this.router.navigate(['tabs/order']);
+    this.router.navigate(['tabs/customer-center']);
   }
 
   personalInfo() {

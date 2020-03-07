@@ -52,12 +52,19 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'order',
+        path: 'customer-center',
         children: [
           {
             path: '',
-            loadChildren: () =>
-                import('../order/order.module').then(m => m.OrderPageModule)
+            loadChildren: () => import('../customer-center/customer-center.module').then( m => m.CustomerCenterPageModule)
+          },
+          {
+            path: 'customer-order',
+            loadChildren: () => import('../customer-order/customer-order.module').then( m => m.CustomerOrderPageModule)
+          },
+          {
+            path: 'customer-order-detail',
+            loadChildren: () => import('../customer-order-detail/customer-order-detail.module').then( m => m.CustomerOrderDetailPageModule)
           }
         ]
       },

@@ -17,6 +17,7 @@ export class ServiceDetailPage implements OnInit {
   star: string;
   reviewTime: string;
   reviewType: string;
+  orderId: string;
 
   constructor(private route: ActivatedRoute,
               private http: HttpClient,
@@ -26,6 +27,7 @@ export class ServiceDetailPage implements OnInit {
   ngOnInit() {
 
     this.service = JSON.parse(this.route.snapshot.paramMap.get('serviceInfo'));
+    this.orderId = this.route.snapshot.paramMap.get('orderId');
 
     this.getReviews();
   }
@@ -46,7 +48,7 @@ export class ServiceDetailPage implements OnInit {
   }
 
   toSetOrder(service: Service) {
-    this.router.navigate(['/tabs/home/set-order', {serviceInfo: JSON.stringify(service)}]);
+    this.router.navigate(['/tabs/home/set-order', {serviceInfo: JSON.stringify(service), orderId: this.orderId}]);
   }
 
   doRefresh(event) {

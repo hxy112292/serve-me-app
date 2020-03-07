@@ -14,6 +14,7 @@ export class SearchVendorPage implements OnInit {
   serviceList: Service[];
   star: string;
   city: string;
+  orderId: string;
   service: string;
   vendorStars: string;
   starFilter: number;
@@ -25,33 +26,50 @@ export class SearchVendorPage implements OnInit {
               private router: Router,
               private constant: ConstantsService) {
 
-    this.starFilter = 3;
+    this.starFilter = 1;
   }
 
   ngOnInit() {
+    this.city = this.route.snapshot.paramMap.get('city');
+    this.service = this.route.snapshot.paramMap.get('service');
+    this.orderId = this.route.snapshot.paramMap.get('orderId');
     this.getVendorList();
   }
 
   getVendorList() {
-    this.city = this.route.snapshot.paramMap.get('city');
-    this.service = this.route.snapshot.paramMap.get('service');
 
-    this.http.get(this.constant.baseUrl + '/service/searchVendor', {
-      params: {
-        city: this.city,
-        type: this.service
-      }
-    }).subscribe(res => {
-      if ((res as any).code !== 0) {
-        this.constant.alert((res as any).message);
-        return;
-      }
-      this.serviceList = (res as any).result;
-    });
+    if (this.orderId == null || this.orderId === '') {
+      this.http.get(this.constant.baseUrl + '/service/searchVendor', {
+        params: {
+          city: this.city,
+          type: this.service
+        }
+      }).subscribe(res => {
+        if ((res as any).code !== 0) {
+          this.constant.alert((res as any).message);
+          return;
+        }
+        this.serviceList = (res as any).result;
+      });
+    } else {
+      this.http.get(this.constant.baseUrl + '/service/searchVendor', {
+        params: {
+          city: this.city,
+          type: this.service,
+          orderId: this.orderId
+        }
+      }).subscribe(res => {
+        if ((res as any).code !== 0) {
+          this.constant.alert((res as any).message);
+          return;
+        }
+        this.serviceList = (res as any).result;
+      });
+    }
   }
 
   toServiceDetail(service: Service) {
-    this.router.navigate(['/tabs/home/service-detail', {serviceInfo: JSON.stringify(service)}]);
+    this.router.navigate(['/tabs/home/service-detail', {serviceInfo: JSON.stringify(service), orderId: this.orderId}]);
   }
 
   doRefresh(event) {

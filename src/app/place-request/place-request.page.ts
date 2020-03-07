@@ -117,6 +117,6 @@ export class PlaceRequestPage implements OnInit {
       }
     });
 
-    this.router.navigate(['/tabs/order']);
+    this.router.navigate(['/tabs/customer-center']);
   }
 }
