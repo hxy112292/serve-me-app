@@ -13,6 +13,8 @@ export class HomePage implements OnInit {
   city: any;
   service: any;
   slideOpts: any;
+  showHelpSelectVendor: boolean;
+  showHelpPlaceRequest: boolean;
 
   constructor(private http: HttpClient,
               private navCtrl: NavController,
@@ -27,6 +29,9 @@ export class HomePage implements OnInit {
       },
       loop: true
     };
+
+    this.showHelpSelectVendor = false;
+    this.showHelpPlaceRequest = false;
   }
 
   ngOnInit() {
@@ -67,5 +72,21 @@ export class HomePage implements OnInit {
       return;
     }
     this.router.navigate(['tabs/home/place-request', {city: this.city, service: this.service}]);
+  }
+
+  helpSelectVendor() {
+    if (this.showHelpSelectVendor === true) {
+      this.showHelpSelectVendor = false;
+    } else {
+      this.showHelpSelectVendor = true;
+    }
+  }
+
+  helpPlaceRequest() {
+    if (this.showHelpPlaceRequest === true) {
+      this.showHelpPlaceRequest = false;
+    } else {
+      this.showHelpPlaceRequest = true;
+    }
   }
 }

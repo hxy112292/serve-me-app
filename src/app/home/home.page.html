@@ -17,7 +17,9 @@
       <ion-img src="assets/img/JoinUs.png" (click)="toJoinUs()"></ion-img>
     </ion-slide>
   </ion-slides>
-  <ion-title class="ion-text-center" style="font-size: x-large;font-weight: bold"><p>Welcome to use ServeMe</p></ion-title>
+  <br>
+  <ion-title class="ion-text-center" style="font-size: x-large;font-weight: bold">Welcome to use ServeMe</ion-title>
+  <br>
   <ion-list lines="full">
     <ion-item>
       <ion-icon name="pin" color="primary"></ion-icon>
@@ -44,13 +46,31 @@
     </ion-item>
   </ion-list>
 
-  <div class="ion-text-center">
-    <ion-button (click)="searchVendor()">Select vendor</ion-button>
-  </div>
-  <div class="ion-text-center">
-    <ion-text style="font-size: medium">OR</ion-text>
-  </div>
-  <div class="ion-text-center" (click)="placeRequest()">
-    <ion-button>PLACE NEW REQUEST</ion-button>
-  </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col style="text-align: right" [size]="8.5">
+        <ion-button (click)="searchVendor()" color="tertiary">Select vendor</ion-button>
+      </ion-col>
+      <ion-col style="text-align: left; align-self: center">
+        <ion-icon name="help-circle" style="font-size: x-large" (click)="helpSelectVendor()"></ion-icon>
+      </ion-col>
+    </ion-row>
+    <div *ngIf="showHelpSelectVendor" class="helpContent">
+      (<ion-text style="color: #633ce0">The price of service is already set</ion-text> by the vendor.You will select
+      one vendor to set order directly.  You do not wait for vendor to provide bids.)
+    </div>
+    <ion-row>
+      <ion-col style="text-align: right" [size]="8.5">
+        <ion-button (click)="placeRequest()" color="danger">PLACE REQUEST</ion-button>
+      </ion-col>
+      <ion-col style="text-align: left; align-self: center">
+        <ion-icon name="help-circle" style="font-size: x-large" (click)="helpPlaceRequest()"></ion-icon>
+      </ion-col>
+    </ion-row>
+    <div *ngIf="showHelpPlaceRequest" class="helpContent">
+      (<ion-text style="color: red">You need to wait for vendor to provide bids.</ion-text> You can see your order
+      in the order center after you place a request. Finalize your selection after reviewing all bids.)
+    </div>
+  </ion-grid>
+
 </ion-content>
