@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {ConstantsService} from '../constants.service';
 import {forEach} from '@angular-devkit/schematics';
+import {Order} from '../entity/order';
 
 @Component({
   selector: 'app-search-vendor',
@@ -15,6 +16,7 @@ export class SearchVendorPage implements OnInit {
   star: string;
   city: string;
   orderId: string;
+  order: Order;
   service: string;
   vendorStars: string;
   starFilter: number;
@@ -27,6 +29,31 @@ export class SearchVendorPage implements OnInit {
               private constant: ConstantsService) {
 
     this.starFilter = 1;
+
+    this.order = {
+      id: '',
+      customerId: '',
+      customerName: '',
+      customerPhone: '',
+      vendorId: '',
+      vendorName:  '',
+      vendorPhone: '',
+      serviceId: '',
+      serviceType: '',
+      address: '',
+      addressId: '',
+      price: '',
+      costOff: '',
+      costNoOff: '',
+      dateStart: '',
+      dateEnd: '',
+      status: '',
+      createTime: '',
+      updateTime: '',
+      star: 0,
+      city: '',
+      description: ''
+    };
   }
 
   ngOnInit() {
@@ -64,6 +91,17 @@ export class SearchVendorPage implements OnInit {
           return;
         }
         this.serviceList = (res as any).result;
+      });
+      this.http.get(this.constant.baseUrl + '/order/findOrderById', {
+        params: {
+          id: this.orderId
+        }
+      }).subscribe(res => {
+        if ((res as any).code !== 0) {
+          this.constant.alert((res as any).message);
+          return;
+        }
+        this.order = (res as any).result;
       });
     }
   }

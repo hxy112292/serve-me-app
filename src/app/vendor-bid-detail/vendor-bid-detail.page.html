@@ -83,8 +83,9 @@
           <ion-card-content>
             <ion-list>
               <ion-item>
-                <ion-label>Price($/day):　</ion-label>
-                <ion-input placeholder="Provide your bid" [(ngModel)]="bid.price"></ion-input>
+                <ion-icon name="card" color="warning" size="small"></ion-icon>
+                <ion-label>　Price ($/day):</ion-label>
+                <ion-input placeholder="Your bid" [(ngModel)]="bid.price"></ion-input>
               </ion-item>
             </ion-list>
             <div *ngIf="isBid == false" class="ion-text-center">

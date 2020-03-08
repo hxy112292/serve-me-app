@@ -14,6 +14,82 @@
             refreshingSpinner="circles">
     </ion-refresher-content>
   </ion-refresher>
+  <div *ngIf="orderId != null && orderId != ''">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>
+          <ion-icon name="wallet" color="danger"></ion-icon>
+          <ion-text>　OrderNo: {{order.id}}, {{order.createTime | date:'MMM dd yyyy HH:mm:ss'}}</ion-text>
+        </ion-card-subtitle>
+        <ion-card-title>{{order.serviceType}}  ({{order.status}})</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col [size]="1">
+              <ion-icon name="person" color="primary"></ion-icon>
+            </ion-col>
+            <ion-col [size]="3">
+              <ion-label>Customer:</ion-label>
+            </ion-col>
+            <ion-col>
+              <ion-text>{{order.customerName}}</ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col [size]="1">
+              <ion-icon name="call" color="dark"></ion-icon>
+            </ion-col>
+            <ion-col [size]="3">
+              <ion-label>Phone:</ion-label>
+            </ion-col>
+            <ion-col>
+              <ion-text>{{order.customerPhone}}</ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col [size]="1">
+              <ion-icon name="pin" color="tertiary"></ion-icon>
+            </ion-col>
+            <ion-col [size]="3">
+              <ion-label>Address:</ion-label>
+            </ion-col>
+            <ion-col>
+              <ion-text>{{order.address}}</ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col [size]="1">
+              <ion-icon name="calendar" color="danger"></ion-icon>
+            </ion-col>
+            <ion-col [size]="3">
+              <ion-label>Time:</ion-label>
+            </ion-col>
+            <ion-col>
+              <ion-text>{{order.dateStart | date:'MMM dd'}} - {{order.dateEnd | date: 'MMM dd'}}</ion-text>
+            </ion-col>
+          </ion-row>
+          <div *ngIf="order.status === 'REVIEWED'">
+            <ion-row>
+              <ion-col [size]="1">
+                <ion-icon name="star" color="secondary"></ion-icon>
+              </ion-col>
+              <ion-col [size]="3">
+                <ion-label>Star:</ion-label>
+              </ion-col>
+              <ion-col>
+                <ionic4-star-rating #rating activeColor = "orange" readonly = "true" fontSize="small" [(ngModel)]="order.star"></ionic4-star-rating>
+              </ion-col>
+            </ion-row>
+          </div>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+    <br>
+    <div class="ion-text-center">
+      <ion-title>Select a vendor to set order</ion-title>
+    </div>
+  </div>
   <br>
   <ion-searchbar [(ngModel)]="vendorName" showCancelButton="focus" placeholder="vendor name"></ion-searchbar>
   <ion-segment>
