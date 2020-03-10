@@ -37,7 +37,7 @@ export class AppComponent {
       this.statusBar.overlaysWebView(false);
       window.setTimeout( function() {
         this.splashscreen.hide();
-      }, 3000)
+      }, 3000);
       // this.splashScreen.hide();
       this.initFCM();
       this.getUserInfo();
