@@ -73,7 +73,8 @@ export class AppComponent {
         this.localNotifications.schedule({
           id: 1,
           title: data.title,
-          text: data.body
+          text: data.body,
+          icon: 'res://ic_launcher.png'
         });
       }
     });
@@ -118,7 +119,8 @@ export class AppComponent {
           this.localNotifications.schedule({
             id: 2,
             title: 'Welcome',
-            text: 'Hi, ' + this.constant.getUser().username + '. Have a good day'
+            text: 'Hi, ' + this.constant.getUser().username + '. Have a good day',
+            icon: 'res://ic_launcher.png'
           });
         }
       }
