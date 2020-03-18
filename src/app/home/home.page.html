@@ -47,18 +47,18 @@
   </ion-list>
 
   <ion-grid>
-    <ion-row>
-      <ion-col style="text-align: right" [size]="8.5">
-        <ion-button (click)="searchVendor()" color="tertiary">Select vendor</ion-button>
-      </ion-col>
-      <ion-col style="text-align: left; align-self: center">
-        <ion-icon name="help-circle" style="font-size: x-large" (click)="helpSelectVendor()"></ion-icon>
-      </ion-col>
-    </ion-row>
-    <div *ngIf="showHelpSelectVendor" class="helpContent">
-      (<ion-text style="color: #633ce0">The price of service is already set</ion-text> by the vendor.You will select
-      one vendor to set order directly.  You do not wait for vendor to provide bids.)
-    </div>
+<!--    <ion-row>-->
+<!--      <ion-col style="text-align: right" [size]="8.5">-->
+<!--        <ion-button (click)="searchVendor()" color="tertiary">Select vendor</ion-button>-->
+<!--      </ion-col>-->
+<!--      <ion-col style="text-align: left; align-self: center">-->
+<!--        <ion-icon name="help-circle" style="font-size: x-large" (click)="helpSelectVendor()"></ion-icon>-->
+<!--      </ion-col>-->
+<!--    </ion-row>-->
+<!--    <div *ngIf="showHelpSelectVendor" class="helpContent">-->
+<!--      (<ion-text style="color: #633ce0">The price of service is already set</ion-text> by the vendor.You will select-->
+<!--      one vendor to set order directly.  You do not wait for vendor to provide bids.)-->
+<!--    </div>-->
     <ion-row>
       <ion-col style="text-align: right" [size]="8.5">
         <ion-button (click)="placeRequest()" color="danger">PLACE REQUEST</ion-button>
