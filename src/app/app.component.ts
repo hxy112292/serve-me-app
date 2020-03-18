@@ -19,7 +19,6 @@ import {AppUpdate} from '@ionic-native/app-update/ngx';
 export class AppComponent {
 
   uid: any;
-  appVersionNumber: string;
 
   constructor(
     private platform: Platform,
@@ -29,9 +28,7 @@ export class AppComponent {
     private constant: ConstantsService,
     private fcm: FCM,
     private vibration: Vibration,
-    private localNotifications: LocalNotifications,
-    private appUpdate: AppUpdate,
-    private appVersion: AppVersion
+    private localNotifications: LocalNotifications
   ) {
     this.initializeApp();
   }
@@ -46,7 +43,6 @@ export class AppComponent {
       // this.splashScreen.hide();
       this.initFCM();
       this.getUserInfo();
-      this.checkVersion();
     });
   }
 
@@ -131,26 +127,5 @@ export class AppComponent {
         }
       }
     });
-  }
-
-  getVersion() {
-    this.appVersion.getVersionNumber().then( res => {
-      this.appVersionNumber = res;
-    }).catch( err => {
-      console.log(err);
-    });
-  }
-
-  checkVersion() {
-    this.getVersion();
-    const updateUrl = this.constant.baseUrl + '/update/xml';
-    this.appUpdate.checkAppUpdate(updateUrl).then(
-        res => {
-          console.log(res);
-        }).catch(
-        err => {
-          console.log(err);
-        }
-    );
   }
 }

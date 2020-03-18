@@ -3,6 +3,8 @@ import {NavController} from '@ionic/angular';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {ConstantsService} from '../constants.service';
+import {AppUpdate} from '@ionic-native/app-update/ngx';
+import {AppVersion} from '@ionic-native/app-version/ngx';
 
 @Component({
   selector: 'app-home',
@@ -15,11 +17,14 @@ export class HomePage implements OnInit {
   slideOpts: any;
   showHelpSelectVendor: boolean;
   showHelpPlaceRequest: boolean;
+  appVersionNumber: string;
 
   constructor(private http: HttpClient,
               private navCtrl: NavController,
               private constant: ConstantsService,
-              private router: Router) {
+              private router: Router,
+              private appUpdate: AppUpdate,
+              private appVersion: AppVersion) {
     this.slideOpts = {
       initialSlide: 0,
       speed: 400,
@@ -35,6 +40,8 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit() {
+
+    this.checkVersion();
   }
 
   searchVendor() {
@@ -88,5 +95,26 @@ export class HomePage implements OnInit {
     } else {
       this.showHelpPlaceRequest = true;
     }
+  }
+
+  getVersion() {
+    this.appVersion.getVersionNumber().then( res => {
+      this.appVersionNumber = res;
+    }).catch( err => {
+      console.log(err);
+    });
+  }
+
+  checkVersion() {
+    this.getVersion();
+    const updateUrl = this.constant.baseUrl + '/update/xml';
+    this.appUpdate.checkAppUpdate(updateUrl).then(
+        res => {
+          console.log(res);
+        }).catch(
+        err => {
+          console.log(err);
+        }
+    );
   }
 }
