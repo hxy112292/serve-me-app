@@ -43,10 +43,8 @@
     "rxjs": "~6.5.1",
     "rxjs-compat": "^6.5.4",
     "tslib": "^1.9.0",
-    "zone.js": "~0.9.1"
-  },
-  "resolutions": {
-    "@babel/preset-env": "^7.9.0"
+    "zone.js": "~0.9.1",
+    "@babel/compat-data": "~7.8.6"
   },
   "devDependencies": {
     "@angular-devkit/architect": "~0.801.2",
