@@ -46,7 +46,7 @@
     "zone.js": "~0.9.1"
   },
   "resolutions": {
-    "@babel/preset-env": "^7.8.7"
+    "@babel/preset-env": "^7.5.5"
   },
   "devDependencies": {
     "@angular-devkit/architect": "~0.801.2",
